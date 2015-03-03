@@ -1,0 +1,26 @@
+<template name="profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <form class="form-horizontal well">
+          <legend>Edit your profile</legend>
+          <div class="form-group" id="name">
+            <label class="col-xs-3 control-label" for="inputName">Name</label>
+            <div class="col-xs-9">
+              <input type="text" class="form-control" id="inputName" placeholder="your username" value="{{username}}">
+            </div>
+          </div>
+          <div class="form-group" id="mail">
+            <label class="col-xs-3 control-label" for="inputMail">Mail</label>
+            <div class="col-xs-9">
+              <input type="email" class="form-control" id="inputMail" placeholder="your email address" value="{{usermail}}">
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-success save">Save</button>
+          <a class="btn btn-danger logout pull-right">Logout</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</template>

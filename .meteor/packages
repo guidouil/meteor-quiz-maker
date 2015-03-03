@@ -1,0 +1,32 @@
+# Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
+#
+# 'meteor add' and 'meteor remove' will edit this file for you,
+# but you can also edit it by hand.
+
+meteor-platform
+iron:router
+accounts-password
+aldeed:simple-schema
+ground:db
+aldeed:collection2
+twbs:bootstrap
+momentjs:moment
+rzymek:moment-locale-fr
+china:sweetalert
+alanning:roles
+fastclick
+ongoworks:security
+raix:handlebar-helpers
+useraccounts:bootstrap
+accounts-facebook
+accounts-google
+service-configuration
+accounts-ui
+fortawesome:fontawesome
+softwarerero:accounts-t9n
+aldeed:autoform
+mrt:accounts-admin-ui-bootstrap-3
+cfs:standard-packages
+cfs:autoform
+cfs:filesystem

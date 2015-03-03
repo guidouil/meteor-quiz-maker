@@ -1,0 +1,21 @@
+<template name="navbar">
+  <div class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+      <a class="navbar-brand {{ activeIfTemplateIs 'home' }}" href="{{pathFor 'home'}}" >Tefal</a>
+      <ul class="nav navbar-nav nav-pills">
+        <li class="{{ activeIfTemplateIs 'Home' }}"><a href="{{pathFor 'home'}}" title="Le Jeu"><span class="glyphicon glyphicon-gift"></span> Jeux</a></li>
+        <li class="{{ activeIfTemplateIs 'List' }}"><a href="{{pathFor 'play'}}" title="Jouer"><span class="glyphicon glyphicon-play"></span> Jouer</a></li>
+        {{#if isLoggedIn}}
+        <!-- <li class="{{ activeIfTemplateIs 'Profile' }}"><a href="{{pathFor 'profile'}}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+        <li class="{{ activeIfTemplateIs 'AdminUsers' }}"><a href="{{pathFor 'adminUsers'}}"><span class="glyphicon glyphicon-cog"></span> Admin</a></li>
+        <li><a class="logout" href="" title="logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li> -->
+        {{/if}}
+      </ul>
+    </div>
+    <div class="navbar-collapse collapse">
+      <!-- <ul class="nav navbar-nav navbar-right">
+        {{> loginButtons }}
+      </ul> -->
+    </div>
+  </div>
+</template>

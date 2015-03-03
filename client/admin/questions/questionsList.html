@@ -1,0 +1,17 @@
+<template name="questionsList">
+  <div class="container">
+    <div class="col-xs-12">
+      <legend><a href="{{pathFor 'bo'}}"><i class="fa fa-angle-left"></i></a> Questions</legend>
+      {{#if isAdminUser}}
+        <ul>
+          {{#each questions}}
+            <li><a href="{{pathFor 'questionUpdate' }}">{{question}}</a> <button class="btn btn-danger btn-xs delete" id="{{_id}}"><i class="fa fa-trash"></i></button></li>
+          {{/each}}
+        </ul>
+        <a href="{{pathFor 'questionInsert'}}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Add</a>
+      {{else}}
+          Must be admin to see this...
+      {{/if}}
+    </div>
+  </div>
+</template>

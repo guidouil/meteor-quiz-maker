@@ -1,0 +1,12 @@
+<template name="questionUpdate">
+  <div class="container">
+    <div class="col-xs-12">
+      {{#if isAdminUser}}
+      <legend><a href="{{pathFor 'questionsList'}}"><i class="fa fa-angle-left"></i></a> Update Question : {{this.question}}</legend>
+        {{> quickForm id="questions" doc=this collection="Questions" type="update"}}
+      {{else}}
+          Must be admin to see this...
+      {{/if}}
+    </div>
+  </div>
+</template>
