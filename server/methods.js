@@ -6,5 +6,24 @@ Meteor.methods({
       return true;
     }
     return false;
+  },
+  checkTheAnswer: function (theAnswerId) {
+    var theAnswer = Answers.findOne({_id: theAnswerId});
+    if (theAnswer && theAnswer.questionId) {
+      var question = Questions.findOne({_id: theAnswer.questionId});
+      var correctAnswerId = false;
+      _.each(question.answers, function(answer) {
+        if (answer.correct === true) {
+          correctAnswerId = answer._id;
+        }
+      });
+      if (correctAnswerId) {
+        var responseIs = false;
+        if (correctAnswerId === theAnswer.answerId) {
+          responseIs = true;
+        }
+        Answers.update({_id: theAnswerId}, {$set: {correct: responseIs}});
+      }
+    }
   }
 });

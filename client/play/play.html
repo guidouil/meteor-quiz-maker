@@ -2,44 +2,35 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <form class="form-horizontal">
-          <fieldset>
 
-            <!-- Form Name -->
-            <legend>1ere question</legend>
-            <p>Donec id ante elit. Donec ullamcorper a nisi ut pellentesque. Cras fringilla iaculis augue, at rhoncus nulla porta at. Phasellus aliquam commodo elit, et hendrerit tellus mattis non. Maecenas elit nisi, venenatis et justo ac, luctus ornare lectus. Ut quis odio a est egestas semper sit amet sit amet diam. Ut convallis molestie velit vitae consectetur. Suspendisse potenti. Nam fermentum tincidunt sapien ac ullamcorper. Interdum et malesuada fames ac ante ipsum primis in faucibus ?</p>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+          {{#each questions}}
+            <li class="{{isActive order}}"><a href="#{{_id}}" data-toggle="tab">{{question}}</a></li>
+          {{/each}}
+        </ul>
 
-
-            <!-- Multiple Radios -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="radios">Réponse 1</label>
-              <div class="col-md-4">
-                <div class="radio">
-                  <label for="radios-0">
-                    <input type="radio" name="radios" id="radios-0" value="1" checked="{{checked 1 answers.md}}">
-                    Yes
-                  </label>
-                </div>
-                <div class="radio">
-                  <label for="radios-1">
-                    <input type="radio" name="radios" id="radios-1" value="2" checked="{{checked 2 contact.md}}">
-                    No
-                  </label>
-                </div>
-                <div class="radio">
-                  <label for="radios-2">
-                    <input type="radio" name="radios" id="radios-2" value="3" checked="{{checked 3 contact.md}}">
-                    Maybe
-                  </label>
-                </div>
-              </div>
+        <!-- Tab panes -->
+        <div class="tab-content">
+          {{#each questions}}
+            <div class="tab-pane active" id="{{_id}}">
+              {{#unless answered _id}}
+                {{#each answers}}
+                  <div class="radio">
+                    <label for="radios-{{order}}">
+                      <input type="radio" name="{{questionId _id}}" id="radios-{{order}}" value="{{_id}}">
+                      {{answer}}
+                    </label>
+                  </div>
+                {{/each}}
+                <button name="button1id" class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-save"></span> Valider</button>
+              {{else}}
+                Votre réponse est : {{theAnswer _id}} - {{#if isCorrect _id}}bonne{{else}}mauvaise{{/if}} réponse.
+              {{/unless}}
             </div>
+          {{/each}}
+        </div>
 
-            <button name="button1id" class="btn btn-success btn-lg btn-block save"><span class="glyphicon glyphicon-arr
-              "></span> Question suivante</button>
-            <hr>
-          </fieldset>
-        </form>
       </div>
     </div>
   </div>

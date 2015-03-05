@@ -1,0 +1,8 @@
+/* CSS declarations go here */
+.cfsaf-hidden {
+	display: none !important;
+}
+
+.cfsaf-field {
+	cursor: pointer !important;
+}

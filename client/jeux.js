@@ -58,6 +58,13 @@ UI.registerHelper('isAdminUser', function() {
   return Roles.userIsInRole(Meteor.user(), ['admin']);
 });
 
+UI.registerHelper('isImage', function (imageId) {
+  if (!imageId || imageId === "dummyId") {
+    return false;
+  }
+  return true;
+});
+
 UI.registerHelper('getImage', function (imageId) {
   // Meteor.subscribe('Images', imageId);
   var image = Images.findOne({_id: imageId});

@@ -23,9 +23,9 @@ Template.questionsList.events({
         var questionId = evt.currentTarget.attributes.id.value;
         var result = Questions.remove({_id: questionId});
         if (result) {
-          swal("Deleted", "The contact has been deleted.", "success");
+          swal("Deleted", "The question has been deleted.", "success");
         } else {
-          swal("Oops...", "You don't have the right to delete this contact  ", "error");
+          swal("Oops...", "You don't have the right to delete this question  ", "error");
         }
       }
     );

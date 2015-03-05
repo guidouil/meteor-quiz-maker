@@ -1,0 +1,17 @@
+<template name="answersList">
+  <div class="container">
+    <div class="col-xs-12">
+      <legend><a href="{{pathFor 'bo'}}"><i class="fa fa-angle-left"></i></a> Answers</legend>
+      {{#if isAdminUser}}
+        <ul>
+          {{#each usersAnswers}}
+            <li>{{user}} - correctAnswersCount: {{correctAnswersCount}}{{#if winner}} - is a winner !{{/if}}</li>
+          {{/each}}
+        </ul>
+        <a href="{{pathFor 'questionInsert'}}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Add</a>
+      {{else}}
+          Must be admin to see this...
+      {{/if}}
+    </div>
+  </div>
+</template>
