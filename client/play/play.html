@@ -4,16 +4,17 @@
       <div class="col-xs-12">
 
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs" id="myTab">
           {{#each questions}}
-            <li class="{{isActive order}}"><a href="#{{_id}}" data-toggle="tab">{{question}}</a></li>
+            <li class="{{isActive order}}"><a href="#{{_id}}" data-toggle="tab" >Question {{order}}</a></li>
           {{/each}}
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
           {{#each questions}}
-            <div class="tab-pane active" id="{{_id}}">
+            <div class="tab-pane {{isActive order}}" id="{{_id}}">
+              <h2>{{question}}</h2>
               {{#unless answered _id}}
                 {{#each answers}}
                   <div class="radio">
@@ -25,8 +26,15 @@
                 {{/each}}
                 <button name="button1id" class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-save"></span> Valider</button>
               {{else}}
-                Votre réponse est : {{theAnswer _id}} - {{#if isCorrect _id}}bonne{{else}}mauvaise{{/if}} réponse.
+                Votre réponse à la question "{{question}}" est : <strong>{{theAnswer _id}}</strong> et c'est une {{#if isCorrect _id}}bonne{{else}}mauvaise{{/if}} réponse.
               {{/unless}}
+              <br>
+              {{#if video}}
+              <iframe width="560" height="315" src="{{video}}" frameborder="0" allowfullscreen></iframe>
+              {{/if}}
+              {{#if isImage imageId}}
+                <img src="{{getImage this.imageId}}" alt="{{question}}" width="320">
+              {{/if}}
             </div>
           {{/each}}
         </div>
@@ -34,4 +42,5 @@
       </div>
     </div>
   </div>
+  <script>$('#myTab a:first').tab('show');</script>
 </template>

@@ -2,12 +2,11 @@
   <div class="container">
     <div class="col-xs-12">
       {{#if isAdminUser}}
-      <ul>
-        <li><a href="{{pathFor 'questionsList'}}">Questions</a></li>
-        <li><a href="{{pathFor 'answersList'}}">Answers</a></li>
-        <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
-      </ul>
-
+        <ul>
+          <li><a href="{{pathFor 'questionsList'}}">Questions</a></li>
+          <li><a href="{{pathFor 'answersList'}}">Answers</a></li>
+          <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
+        </ul>
       {{else}}
           Must be admin to see this...
       {{/if}}

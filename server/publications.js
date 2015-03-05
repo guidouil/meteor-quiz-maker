@@ -18,10 +18,10 @@ Meteor.publish('Answers', function () {
   }
 });
 
-Meteor.publish('UsersData', function () {
-  if (Roles.userIsInRole(this.userId, "admin")) {
-    return Meteor.users.find({});
-  } else {
-    return false;
-  }
-});
+// Meteor.publish('UsersData', function () {
+//   if (Roles.userIsInRole(this.userId, "admin")) {
+//     return Meteor.users.find({});
+//   } else {
+//     return false;
+//   }
+// });

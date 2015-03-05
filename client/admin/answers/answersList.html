@@ -5,10 +5,10 @@
       {{#if isAdminUser}}
         <ul>
           {{#each usersAnswers}}
-            <li>{{user}} - correctAnswersCount: {{correctAnswersCount}}{{#if winner}} - is a winner !{{/if}}</li>
+            <li>{{userEmail user}} - correctAnswersCount: {{correctAnswersCount}}{{#if winner}} - is a winner !{{/if}}</li>
           {{/each}}
         </ul>
-        <a href="{{pathFor 'questionInsert'}}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Add</a>
+        <button class="btn btn-danger btn-block reset"><i class="fa fa-minus"></i> Reset</button>
       {{else}}
           Must be admin to see this...
       {{/if}}

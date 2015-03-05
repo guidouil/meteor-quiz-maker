@@ -3,8 +3,9 @@ Template.play.helpers({
     return Questions.find().fetch();
   },
   isActive: function (order) {
+    //@TODO make it better ^^
     if (order === 1) {
-      return active;
+      return 'active';
     }
   },
   questionId: function (answerId) {
@@ -55,3 +56,7 @@ Template.play.events({
     }
   }
 });
+
+Template.play.rendered = function () {
+
+};
