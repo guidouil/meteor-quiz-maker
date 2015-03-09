@@ -3,7 +3,6 @@ Meteor.publish('Questions', function () {
   var answersCount = Answers.find({owner: this.userId}).count();
 
   if (Roles.userIsInRole(this.userId, "admin") || (questionsCount > 0 && questionsCount === answersCount)) {
-    console.log('yaya');
     return Questions.find({});
   } else {
     return Questions.find({}, {fields: {'answers.correct': 0}});
