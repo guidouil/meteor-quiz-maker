@@ -102,6 +102,7 @@ reload@1.1.2
 retry@1.0.2
 routepolicy@1.0.4
 rzymek:moment-locale-fr@2.8.4
+sacha:spin@2.0.4
 service-configuration@1.0.3
 session@1.0.5
 sha@1.0.2

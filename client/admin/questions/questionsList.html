@@ -5,7 +5,7 @@
       {{#if isAdminUser}}
         <ul>
           {{#each questions}}
-            <li><a href="{{pathFor 'questionUpdate' }}">{{question}}</a> <button class="btn btn-danger btn-xs delete" id="{{_id}}"><i class="fa fa-trash"></i></button></li>
+            <li><a href="{{pathFor 'questionUpdate' }}">{{order}}: {{question}}</a> <button class="btn btn-danger btn-xs delete" id="{{_id}}"><i class="fa fa-trash"></i></button></li>
           {{/each}}
         </ul>
         <a href="{{pathFor 'questionInsert'}}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Add</a>

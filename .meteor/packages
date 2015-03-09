@@ -32,3 +32,4 @@ cfs:autoform
 cfs:filesystem
 random
 cfs:gridfs
+sacha:spin

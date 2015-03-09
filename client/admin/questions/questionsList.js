@@ -1,6 +1,6 @@
 Template.questionsList.helpers({
   questions: function() {
-    return Questions.find().fetch();
+    return Questions.find({}, {sort: {order: 1}}).fetch();
   }
 });
 

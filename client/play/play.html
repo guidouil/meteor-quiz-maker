@@ -6,8 +6,9 @@
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="myTab">
           {{#each questions}}
-            <li class="{{isActive order}}"><a href="#{{_id}}" data-toggle="tab" >Question {{order}}</a></li>
+            <li class="tab {{isActive order}}" id="{{order}}"><a href="#{{_id}}" data-toggle="tab">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
           {{/each}}
+          <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}"><a href="#last" data-toggle="tab" >Résultats</a></li>
         </ul>
 
         <!-- Tab panes -->
@@ -15,18 +16,26 @@
           {{#each questions}}
             <div class="tab-pane {{isActive order}}" id="{{_id}}">
               <h2>{{question}}</h2>
+              {{{description}}}
               {{#unless answered _id}}
                 {{#each answers}}
                   <div class="radio">
-                    <label for="radios-{{order}}">
-                      <input type="radio" name="{{questionId _id}}" id="radios-{{order}}" value="{{_id}}">
+                    <label for="{{_id}}">
+                      <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}">
                       {{answer}}
                     </label>
                   </div>
                 {{/each}}
-                <button name="button1id" class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-save"></span> Valider</button>
+                <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
               {{else}}
-                Votre réponse à la question "{{question}}" est : <strong>{{theAnswer _id}}</strong> et c'est une {{#if isCorrect _id}}bonne{{else}}mauvaise{{/if}} réponse.
+                {{#each answers}}
+                  <div class="radio">
+                    <label for="{{_id}}" class="{{#if correct}}text-success{{else}}text-danger{{/if}}">
+                      <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}" disabled {{isChecked _id}}>
+                      {{answer}} {{#if correct}} (est la bonne réponse){{/if}}
+                    </label>
+                  </div>
+                {{/each}}
               {{/unless}}
               <br>
               {{#if video}}
@@ -37,10 +46,21 @@
               {{/if}}
             </div>
           {{/each}}
+          <div class="tab-pane {{isActive lastOrder}}" id="last">
+            <h2>Résultats du Grand jeu Tefal</h2>
+            <ul>
+              {{#each questions}}
+              <li>Votre réponse à la question "{{question}}" est : <strong>{{theAnswer _id}}</strong> et c'est une {{#if isCorrect _id}}bonne{{else}}mauvaise{{/if}} réponse.</li>
+              {{/each}}
+            </ul>
+            {{#if isWinner}}
+              <h3>Vous avez gagné</h3>
+                <button class="btn btn-primary btn-lg btn-block"><span class="fa fa-facebook"></span> Partagez sur Facebook</button>
+            {{/if}}
+          </div>
         </div>
 
       </div>
     </div>
   </div>
-  <script>$('#myTab a:first').tab('show');</script>
 </template>

@@ -21,7 +21,9 @@ Template.profile.events({
 Template.profile.helpers({
   username: function () {
     var user =  Meteor.user();
-    return user.profile.name;
+    if (user && user.name) {
+      return user.profile.name;
+    }
   },
   usermail: function () {
     var user =  Meteor.user();
