@@ -3,8 +3,12 @@ Template.play.helpers({
     return Questions.find({}, {sort: {order: 1}}).fetch();
   },
   isActive: function (order) {
+    var answersCount = Answers.find({owner: Meteor.userId()}).count();
+    if (answersCount && answersCount > 0) {
+      Session.set('activeTab', answersCount+1);
+    }
     if (!Session.get('activeTab')) {
-        Session.set('activeTab', 1);
+      Session.set('activeTab', 1);
     }
     if (order === Session.get('activeTab')) {
       return 'active';
