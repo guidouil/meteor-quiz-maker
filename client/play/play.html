@@ -8,7 +8,9 @@
           {{#each questions}}
             <li class="tab {{isActive order}}" id="{{order}}"><a href="#{{_id}}" data-toggle="tab">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
           {{/each}}
-          <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}"><a href="#last" data-toggle="tab" >Résultats</a></li>
+          {{#if allAnswered}}
+            <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}"><a href="#last" data-toggle="tab" >Résultats</a></li>
+          {{/if}}
         </ul>
 
         <!-- Tab panes -->
@@ -46,18 +48,20 @@
               {{/if}}
             </div>
           {{/each}}
-          <div class="tab-pane {{isActive lastOrder}}" id="last">
-            <h2>Résultats du Grand jeu Tefal</h2>
-            <ul>
-              {{#each questions}}
-              <li>Votre réponse à la question "{{question}}" est : <strong>{{theAnswer _id}}</strong> et c'est une {{#if isCorrect _id}}bonne{{else}}mauvaise{{/if}} réponse.</li>
-              {{/each}}
-            </ul>
-            {{#if isWinner}}
-              <h3>Vous avez gagné</h3>
-                <button class="btn btn-primary btn-lg btn-block"><span class="fa fa-facebook"></span> Partagez sur Facebook</button>
-            {{/if}}
-          </div>
+          {{#if allAnswered}}
+            <div class="tab-pane {{isActive lastOrder}}" id="last">
+              <h2>Résultats du Grand jeu Tefal</h2>
+              <ul>
+                {{#each questions}}
+                <li>Votre réponse à la question "{{question}}" est : <strong>{{theAnswer _id}}</strong> et c'est une {{#if isCorrect _id}}bonne{{else}}mauvaise{{/if}} réponse.</li>
+                {{/each}}
+              </ul>
+              {{#if isWinner}}
+                <h3>Vous avez gagné</h3>
+                  <button class="btn btn-primary btn-lg btn-block"><span class="fa fa-facebook"></span> Partagez sur Facebook</button>
+              {{/if}}
+            </div>
+          {{/if}}
         </div>
 
       </div>

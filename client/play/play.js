@@ -8,7 +8,6 @@ Template.play.helpers({
     }
     if (order === Session.get('activeTab')) {
       return 'active';
-      console.log(order);
     }
   },
   questionId: function (answerId) {
@@ -68,6 +67,7 @@ Template.play.helpers({
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (questionsCount === answersCount) {
       return true;
+      $('#myTab a:last').tab('show');
     }
     return false;
   }
