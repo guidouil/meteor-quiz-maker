@@ -1,0 +1,14 @@
+<template name="quizInsert">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        {{#if isAdminUser}}
+        <legend><a href="{{pathFor 'quizzesList'}}"><i class="fa fa-angle-left"></i></a> Create Quiz</legend>
+        {{> quickForm id="quiz" enctype="multipart/form-data" doc=this collection="Quizzes" type="insert"}}
+        {{else}}
+          Must be admin to see this...
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,21 @@
+<template name="questionUpdate">
+  <div class="container">
+    <div class="col-xs-12">
+      {{#if isAdminUser}}
+      <legend><a href="{{pathFor 'questionsList' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Update Question : {{this.question}}</legend>
+        {{> quickForm id="questionUpdate" enctype="multipart/form-data" doc=this collection="Questions" type="update"}}
+        <!-- {{#autoForm id="questionUpdate" type="update" collection="Questions"}}
+          {{> afQuickFields}}
+          {{> afQuickField name="quizId" type="hidden" value=quizId}}
+          <input type="hidden" name="quizId" value="{{quizId}}">
+          <div>
+            <button class="btn btn-success" type="submit">Submit</button>
+          </div>
+        {{/autoForm}} -->
+
+      {{else}}
+          Must be admin to see this...
+      {{/if}}
+    </div>
+  </div>
+</template>

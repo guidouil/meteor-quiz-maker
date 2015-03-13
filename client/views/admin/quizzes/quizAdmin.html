@@ -1,0 +1,16 @@
+<template name="quizAdmin">
+  <div class="container">
+    <div class="col-xs-12">
+      <legend><a href="{{pathFor 'quizzesList'}}"><i class="fa fa-angle-left"></i> </a>Quiz : {{title}}</legend>
+      {{#if isAdminUser}}
+        <ul>
+          <li><a href="{{pathFor 'quizUpdate' quizId=quizId}}">Settings</a></li>
+          <li><a href="{{pathFor 'questionsList' quizId=quizId}}">Questions</a></li>
+          <li><a href="{{pathFor 'answersList' quizId=quizId}}">Answers</a></li>
+        </ul>
+      {{else}}
+          Must be admin to see this...
+      {{/if}}
+    </div>
+  </div>
+</template>

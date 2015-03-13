@@ -1,0 +1,20 @@
+<template name="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        {{#if quiz}}
+          {{{quiz.home}}}
+          <a href="/play/{{quiz._id}}" class="btn btn-success btn-block"><i class="fa fa-play"> Jouer</i></a>
+        {{else}}
+          {{#if isAdminUser}}
+            <ul>
+              {{#each quizzes}}
+               <li> <a href="/quiz/{{_id}}">{{title}}</a> {{startDate}} - {{endDate}} </li>
+              {{/each}}
+            </ul>
+          {{/if}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,23 @@
+<template name="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        {{#if quiz}}
+          {{{quiz.footer}}}
+        {{else}}
+          <hr>
+          <p class="text-center text-muted">
+            &copy;2015 TEFAL -
+            <a href="{{pathFor 'rules'}}">réglement</a>
+            {{#if isLoggedIn}}
+              - <a href="{{pathFor 'profile'}}">{{email}}</a>
+            {{/if}}
+            {{#if isAdminUser}}
+            - <a href="{{pathFor 'bo'}}">&pi;</a>
+            {{/if}}
+          </p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>

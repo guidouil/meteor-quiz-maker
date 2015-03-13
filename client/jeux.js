@@ -1,4 +1,4 @@
-Meteor.subscribe('Images');
+Meteor.subscribe('Quizzes');
 
 getUserLanguage = function () {
   var language = window.navigator.userLanguage || window.navigator.language;
@@ -24,6 +24,14 @@ Meteor.startup(function () {
   //     // Handle the situation
   //     console.log(error_message);
   //   });
+});
+
+UI.registerHelper('quiz', function(){
+  var quizId = Iron.controller().getParams().quizId;
+  if (quizId) {
+    var quiz = Quizzes.findOne({_id: quizId});
+    return quiz;
+  }
 });
 
 UI.registerHelper('fromNow', function(date){

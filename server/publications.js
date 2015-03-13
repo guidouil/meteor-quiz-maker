@@ -1,23 +1,23 @@
-Meteor.publish('Questions', function () {
-  var questionsCount = Questions.find().count();
-  var answersCount = Answers.find({owner: this.userId}).count();
+Meteor.reactivePublish('Quizzes', function () {
+  return Quizzes.find({}, {reactive: true});
+});
+
+Meteor.reactivePublish('Questions', function (quizId) {
+  var questionsCount = Questions.find({quizId: quizId}, {reactive: true}).count();
+  var answersCount = Answers.find({quizId: quizId, owner: this.userId}, {reactive: true}).count();
 
   if (Roles.userIsInRole(this.userId, "admin") || (questionsCount > 0 && questionsCount === answersCount)) {
-    return Questions.find({});
+    return Questions.find({quizId: quizId}, {reactive: true});
   } else {
-    return Questions.find({}, {fields: {'answers.correct': 0}});
+    return Questions.find({quizId: quizId}, {fields: {'answers.correct': 0}}, {reactive: true});
   }
 });
 
-Meteor.publish('Images', function () {
-  return Images.find({});
-});
-
-Meteor.publish('Answers', function () {
+Meteor.reactivePublish('Answers', function (quizId) {
   if (Roles.userIsInRole(this.userId, "admin")) {
-    return Answers.find({}, {$sort: {owner: 1}});
+    return Answers.find({quizId: quizId}, {sort: {owner: 1}}, {reactive: true});
   } else {
-    return Answers.find({owner: this.userId}, {$sort: {owner: 1}});
+    return Answers.find({quizId: quizId, owner: this.userId}, {reactive: true});
   }
 });
 

@@ -1,8 +1,8 @@
 Meteor.startup(function () {
-  // Creating Admin PreProd
-  if (Meteor.users.findOne("LPu2NR3MH2QnmwP6E"))
-  Roles.addUsersToRoles("LPu2NR3MH2QnmwP6E", ['admin']);
-  // Creating Admin Dev
-  if (Meteor.users.findOne("o3rjuBkEHmpmfaNhP"))
-  Roles.addUsersToRoles("o3rjuBkEHmpmfaNhP", ['admin']);
+  // First user get admin role
+  // console.log(Meteor.users.find({}).count());
+  if (Meteor.users.find({}).count() === 1 ) {
+    var admin = Meteor.users.findOne({});
+    Roles.addUsersToRoles(admin._id, ['admin']);
+  }
 });

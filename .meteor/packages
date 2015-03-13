@@ -27,9 +27,7 @@ fortawesome:fontawesome
 softwarerero:accounts-t9n
 aldeed:autoform
 mrt:accounts-admin-ui-bootstrap-3
-cfs:standard-packages
-cfs:autoform
-cfs:filesystem
 random
-cfs:gridfs
 sacha:spin
+msavin:mongol
+lepozepo:reactive-publish
