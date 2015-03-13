@@ -3,11 +3,9 @@
     <div class="col-xs-12">
       {{#if isAdminUser}}
       <legend><a href="{{pathFor 'questionsList' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Create Question</legend>
-        <!-- {{> quickForm id="questions" enctype="multipart/form-data" doc=this collection="Questions" type="insert"}} -->
         {{#autoForm id="questionsInsert" type="insert" collection="Questions" omitFields="quizId"}}
           {{> afQuickFields}}
           {{> afQuickField name="quizId" type="hidden" value=quizId}}
-          <!-- <input type="hidden" name="quizId" value="{{quizId}}"> -->
           <div>
             <button class="btn btn-success" type="submit">Submit</button>
           </div>
