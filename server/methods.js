@@ -26,9 +26,9 @@ Meteor.methods({
       }
     }
   },
-  resetAnswers: function () {
+  resetAnswers: function (quizId) {
     if (Roles.userIsInRole(Meteor.userId(), "admin")) {
-      Answers.remove({});
+      Answers.remove({quizId: quizId});
       return true;
     }
   },

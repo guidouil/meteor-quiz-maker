@@ -48,6 +48,7 @@ Template.answersList.helpers({
 Template.answersList.events({
   'click .reset': function(evt, tmpl) {
     evt.preventDefault();
+    var quizId = Iron.controller().getParams().quizId;
     swal(
       {
         title: "Are you sure ?",
@@ -61,7 +62,7 @@ Template.answersList.events({
         closeOnCancel: true
       },
       function(){
-        Meteor.call('resetAnswers');
+        Meteor.call('resetAnswers', quizId);
         swal("Deleted", "The answers have been deleted.", "success");
 
       }

@@ -9,7 +9,7 @@
           {{#if isAdminUser}}
             <ul>
               {{#each quizzes}}
-               <li> <a href="/quiz/{{_id}}">{{title}}</a> {{startDate}} - {{endDate}} </li>
+               <li> <a href="/quiz/{{_id}}">{{title}}</a>{{#if startDate}} - Started {{fromNow startDate}} - Ends {{fromNow endDate}}{{/if}} </li>
               {{/each}}
             </ul>
           {{/if}}

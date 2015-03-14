@@ -2,15 +2,17 @@
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        {{#if quiz}}
+        {{#if quiz.footer}}
           {{{quiz.footer}}}
         {{else}}
           <hr>
           <p class="text-center text-muted">
-            &copy;2015 TEFAL -
+            &copy;2015 -
             <a href="{{pathFor 'rules'}}">réglement</a>
             {{#if isLoggedIn}}
               - <a href="{{pathFor 'profile'}}">{{email}}</a>
+            {{else}}
+              - <a href="{{pathFor 'login'}}">Login</a>
             {{/if}}
             {{#if isAdminUser}}
             - <a href="{{pathFor 'bo'}}">&pi;</a>

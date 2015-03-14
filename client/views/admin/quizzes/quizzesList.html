@@ -5,7 +5,7 @@
       {{#if isAdminUser}}
         <ul>
           {{#each quizzes}}
-            <li><a href="{{pathFor 'quizAdmin' quizId=_id }}">{{title}}</a> <button class="btn btn-danger btn-xs delete" id="{{_id}}"><i class="fa fa-trash"></i></button></li>
+            <li><a href="{{pathFor 'quizAdmin' quizId=_id }}">{{title}}</a>{{#if startDate}} - Started {{fromNow startDate}} - Ends {{fromNow endDate}}{{/if}}  <button class="btn btn-danger btn-xs delete" id="{{_id}}"><i class="fa fa-trash"></i></button></li>
           {{/each}}
         </ul>
         <a href="{{pathFor 'quizInsert' }}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Add Quiz</a>

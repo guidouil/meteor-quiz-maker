@@ -74,8 +74,49 @@ Template.play.helpers({
       $('#myTab a:last').tab('show');
     }
     return false;
-  }
+  },
+  chances: function () {
+    var result = {};
+    var correctAnswersCount = Answers.find({owner: Meteor.userId(), correct:true}).count();
 
+    if (correctAnswersCount >= 1) {
+      result.plural = 's';
+    }
+    result.count = correctAnswersCount + 1;
+    return result;
+  },
+  autoZip: function () {
+    return {
+      position: "bottom",
+      limit: 5,
+      rules: [
+        {
+          collection: Citys,
+          field: "_id",
+          template: Template.city
+        }
+      ]
+    };
+  },
+  userId: function () {
+    return Meteor.userId();
+  },
+  quizId: function(){
+    return Iron.controller().getParams().quizId;
+  },
+  profile: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Profiles.findOne({owner: Meteor.userId(), quizId: quizId});
+  },
+  type: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    var profile = Profiles.findOne({owner: Meteor.userId(), quizId: quizId});
+    if (profile && profile._id) {
+      return "update";
+    } else {
+      return "insert";
+    }
+  }
 });
 
 Template.play.events({
@@ -103,9 +144,23 @@ Template.play.events({
       Session.set('activeTab', questionsCount + 1);
     }
     Session.set('activeTab', question.order + 1);
+  },
+  "autocompleteselect #zip": function(event, template, doc) {
+    if(doc && doc.city) {
+      $('#city').val(doc.city);
+    }
+  },
+  'submit #profileInsert': function (evt, tmpl) {
+
   }
 });
 
 Template.play.rendered = function () {
-
+  if ($('#birthdate')) {
+    $('#birthdate').datepicker({
+      format: "dd/mm/yyyy",
+      startView: 2,
+      orientation: "bottom auto"
+    });
+  }
 };

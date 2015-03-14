@@ -2,6 +2,18 @@ Meteor.reactivePublish('Quizzes', function () {
   return Quizzes.find({}, {reactive: true});
 });
 
+Meteor.reactivePublish('Profiles', function () {
+  if (Roles.userIsInRole(this.userId, "admin")) {
+    return Profiles.find({}, {reactive: true});
+  } else {
+    return Profiles.find({owner: this.userId}, {reactive: true});
+  }
+});
+
+Meteor.reactivePublish('Citys', function () {
+  return Citys.find({}, {reactive: true});
+});
+
 Meteor.reactivePublish('Questions', function (quizId) {
   var questionsCount = Questions.find({quizId: quizId}, {reactive: true}).count();
   var answersCount = Answers.find({quizId: quizId, owner: this.userId}, {reactive: true}).count();
