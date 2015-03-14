@@ -104,9 +104,17 @@ Template.play.helpers({
   quizId: function(){
     return Iron.controller().getParams().quizId;
   },
-  profile: function () {
+  quizProfile: function () {
     var quizId = Iron.controller().getParams().quizId;
     return Profiles.findOne({owner: Meteor.userId(), quizId: quizId});
+  },
+  profile: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    var profile = Profiles.findOne({owner: Meteor.userId(), quizId: quizId});
+    if (!profile) {
+      profile = Profiles.findOne({owner: Meteor.userId()});
+    }
+    return profile;
   },
   type: function () {
     var quizId = Iron.controller().getParams().quizId;
