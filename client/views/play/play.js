@@ -92,7 +92,7 @@ Template.play.helpers({
       rules: [
         {
           collection: Citys,
-          field: "_id",
+          field: "zip",
           template: Template.city
         }
       ]
