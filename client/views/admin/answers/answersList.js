@@ -2,12 +2,17 @@ Template.answersList.helpers({
   quizId: function(){
     return Iron.controller().getParams().quizId;
   },
+  questions: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Questions.find({quizId: quizId},{sort: {order: 1}});
+  },
   usersAnswers: function () {
     var questionsCount = Questions.find().count();
-    var answers = Answers.find({}).fetch();
+    var answers = Answers.find({},{sort: {owner: 1}}).fetch();
     var answersCount = answers.length;
     var usersAnswers = [];
     var userCorrectAnswersCount = 0;
+    var source = [];
     $.each(answers, function(index, answer) {
       var winner = false;
       if (index === 0) {
@@ -18,10 +23,12 @@ Template.answersList.helpers({
         if (userCorrectAnswersCount === questionsCount) {
           winner = true;
         }
-        usersAnswers.push({user: previousUser, correctAnswersCount: userCorrectAnswersCount, winner: winner});
+        usersAnswers.push({user: previousUser, correctAnswersCount: userCorrectAnswersCount+1, winner: winner, source: source});
         userCorrectAnswersCount = 0;
         winner = false;
+        source = [];
       }
+      source.push(answer);
       if (answer.correct === true) {
         userCorrectAnswersCount += 1;
       }
@@ -32,7 +39,7 @@ Template.answersList.helpers({
         if (userCorrectAnswersCount === questionsCount) {
           winner = true;
         }
-        usersAnswers.push({user: previousUser, correctAnswersCount: userCorrectAnswersCount, winner: winner});
+        usersAnswers.push({user: previousUser, correctAnswersCount: userCorrectAnswersCount+1, winner: winner, source: source});
       }
     });
     return usersAnswers;
@@ -42,6 +49,40 @@ Template.answersList.helpers({
       Session.set('email_'+userId, data);
     });
     return Session.get('email_'+userId);
+  },
+  chances: function (userId) {
+    var quizId = Iron.controller().getParams().quizId;
+    var correctAnswersCount = Answers.find({quizId: quizId, owner: userId}).count();
+    return correctAnswersCount + 1;
+  },
+  questionsAnswered: function (userId) {
+    var quizId = Iron.controller().getParams().quizId;
+    var questions = Questions.find({quizId: quizId},{sort: {order: 1}}).fetch();
+    var questionsAnswered = [];
+    $.each(questions, function (index, question) {
+
+      var answer = Answers.findOne({questionId: question._id, owner: userId});
+      if (answer) {
+        if (answer.correct) {
+          questionsAnswered.push({'icon': 'check'});
+        } else {
+          questionsAnswered.push({'icon': 'times'});
+        }
+      } else {
+        questionsAnswered.push({'icon': 'minus'});
+      }
+    });
+    return questionsAnswered;
+  },
+  profile: function (userId) {
+    var quizId = Iron.controller().getParams().quizId;
+    var profile = Profiles.findOne({owner: userId, quizId: quizId});
+    if (!profile) {
+      profile = Profiles.findOne({owner: Meteor.userId()});
+    }
+    if (profile && profile.city && profile.birthdate) {
+      return profile.city + ' - ' + profile.zip;
+    }
   }
 });
 
