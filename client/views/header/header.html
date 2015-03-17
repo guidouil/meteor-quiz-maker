@@ -1,4 +1,9 @@
 <template name="header">
+  {{#if quiz.css}}
+    <style type="text/css">
+      {{{quiz.css}}}
+    </style>
+  {{/if}}
   <div class="container">
     <div class="row">
       <div class="col-xs-12">

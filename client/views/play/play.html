@@ -17,35 +17,40 @@
         <div class="tab-content">
           {{#each questions}}
             <div class="tab-pane {{isActive order}}" id="{{_id}}">
-              <h2>{{question}}</h2>
-              {{{description}}}
-              {{#unless answered _id}}
-                {{#each answers}}
-                  <div class="radio">
-                    <label for="{{_id}}">
-                      <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}">
-                      {{answer}}
-                    </label>
-                  </div>
-                {{/each}}
-                <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
-              {{else}}
-                {{#each answers}}
-                  <div class="radio">
-                    <label for="{{_id}}" class="{{#if correct}}text-success{{else}}text-danger{{/if}}">
-                      <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}" disabled {{isChecked _id}}>
-                      {{answer}} {{#if correct}} (est la bonne réponse){{/if}}
-                    </label>
-                  </div>
-                {{/each}}
-              {{/unless}}
-              <br>
-              {{#if video}}
-              <iframe width="560" height="315" src="{{video}}" frameborder="0" allowfullscreen></iframe>
-              {{/if}}
-              {{#if isImage imageId}}
-                <img src="{{getImage this.imageId}}" alt="{{question}}" width="320">
-              {{/if}}
+
+              <div class="row">
+                <div class="col-xs-7">
+                  <h2>{{question}}</h2>
+                  {{{description}}}
+                  {{#unless answered _id}}
+                    {{#each answers}}
+                      <div class="radio">
+                        <label for="{{_id}}">
+                          <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}">
+                          {{answer}}
+                        </label>
+                      </div>
+                    {{/each}}
+                    <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
+                  {{else}}
+                    {{#each answers}}
+                      <div class="radio">
+                        <label for="{{_id}}" class="{{#if correct}}text-success{{else}}text-danger{{/if}}">
+                          <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}" disabled {{isChecked _id}}>
+                          {{answer}} {{#if correct}} (est la bonne réponse){{/if}}
+                        </label>
+                      </div>
+                    {{/each}}
+                  {{/unless}}
+                </div>
+                
+                <div class="col-xs-5">
+                  {{#if video}}
+                  <iframe width="560" height="315" src="{{video}}" frameborder="0" allowfullscreen></iframe>
+                  {{/if}}
+                </div>
+              </div>
+
             </div>
           {{/each}}
           {{#if allAnswered}}
