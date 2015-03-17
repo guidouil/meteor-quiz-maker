@@ -124,6 +124,13 @@ Template.play.helpers({
     } else {
       return "insert";
     }
+  },
+  icheck: function () {
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_flat-red',
+      radioClass: 'iradio_flat-red'
+    });
+    console.log('iCheck');
   }
 });
 
@@ -171,4 +178,8 @@ Template.play.rendered = function () {
       orientation: "bottom auto"
     });
   }
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_flat-red',
+    radioClass: 'iradio_flat-red'
+  });
 };
