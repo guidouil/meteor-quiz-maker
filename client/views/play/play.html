@@ -20,38 +20,43 @@
 
               <div class="row">
                 <div class="col-md-6">
-                  <h2>{{question}}</h2>
+                  <div class="inner">
 
-                  {{#unless answered _id}}
-                    {{#each answers}}
-                      <div class="radio">
-                        <label for="{{_id}}">
-                          <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}">
-                          {{answer}}
-                        </label>
-                      </div>
-                    {{/each}}
+                    <h2>{{question}}</h2>
 
-                  {{else}}
-                    {{#each answers}}
-                      <div class="radio">
-                        <label for="{{_id}}" class="{{#if correct}}text-success{{else}}text-danger{{/if}}">
-                          <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}" disabled {{isChecked _id}}>
-                          {{answer}} {{#if correct}} (est la bonne réponse){{/if}}
-                        </label>
-                      </div>
-                    {{/each}}
-                  {{/unless}}
+                    {{#unless answered _id}}
+                      {{#each answers}}
+                        <div class="radio">
+                          <label for="{{_id}}">
+                            <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}">
+                            {{answer}}
+                          </label>
+                        </div>
+                      {{/each}}
+
+                    {{else}}
+                      {{#each answers}}
+                        <div class="radio">
+                          <label for="{{_id}}" class="{{#if correct}}text-success{{else}}text-danger{{/if}}">
+                            <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}" disabled {{isChecked _id}}>
+                            {{answer}} {{#if correct}} (est la bonne réponse){{/if}}
+                          </label>
+                        </div>
+                      {{/each}}
+                    {{/unless}}
+                  </div>
                 </div>
 
                 <div class="col-md-6">
-                  {{#if video}}
-                  <iframe width="460" height="259" src="{{video}}" frameborder="0" allowfullscreen></iframe>
-                  {{/if}}
-                  {{#if image}}
-                    <img src="{{image}}" alt="{{question}}" class="img-responsive" />
-                  {{/if}}
-                  {{{description}}}
+                  <div class="inner">
+                    {{#if video}}
+                    <iframe width="460" height="259" src="{{video}}" frameborder="0" allowfullscreen></iframe>
+                    {{/if}}
+                    {{#if image}}
+                      <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                    {{/if}}
+                    {{{description}}}
+                  </div>
                 </div>
               </div>
               {{#unless answered _id}}
