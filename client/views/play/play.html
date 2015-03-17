@@ -21,7 +21,7 @@
               <div class="row">
                 <div class="col-xs-7">
                   <h2>{{question}}</h2>
-                  {{{description}}}
+
                   {{#unless answered _id}}
                     {{#each answers}}
                       <div class="radio">
@@ -31,7 +31,7 @@
                         </label>
                       </div>
                     {{/each}}
-                    <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
+
                   {{else}}
                     {{#each answers}}
                       <div class="radio">
@@ -43,14 +43,24 @@
                     {{/each}}
                   {{/unless}}
                 </div>
-                
+
                 <div class="col-xs-5">
                   {{#if video}}
                   <iframe width="560" height="315" src="{{video}}" frameborder="0" allowfullscreen></iframe>
                   {{/if}}
+                  {{#if image}}
+                    <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                  {{/if}}
+                  {{{description}}}
                 </div>
               </div>
-
+              {{#unless answered _id}}
+              <div class="row">
+                <div class="col-xs-12">
+                  <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
+                </div>
+              </div>
+              {{/unless}}
             </div>
           {{/each}}
           {{#if allAnswered}}
