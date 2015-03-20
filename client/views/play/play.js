@@ -18,7 +18,7 @@ Template.play.helpers({
     var question = Questions.findOne({'answers._id': answerId});
     return question._id;
   },
-  answered: function (questionId) {
+  isAnswered: function (questionId) {
     if (questionId) {
       return Answers.findOne({owner: Meteor.userId(), questionId: questionId});
     }
@@ -44,13 +44,6 @@ Template.play.helpers({
     if (answer && answer.correct) {
       return answer.correct;
     }
-  },
-  isChecked: function (answerId) {
-      var question = Questions.findOne({'answers._id': answerId});
-      var answer = Answers.findOne({owner: Meteor.userId(), questionId: question._id});
-      if (answer.answerId === answerId) {
-        return 'checked';
-      }
   },
   lastOrder: function () {
       var question = Questions.findOne({}, {sort: {order: -1}});
@@ -127,8 +120,5 @@ Template.play.rendered = function () {
       orientation: "bottom auto"
     });
   }
-  $('input').iCheck({
-    checkboxClass: 'icheckbox_flat-red',
-    radioClass: 'iradio_flat-red'
-  });
+
 };

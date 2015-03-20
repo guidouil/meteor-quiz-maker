@@ -1,0 +1,17 @@
+<template name="answer">
+  <div class="radio">
+    <label for="{{_id}}">
+      <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}">
+      {{answer}}
+    </label>
+  </div>
+</template>
+
+<template name="answered">
+  <div class="radio">
+    <label for="{{_id}}" class="{{#if correct}}text-success{{else}}text-danger{{/if}}">
+      <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}" disabled {{isChecked _id}}>
+      {{answer}} {{#if correct}} (est la bonne réponse){{/if}}
+    </label>
+  </div>
+</template>
