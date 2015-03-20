@@ -2,19 +2,19 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
-        {{#if quiz.footer}}
-          {{{quiz.footer}}}
-        {{/if}}
-        <p class="text-center text-muted">
+        <div class="footer text-center">
+          {{#if quiz.footer}}
+            {{{quiz.footer}}}
+          {{/if}}
           {{#if isLoggedIn}}
-            &nbsp;<a href="{{pathFor 'profile'}}">{{email}}</a>
+            -&nbsp;<a href="{{pathFor 'profile'}}">{{email}}</a>
           {{else}}
-            &nbsp;<a href="{{pathFor 'login'}}">Login</a>
+            -&nbsp;<a href="{{pathFor 'login'}}">Login</a>
           {{/if}}
           {{#if isAdminUser}}
-            &nbsp;<a href="{{pathFor 'bo'}}">&pi;</a>
+            -&nbsp;<a href="{{pathFor 'bo'}}">&pi;</a>
           {{/if}}
-        </p>
+        </div>
       </div>
     </div>
   </div>
