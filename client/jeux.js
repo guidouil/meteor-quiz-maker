@@ -12,7 +12,8 @@ getUserLanguage = function () {
 
 Meteor.startup(function () {
 
-  T9n.setLanguage(getUserLanguage());
+  T9n.setLanguage(Session.get('language'));
+  // T9n.setLanguage(getUserLanguage());
   // T9n.setLanguage('fr');
 
   // Session.set("showLoadingIndicator", true);

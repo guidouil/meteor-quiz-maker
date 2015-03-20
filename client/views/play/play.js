@@ -70,8 +70,8 @@ Template.play.helpers({
     var questionsCount = Questions.find().count();
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (questionsCount === answersCount) {
-      return true;
       $('#myTab a:last').tab('show');
+      return true;
     }
     return false;
   },
@@ -130,7 +130,6 @@ Template.play.helpers({
       checkboxClass: 'icheckbox_flat-red',
       radioClass: 'iradio_flat-red'
     });
-    console.log('iCheck');
   }
 });
 

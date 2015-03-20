@@ -25,7 +25,6 @@ service-configuration
 accounts-ui
 fortawesome:fontawesome
 softwarerero:accounts-t9n
-aldeed:autoform
 mrt:accounts-admin-ui-bootstrap-3
 random
 sacha:spin
@@ -34,4 +33,6 @@ rajit:bootstrap3-datepicker
 mizzao:autocomplete
 aldeed:autoform-bs-datepicker
 comerc:bs-typeahead
+aldeed:autoform
+coffeescript
 comerc:autoform-typeahead
