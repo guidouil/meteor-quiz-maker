@@ -8,8 +8,8 @@
           {{#each afFieldNames}}
             {{> afQuickField name=this options="auto"}}
           {{/each}}
-          <!-- {{> afQuickField name="quizId" type="hidden" value=quizId}}
-          <input type="hidden" name="quizId" value="{{quizId}}">-->
+          {{> afQuickField name="quizId" type="hidden" value=quizId}}
+          <!-- <input type="hidden" name="quizId" value="{{quizId}}"> -->
           <div>
             <button class="btn btn-success" type="submit">Submit</button>
           </div>

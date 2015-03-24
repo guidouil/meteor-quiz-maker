@@ -102,11 +102,6 @@ Template.play.events({
     }
     Session.set('activeTab', question.order + 1);
   },
-  "autocompleteselect #zip": function(event, template, doc) {
-    if(doc && doc.city) {
-      $('#city').val(doc.city);
-    }
-  },
   'submit #profileInsert': function (evt, tmpl) {
 
   }
@@ -117,7 +112,14 @@ Template.play.rendered = function () {
     $('#birthdate').datepicker({
       format: "dd/mm/yyyy",
       startView: 2,
-      orientation: "bottom auto"
+      orientation: "bottom auto",
+      autoclose: true,
+      language: 'fr',
+      defaultViewDate: {
+        year: 1990,
+        month: 1,
+        day: 1
+      }
     });
   }
 

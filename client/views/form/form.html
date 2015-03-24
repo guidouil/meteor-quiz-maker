@@ -52,9 +52,9 @@
     <div class="form-group {{#if afFieldIsInvalid name='birthdate'}}has-error{{/if}}">
       <label class="col-md-4 control-label" for="birthdate">{{afFieldLabelText name='birthdate'}}</label>
       <div class="col-md-7">
-        {{> afFieldInput name='birthdate' id='birthdate'}}
+        {{> afFieldInput name='birthdate' id='birthdate' format="dd/mm/yyyy"}}
         {{#if afFieldIsInvalid name='birthdate'}}
-        <span class="help-block">{{{afFieldMessage name='birthdate' format="dd/mm/yyyy"}}}</span>
+        <span class="help-block">{{{afFieldMessage name='birthdate'}}}</span>
         {{/if}}
       </div>
     </div>

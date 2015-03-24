@@ -22,6 +22,11 @@ Template.form.helpers({
       ]
     };
   },
+  "autocompleteselect #zip": function(event, template, doc) {
+    if(doc && doc.city) {
+      $('#city').val(doc.city);
+    }
+  },
   userId: function () {
     return Meteor.userId();
   },
