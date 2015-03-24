@@ -2,7 +2,7 @@ var questionHooksObject = {
   before: {
     // To add a unique _id in questions.aswers subobject when adding a new answer in existing question
     update: function(doc) {
-      console.log(doc);
+      // console.log(doc);
       var formSet = doc.$set;
       var formUnset = doc.$unset;
       if (formSet) {

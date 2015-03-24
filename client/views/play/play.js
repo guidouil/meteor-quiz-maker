@@ -7,11 +7,9 @@ Template.play.helpers({
     if (answersCount && answersCount > 0) {
       Session.setPersistent('activeTab', answersCount+1);
     }
-    console.log('activeTab:'+Session.get('activeTab'));
     if (!Session.get('activeTab')) {
       Session.setPersistent('activeTab', 1);
     }
-    console.log('order:'+order);
     if (order == Session.get('activeTab')) {
       return 'active';
     }
