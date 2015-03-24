@@ -17,3 +17,7 @@ Template.result.helpers({
     return result;
   }
 });
+
+Template.result.rendered = function(){
+  Meteor.call('enableGuestAccounts');
+};

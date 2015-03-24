@@ -1,14 +1,22 @@
 UI.registerHelper('email', function () {
   if(Meteor.user()) {
     user = Meteor.user();
-    if (user.emails && user.emails.length)
+    if (user.emails && user.emails.length) {
+      // Quick pattch for
+      if (user.emails[0].address.search('@example.com') > 0) {
+        return null;
+      }
       return user.emails[0].address;
-    if (user.services && user.services.facebook && user.services.facebook.email)
+    }
+    if (user.services && user.services.facebook && user.services.facebook.email) {
       return user.services.facebook.email;
-    if (user.services && user.services.google && user.services.google.email)
+    }
+    if (user.services && user.services.google && user.services.google.email) {
       return user.services.google.email;
-    if (user.services && user.services.twitter && user.services.twitter.email)
+    }
+    if (user.services && user.services.twitter && user.services.twitter.email) {
       return user.services.twitter.email;
+    }
     return null;
   }
 });

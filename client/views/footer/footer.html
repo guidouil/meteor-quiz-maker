@@ -7,9 +7,9 @@
             {{{quiz.footer}}}
           {{/if}}
           {{#if isLoggedIn}}
-            -&nbsp;<a href="{{pathFor 'profile'}}">{{email}}</a>
+            <a href="{{pathFor 'profile'}}">-&nbsp;{{email}}</a>
           {{else}}
-            -&nbsp;<a href="{{pathFor 'login'}}">Login</a>
+            <a href="{{pathFor 'login'}}">-&nbsp;Login</a>
           {{/if}}
           {{#if isAdminUser}}
             -&nbsp;<a href="{{pathFor 'bo'}}">&pi;</a>

@@ -9,3 +9,6 @@ Template.home.helpers({
 //     $('html, body').animate({ scrollTop: 0 }, 'slow');
 //   }
 // });
+Template.home.rendered = function(){
+  Meteor.call('enableGuestAccounts');
+};

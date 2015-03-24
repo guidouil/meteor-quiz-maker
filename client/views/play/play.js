@@ -5,12 +5,14 @@ Template.play.helpers({
   isActive: function (order) {
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (answersCount && answersCount > 0) {
-      Session.set('activeTab', answersCount+1);
+      Session.setPersistent('activeTab', answersCount+1);
     }
+    console.log('activeTab:'+Session.get('activeTab'));
     if (!Session.get('activeTab')) {
-      Session.set('activeTab', 1);
+      Session.setPersistent('activeTab', 1);
     }
-    if (order === Session.get('activeTab')) {
+    console.log('order:'+order);
+    if (order == Session.get('activeTab')) {
       return 'active';
     }
   },
@@ -97,10 +99,16 @@ Template.play.events({
     var questionsCount = Questions.find().count();
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (questionsCount === answersCount) {
+      // all questions are answered
+      Session.setPersistent('activeTab', questionsCount + 1);
       window.location.reload();
-      Session.set('activeTab', questionsCount + 1);
     }
-    Session.set('activeTab', question.order + 1);
+    Session.setPersistent('activeTab', question.order + 1);
+  },
+  'click .tab': function (evt, tmpl) {
+    var tabNumber = evt.currentTarget.attributes.id.value;
+    Session.setPersistent('activeTab', tabNumber);
+
   },
   'submit #profileInsert': function (evt, tmpl) {
 
@@ -108,6 +116,7 @@ Template.play.events({
 });
 
 Template.play.rendered = function () {
+  Meteor.call('enableGuestAccounts');
   if ($('#birthdate')) {
     $('#birthdate').datepicker({
       format: "dd/mm/yyyy",

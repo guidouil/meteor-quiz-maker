@@ -1,8 +1,12 @@
 Template.profile.events({
   'click .logout': function (evt, tmpl) {
     evt.preventDefault();
-    Meteor.logout();
-    Router.go('home');
+    Meteor.call('disableGuestAccounts', function (err, res) {
+      if (!err) {
+        Meteor.logout();
+      }
+    });
+    Router.go('login');
   },
   'click .save': function (evt, tmpl) {
     evt.preventDefault();

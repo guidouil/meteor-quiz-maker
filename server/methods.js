@@ -46,5 +46,13 @@ Meteor.methods({
         email = user.services.twitter.email;
       return email;
     }
+  },
+  disableGuestAccounts: function () {
+    AccountsGuest.enabled = false;
+    return true;
+  },
+  enableGuestAccounts: function () {
+    AccountsGuest.enabled = true;
+    return true;
   }
 });
