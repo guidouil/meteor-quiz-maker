@@ -8,7 +8,6 @@ meteor-platform
 iron:router
 accounts-password
 aldeed:simple-schema
-ground:db
 aldeed:collection2
 twbs:bootstrap
 momentjs:moment
