@@ -3,22 +3,23 @@
     <div class="well well-sm">
       <div class="row">
         <div class="col-xs-12">
-          <h2>Bravo, votre participation au {{quiz.title}} est vailidée</h2>
-          <p class="lead">
-            Partagez à vos amis pour augmenter vos chances de gagner !<br>
-            Actuellement vous avez {{chances.count}} chance{{chances.plural}} de gagner au tirage au sort.
+          <h2 class="text-center">Votre participation au {{quiz.title}} est vailidée</h2>
+          <p class="lead text-center">
+            Actuellement <strong>vous avez <span class="text-danger">{{chances.count}}</span> chance{{chances.plural}} de gagner</strong> au tirage au sort.
+            <br>
+            Partagez avec vos amis pour <strong>augmenter vos chances</strong> de gagner !
           </p>
         </div>
-        <div class="col-md-6">
-          <button type="button" class="btn btn-warning btn-block">
+        <div class="col-xs-6">
+          <button type="button" class="btn btn-warning btn-block btn-lg">
             <i class="fa fa-envelope"></i> | Partager par mail
           </button>
           <p class="text-center">
             1 chance de plus par mail envoyé (limité à 10).
           </p>
         </div>
-        <div class="col-md-6">
-          <button type="button" class="btn btn-primary btn-block fbShare">
+        <div class="col-xs-6">
+          <button type="button" class="btn btn-primary btn-block btn-lg fbShare">
             <i class="fa fa-facebook"></i> | Partager sur Facebook
           </button>
           <p class="text-center">
