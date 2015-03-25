@@ -2,73 +2,68 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
+        <div role="tabpanel">
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" id="myTab" role="tablist">
+            {{#each questions}}
+              <li class="tab {{isActive order}}" id="{{order}}" role="presentation"><a href="#{{_id}}" data-toggle="tab">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
+            {{/each}}
+            {{#if allAnswered}}
+              <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}"><a href="#last" data-toggle="tab" >Validez</a></li>
+            {{/if}}
+          </ul>
 
-        <!-- Nav tabs -->
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-          {{#each questions}}
-            <li class="tab {{isActive order}}" id="{{order}}" role="presentation"><a href="#{{_id}}" data-toggle="tab">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
-          {{/each}}
-          {{#if allAnswered}}
-            <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}"><a href="#last" data-toggle="tab" >Validez</a></li>
-          {{/if}}
-        </ul>
-
-        <!-- Tab panes -->
-        <div class="tab-content">
-          {{#each questions}}
-            <div class="tab-pane {{isActive order}}" role="tabpanel" id="{{_id}}" >
-
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="inner">
-
-                    <h2>{{question}}</h2>
-
-                    {{#unless isAnswered _id}}
-                      {{#each answers}}
-                        {{> answer}}
-                      {{/each}}
-
-                    {{else}}
-                      {{#each answers}}
-                        {{> answered}}
-                      {{/each}}
-                    {{/unless}}
-
+          <!-- Tab panes -->
+          <div class="tab-content" id="myPanes">
+            {{#each questions}}
+              <div class="tab-pane {{isActive order}}" role="tabpanel" id="{{_id}}" >
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="inner">
+                      <h2>{{question}}</h2>
+                      {{#unless isAnswered _id}}
+                        {{#each answers}}
+                          {{> answer}}
+                        {{/each}}
+                      {{else}}
+                        {{#each answers}}
+                          {{> answered}}
+                        {{/each}}
+                      {{/unless}}
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="inner">
+                      {{#if video}}
+                      <iframe width="460" height="259" src="{{video}}" frameborder="0" allowfullscreen></iframe>
+                      {{/if}}
+                      {{#if image}}
+                        <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                      {{/if}}
+                      {{{description}}}
+                    </div>
                   </div>
                 </div>
-
-                <div class="col-md-6">
-                  <div class="inner">
-                    {{#if video}}
-                    <iframe width="460" height="259" src="{{video}}" frameborder="0" allowfullscreen></iframe>
-                    {{/if}}
-                    {{#if image}}
-                      <img src="{{image}}" alt="{{question}}" class="img-responsive" />
-                    {{/if}}
-                    {{{description}}}
+                {{#unless isAnswered _id}}
+                <div class="row">
+                  <div class="col-xs-12">
+                    <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
                   </div>
                 </div>
+                {{/unless}}
               </div>
-              {{#unless isAnswered _id}}
-              <div class="row">
-                <div class="col-xs-12">
-                  <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
+            {{/each}}
+            {{#if allAnswered}}
+              <!-- Last Tab -->
+              <div class="tab-pane {{isActive lastOrder}}" id="last">
+                <div class="row">
+                {{> form}}
                 </div>
               </div>
-              {{/unless}}
-            </div>
-          {{/each}}
-          {{#if allAnswered}}
-            <!-- Last Tab -->
-            <div class="tab-pane {{isActive lastOrder}}" id="last">
-              <div class="row">
-              {{> form}}
-              </div>
-            </div>
-          {{/if}}
+            {{/if}}
+          </div>
+
         </div>
-
       </div>
     </div>
   </div>
