@@ -14,14 +14,10 @@ Template.play.helpers({
     if (answersCount && answersCount > 0) {
       var activeTab = answersCount+1;
       Session.set('activeTab', activeTab);
-
     } else {
       Session.set('activeTab', 1);
     }
-
     if (order == Session.get('activeTab')) {
-      var zeroOrder = order-1;
-      console.log('Z:'+zeroOrder);
       return 'active';
     }
 
