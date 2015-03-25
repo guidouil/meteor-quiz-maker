@@ -5,7 +5,9 @@ Template.play.helpers({
   isActive: function (order) {
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (answersCount && answersCount > 0) {
-      Session.set('activeTab', answersCount+1);
+      var activeTab = answersCount+1;
+      Session.set('activeTab', activeTab);
+
     }
     if (!Session.get('activeTab')) {
       Session.set('activeTab', 1);
@@ -100,13 +102,9 @@ Template.play.events({
       // all questions are answered
       Session.set('activeTab', questionsCount + 1);
       window.location.reload();
+    } else {
+      Session.set('activeTab', question.order + 1);
     }
-    Session.set('activeTab', question.order + 1);
-  },
-  'click .tab': function (evt, tmpl) {
-    var tabNumber = evt.currentTarget.attributes.id.value;
-    Session.set('activeTab', tabNumber);
-
   },
   'submit #profileInsert': function (evt, tmpl) {
 
