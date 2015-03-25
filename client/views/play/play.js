@@ -14,7 +14,7 @@ Template.play.helpers({
     }
     if (order == Session.get('activeTab')) {
       var zeroOrder = order-1;
-      $('#myTab li:eq('+zeroOrder+') a').tab('show') 
+      $('#myTab li:eq('+zeroOrder+') a').tab('show');
       return 'active';
     }
   },
