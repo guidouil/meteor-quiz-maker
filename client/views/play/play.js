@@ -18,12 +18,6 @@ Template.play.helpers({
       return 'active';
     }
 
-    if (Session.get('activeTab')) {
-      var correctOrder = Session.get('activeTab')-1;
-      $('#myTab li:eq('+correctOrder+') a').tab('show');
-      $('#myPanes div:eq('+correctOrder+')').tab('show');
-      console.log('C:'+correctOrder);
-    }
   },
   questionId: function (answerId) {
     var question = Questions.findOne({'answers._id': answerId});
@@ -122,12 +116,6 @@ Template.play.events({
 
 Template.play.rendered = function () {
   Meteor.call('enableGuestAccounts');
-  if (Session.get('activeTab')) {
-    var zeroOrder = Session.get('activeTab')  -1;
-    $('#myTab li:eq('+zeroOrder+') a').tab('show');
-    $('#myPanes div:eq('+zeroOrder+')').tab('show');
-    console.log('R:'+zeroOrder);
-  }
   if ($('#birthdate')) {
     $('#birthdate').datepicker({
       format: "dd/mm/yyyy",

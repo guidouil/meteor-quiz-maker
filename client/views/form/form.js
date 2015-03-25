@@ -55,3 +55,12 @@ Template.form.helpers({
     }
   }
 });
+
+Template.form.rendered = function(){
+  if (Session.get('activeTab')) {
+    var zeroOrder = Session.get('activeTab')  -1;
+    $('#myTab li:eq('+zeroOrder+') a').tab('show');
+    $('#myPanes div:eq('+zeroOrder+')').tab('show');
+    console.log('R:'+zeroOrder);
+  }
+};
