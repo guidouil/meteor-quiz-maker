@@ -13,6 +13,8 @@ Template.play.helpers({
       Session.set('activeTab', 1);
     }
     if (order == Session.get('activeTab')) {
+      var zeroOrder = order-1;
+      $('#myTab li:eq('+zeroOrder+') a').tab('show') 
       return 'active';
     }
   },
