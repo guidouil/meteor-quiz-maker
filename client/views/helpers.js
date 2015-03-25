@@ -1,6 +1,11 @@
 UI.registerHelper('email', function () {
   if(Meteor.user()) {
-    user = Meteor.user();
+    var userId = Meteor.userId();
+    var profile = Profiles.findOne({owner: userId}, {sort: {createdAt: -1} });
+    if (profile && profile.mail) {
+      return profile.mail;
+    }
+    var user = Meteor.user();
     if (user.emails && user.emails.length) {
       // Quick pattch for
       if (user.emails[0].address.search('@example.com') > 0) {
