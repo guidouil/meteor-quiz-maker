@@ -8,9 +8,9 @@
             {{#each questions}}
               <li class="tab {{isActive order}}" id="{{order}}" role="presentation"><a href="#{{_id}}" data-toggle="tab">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
             {{/each}}
-            {{#if allAnswered}}
-              <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}"><a href="#last" data-toggle="tab" >Validez</a></li>
-            {{/if}}
+            <!-- {{#if allAnswered}} -->
+              <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}" role="presentation"><a href="#last" data-toggle="tab" >Validez</a></li>
+            <!-- {{/if}} -->
           </ul>
 
           <!-- Tab panes -->
@@ -53,14 +53,14 @@
                 {{/unless}}
               </div>
             {{/each}}
-            {{#if allAnswered}}
+            <!-- {{#if allAnswered}} -->
               <!-- Last Tab -->
-              <div class="tab-pane {{isActive lastOrder}}" id="last">
+              <div class="tab-pane {{isActive lastOrder}}" role="tabpanel" id="last">
                 <div class="row">
                 {{> form}}
                 </div>
               </div>
-            {{/if}}
+            <!-- {{/if}} -->
           </div>
 
         </div>
