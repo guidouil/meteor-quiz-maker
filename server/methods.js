@@ -42,8 +42,8 @@ Meteor.methods({
   },
   getUserEmail: function (userId) {
     if (Roles.userIsInRole(Meteor.userId(), "admin")) {
-      var user = Meteor.users.findOne({_id: userId});
       var email = '';
+      var user = Meteor.users.findOne({_id: userId});
       if (user.emails && user.emails.length)
         email = user.emails[0].address;
       if (user.services && user.services.facebook && user.services.facebook.email)
@@ -52,6 +52,10 @@ Meteor.methods({
         email = user.services.google.email;
       if (user.services && user.services.twitter && user.services.twitter.email)
         email = user.services.twitter.email;
+      var profile = Profiles.findOne({owner: userId}, {sort: {createdAt: -1} });
+      if (profile && profile.mail) {
+        email = profile.mail;
+      }
       return email;
     }
   },

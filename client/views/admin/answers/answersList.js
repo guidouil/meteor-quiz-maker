@@ -6,6 +6,18 @@ Template.answersList.helpers({
     var quizId = Iron.controller().getParams().quizId;
     return Questions.find({quizId: quizId},{sort: {order: 1}});
   },
+  questionsCount: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Questions.find({quizId: quizId}).count();
+  },
+  answersCount: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Answers.find({quizId: quizId}).count();
+  },
+  profilesCount: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Profiles.find({quizId: quizId}).count();
+  },
   usersAnswers: function () {
     var questionsCount = Questions.find().count();
     var answers = Answers.find({},{sort: {owner: 1}}).fetch();
