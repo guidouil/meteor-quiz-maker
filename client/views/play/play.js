@@ -5,10 +5,10 @@ Template.play.helpers({
   isActive: function (order) {
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (answersCount && answersCount > 0) {
-      Session.setPersistent('activeTab', answersCount+1);
+      Session.set('activeTab', answersCount+1);
     }
     if (!Session.get('activeTab')) {
-      Session.setPersistent('activeTab', 1);
+      Session.set('activeTab', 1);
     }
     if (order == Session.get('activeTab')) {
       return 'active';
@@ -98,14 +98,14 @@ Template.play.events({
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (questionsCount === answersCount) {
       // all questions are answered
-      Session.setPersistent('activeTab', questionsCount + 1);
+      Session.set('activeTab', questionsCount + 1);
       window.location.reload();
     }
-    Session.setPersistent('activeTab', question.order + 1);
+    Session.set('activeTab', question.order + 1);
   },
   'click .tab': function (evt, tmpl) {
     var tabNumber = evt.currentTarget.attributes.id.value;
-    Session.setPersistent('activeTab', tabNumber);
+    Session.set('activeTab', tabNumber);
 
   },
   'submit #profileInsert': function (evt, tmpl) {
