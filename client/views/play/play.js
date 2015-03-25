@@ -1,9 +1,16 @@
 Template.play.helpers({
   questions: function () {
-    return Questions.find({}, {sort: {order: 1}}).fetch();
+    var quizId = Iron.controller().getParams().quizId;
+    return Questions.find({quizId: quizId}, {sort: {order: 1}}).fetch();
+  },
+  lastOrder: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    return questionsCount+1;
   },
   isActive: function (order) {
-    var answersCount = Answers.find({owner: Meteor.userId()}).count();
+    var quizId = Iron.controller().getParams().quizId;
+    var answersCount = Answers.find({quizId: quizId, owner: Meteor.userId()}).count();
     if (answersCount && answersCount > 0) {
       var activeTab = answersCount+1;
       Session.set('activeTab', activeTab);
@@ -50,23 +57,19 @@ Template.play.helpers({
       return answer.correct;
     }
   },
-  lastOrder: function () {
-      var question = Questions.findOne({}, {sort: {order: -1}});
-      if (question && question.order) {
-        return question.order + 1;
-      }
-  },
   isWinner: function () {
-    var questionsCount = Questions.find().count();
-    var correctAnswersCount = Answers.find({owner: Meteor.userId(), correct:true}).count();
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();
     if (questionsCount === correctAnswersCount) {
       return true;
     }
     return false;
   },
   allAnswered: function () {
-    var questionsCount = Questions.find().count();
-    var answersCount = Answers.find({owner: Meteor.userId()}).count();
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var answersCount = Answers.find({quizId: quizId,owner: Meteor.userId()}).count();
     if (questionsCount === answersCount) {
       $('#myTab a:last').tab('show');
       return true;
