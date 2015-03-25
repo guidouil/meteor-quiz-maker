@@ -1,15 +1,17 @@
 <template name="bo">
   <div class="container-fluid">
     <div class="col-xs-12">
-      <legend>Back Office</legend>
-      {{#if isAdminUser}}
-        <ul>
-          <li><a href="{{pathFor 'quizzesList'}}">Quizzes</a></li>
-          <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
-        </ul>
-      {{else}}
-          Must be admin to see this...
-      {{/if}}
+      <div class="well well-sm">
+        <legend>Back Office</legend>
+        {{#if isAdminUser}}
+          <ul>
+            <li><a href="{{pathFor 'quizzesList'}}">Quizzes</a></li>
+            <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
+          </ul>
+        {{else}}
+            Must be admin to see this...
+        {{/if}}
+      </div>
     </div>
   </div>
 </template>

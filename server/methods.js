@@ -29,6 +29,14 @@ Meteor.methods({
   resetAnswers: function (quizId) {
     if (Roles.userIsInRole(Meteor.userId(), "admin")) {
       Answers.remove({quizId: quizId});
+      Profiles.remove({quizId: quizId});
+      return true;
+    }
+  },
+  resetAnswer: function (quizId, userId) {
+    if (Roles.userIsInRole(Meteor.userId(), "admin")) {
+      Answers.remove({quizId: quizId, owner: userId});
+      Profiles.remove({quizId: quizId, owner: userId});
       return true;
     }
   },

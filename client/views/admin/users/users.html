@@ -1,12 +1,14 @@
 <template name="adminUsers">
   <div class="container-fluid">
     <div class="col-xs-12">
-      {{#if isAdminUser}}
-      <legend><a href="{{pathFor 'bo'}}"><i class="fa fa-angle-left"></i></a> Users</legend>
-          {{> accountsAdmin}}
-      {{else}}
-          Must be admin to see this...
-      {{/if}}
+      <div class="well well-sm">
+        {{#if isAdminUser}}
+        <legend><a href="{{pathFor 'bo'}}"><i class="fa fa-angle-left"></i></a> Users</legend>
+            {{> accountsAdmin}}
+        {{else}}
+            Must be admin to see this...
+        {{/if}}
+      </div>
     </div>
   </div>
 </template>

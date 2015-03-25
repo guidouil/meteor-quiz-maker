@@ -1,12 +1,14 @@
 <template name="quizUpdate">
   <div class="container-fluid">
     <div class="col-xs-12">
-      {{#if isAdminUser}}
-        <legend><a href="{{pathFor 'quizAdmin' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Update Quiz : {{this.title}}</legend>
-        {{> quickForm id="quiz" enctype="multipart/form-data" doc=this collection="Quizzes" type="update"}}
-      {{else}}
-          Must be admin to see this...
-      {{/if}}
+      <div class="well well-sm">
+        {{#if isAdminUser}}
+          <legend><a href="{{pathFor 'quizAdmin' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Update Quiz : {{this.title}}</legend>
+          {{> quickForm id="quiz" enctype="multipart/form-data" doc=this collection="Quizzes" type="update"}}
+        {{else}}
+            Must be admin to see this...
+        {{/if}}
+      </div>
     </div>
   </div>
 </template>

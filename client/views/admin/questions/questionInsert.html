@@ -1,21 +1,23 @@
 <template name="questionInsert">
   <div class="container-fluid">
     <div class="col-xs-12">
-      {{#if isAdminUser}}
-        <legend><a href="{{pathFor 'questionsList' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Create Question</legend>
-        {{#autoForm id="questionsInsert" type="insert" collection="Questions" omitFields="quizId"}}
-          <!-- {{> afQuickFields}} -->
-          {{#each afFieldNames}}
-            {{> afQuickField name=this options="auto"}}
-          {{/each}}
-          {{> afQuickField name="quizId" type="hidden" value=quizId}}
-          <div>
-            <button class="btn btn-success" type="submit">Submit</button>
-          </div>
-        {{/autoForm}}
-      {{else}}
-          Must be admin to see this...
-      {{/if}}
+      <div class="well well-sm">
+        {{#if isAdminUser}}
+          <legend><a href="{{pathFor 'questionsList' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Create Question</legend>
+          {{#autoForm id="questionsInsert" type="insert" collection="Questions" omitFields="quizId"}}
+            <!-- {{> afQuickFields}} -->
+            {{#each afFieldNames}}
+              {{> afQuickField name=this options="auto"}}
+            {{/each}}
+            {{> afQuickField name="quizId" type="hidden" value=quizId}}
+            <div>
+              <button class="btn btn-success" type="submit">Submit</button>
+            </div>
+          {{/autoForm}}
+        {{else}}
+            Must be admin to see this...
+        {{/if}}
+      </div>
     </div>
   </div>
 </template>

@@ -1,38 +1,42 @@
 <template name="answersList">
   <div class="container-fluid">
     <div class="col-xs-12">
-      <legend><a href="{{pathFor 'quizAdmin'  quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Answers</legend>
-      {{#if isAdminUser}}
-        <table class="table table-responsive table-hover table-condensed">
-          <thead>
-            <tr>
-              <th>Players</th>
-              <th>Chances</th>
-              {{#each questions}}
-               <th>Q{{order}}</th>
+      <div class="well well-sm">
+        <legend><a href="{{pathFor 'quizAdmin'  quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Answers</legend>
+        {{#if isAdminUser}}
+          <table class="table table-responsive table-hover table-condensed">
+            <thead>
+              <tr>
+                <th>Players</th>
+                <th>Chances</th>
+                {{#each questions}}
+                 <th>Q{{order}}</th>
+                {{/each}}
+                <th>Place</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each usersAnswers}}
+              <tr>
+                <td>{{userEmail user}}</td>
+                <td>{{correctAnswersCount}}</td>
+                {{#each questionsAnswered user}}
+                <td>
+                  <i class="fa fa-{{icon}}"></i>
+                </td>
+                {{/each}}
+                <td>{{profile user}}</td>
+                <td> <button type="button" class="btn btn-danger btn-sm reset" id="{{user}}"><i class="fa fa-trash-o"></i></button> </td>
+              </tr>
               {{/each}}
-              <th>Place</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each usersAnswers}}
-            <tr>
-              <td>{{userEmail user}}</td>
-              <td>{{correctAnswersCount}}</td>
-              {{#each questionsAnswered user}}
-              <td>
-                <i class="fa fa-{{icon}}"></i>
-              </td>
-              {{/each}}
-              <td>{{profile user}}</td>
-            </tr>
-            {{/each}}
-          </tbody>
-        </table>
-        <button class="btn btn-danger btn-block reset"><i class="fa fa-minus"></i> Reset</button>
-      {{else}}
-          Must be admin to see this...
-      {{/if}}
+            </tbody>
+          </table>
+          <button class="btn btn-danger btn-block reset-all"><i class="fa fa-trash-o"></i> Reset All</button>
+        {{else}}
+            Must be admin to see this...
+        {{/if}}
+      </div>
     </div>
   </div>
 </template>

@@ -80,14 +80,14 @@ Template.answersList.helpers({
     if (!profile) {
       profile = Profiles.findOne({owner: Meteor.userId()});
     }
-    if (profile && profile.city && profile.birthdate) {
+    if (profile && profile.city && profile.zip) {
       return profile.city + ' - ' + profile.zip;
     }
   }
 });
 
 Template.answersList.events({
-  'click .reset': function(evt, tmpl) {
+  'click .reset-all': function(evt, tmpl) {
     evt.preventDefault();
     var quizId = Iron.controller().getParams().quizId;
     swal(
@@ -105,6 +105,29 @@ Template.answersList.events({
       function(){
         Meteor.call('resetAnswers', quizId);
         swal("Deleted", "The answers have been deleted.", "success");
+
+      }
+    );
+  },
+  'click .reset': function(evt, tmpl) {
+    evt.preventDefault();
+    var quizId = Iron.controller().getParams().quizId;
+    var userId = evt.currentTarget.attributes.id.value;
+    swal(
+      {
+        title: "Are you sure ?",
+        text: "Reseting user answer is final!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Reset",
+        cancelButtonText: "Cancel",
+        closeOnConfirm: false,
+        closeOnCancel: true
+      },
+      function(){
+        Meteor.call('resetAnswer', quizId, userId);
+        swal("Deleted", "This user answers have been deleted.", "success");
 
       }
     );

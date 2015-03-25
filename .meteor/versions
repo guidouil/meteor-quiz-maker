@@ -76,6 +76,7 @@ mobile-status-bar@1.0.3
 momentjs:moment@2.9.0
 mongo@1.1.0
 mrt:accounts-admin-ui-bootstrap-3@0.2.7
+msavin:jetsetter@1.0.0
 msavin:mongol@1.0.5
 npm-bcrypt@0.7.8_1
 oauth@1.1.4
