@@ -26,6 +26,7 @@ Template.answersList.helpers({
     var usersAnswers = [];
     var chances = 0;
     var source = [];
+    var profile = null;
     $.each(answers, function(index, answer) {
       var winner = false;
       if (index === 0) {
@@ -36,14 +37,15 @@ Template.answersList.helpers({
         if (chances === questionsCount) {
           winner = true;
         }
-        var profile = Profiles.findOne({quizId: quizId, owner: previousUserId});
+        profile = Profiles.findOne({quizId: quizId, owner: previousUserId});
         if (profile && profile.fbShared) {
           chances += 5;
         }
-        usersAnswers.push({user: previousUserId, chances: chances+1, winner: winner, source: source});
+        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, source: source});
         chances = 0;
         winner = false;
         source = [];
+        profile = null;
       }
       source.push(answer);
       if (answer.correct === true) {
@@ -56,9 +58,14 @@ Template.answersList.helpers({
         if (chances === questionsCount) {
           winner = true;
         }
-        usersAnswers.push({user: previousUserId, chances: chances+1, winner: winner, source: source});
+        profile = Profiles.findOne({quizId: quizId, owner: previousUserId});
+        if (profile && profile.fbShared) {
+          chances += 5;
+        }
+        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, source: source});
       }
     });
+    console.log(usersAnswers);
     return usersAnswers;
   },
   userEmail: function (userId) {

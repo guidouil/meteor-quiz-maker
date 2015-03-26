@@ -9,12 +9,12 @@
             <thead>
               <tr>
                 <th>Mail</th>
-                <th>Chances</th>
-                {{#each questions}}
-                 <th>Q{{order}}</th>
-                {{/each}}
                 <th>Profile</th>
-                <th>FB Shared</th>
+                {{#each questions}}
+                 <th class="text-center">Q{{order}}</th>
+                {{/each}}
+                <th class="text-center">FB Shared</th>
+                <th class="text-center">Chances</th>
                 <th></th>
               </tr>
             </thead>
@@ -22,14 +22,14 @@
               {{#each usersAnswers}}
               <tr>
                 <td>{{userEmail user}}</td>
-                <td>{{chances}}</td>
+                <td>{{profile user}}</td>
                 {{#each questionsAnswered user}}
-                <td>
+                <td class="text-center">
                   <i class="fa fa-{{icon}}"></i>
                 </td>
                 {{/each}}
-                <td>{{profile user}}</td>
-                <td>{{#if fbShared user}}<i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}</td>
+                <td class="text-center">{{#if fbShared user}}<i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}</td>
+                <td class="text-center">{{winChances}}</td>
                 <td class="text-right"> <button type="button" class="btn btn-danger btn-sm reset" id="{{user}}"><i class="fa fa-trash-o"></i></button> </td>
               </tr>
               {{/each}}
