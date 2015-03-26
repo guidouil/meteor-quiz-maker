@@ -27,6 +27,10 @@ Template.result.helpers({
 });
 
 Template.result.events({
+  "click .viewForm": function (e, t) {
+    e.preventDefault();
+    Session.set('hideForm', false);
+  },
   "click .fbShare": function(e, t){
     e.preventDefault();
     var quizId = Iron.controller().getParams().quizId;

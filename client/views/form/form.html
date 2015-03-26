@@ -95,8 +95,7 @@
       {{#unless quizProfile}}
       <button type="submit" class="btn btn-primary btn-block">Valider le formulaire</button>
       {{else}}
-      <button type="submit" class="btn btn-default btn-block">Metre à jour vos information</button>
-      <a href="{{pathFor 'result' quizId=quizId}}" class="btn btn-primary btn-block">Retourner au résultat</a>
+      <button type="submit" class="btn btn-default btn-block">Sauveguarder vos informations</button>
       {{/unless}}
     </div>
     {{> afQuickField name="owner" type="hidden" value=userId}}

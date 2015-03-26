@@ -63,10 +63,7 @@ Template.form.helpers({
 Template.form.events({
   'submit #profileInsert': function (evt, tmpl) {
     evt.preventDefault();
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_flat-red',
-      radioClass: 'iradio_flat-red'
-    });
+    Session.set('hideForm', true);
   }
 });
 

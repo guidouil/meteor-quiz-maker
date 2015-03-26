@@ -77,6 +77,42 @@ Template.play.helpers({
       checkboxClass: 'icheckbox_flat-red',
       radioClass: 'iradio_flat-red'
     });
+  },
+  resultPhrase: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();
+    var phrase = 'Vous devez d\'abord valider toutes vos réponses.';
+    switch (correctAnswersCount) {
+      case 0:
+        phrase = "Fatigué ?  Revoyez votre leçon...Consultez la fiche produit sur tefal.fr";
+        break;
+      case 1:
+        phrase = "Vous auriez pu faire mieux...";
+        break;
+      case 2:
+        phrase = "Vous avez 2 bonnes réponses sur "+questionsCount;
+        break;
+      default:
+        phrase = "Bravo, vous avez êtes incollable sur l'OptiGrill";
+        break;
+    }
+    return phrase;
+  },
+  profile: function () {
+    if (Session.get('hideForm') === true) {
+      return true;
+    }
+    if (Session.get('hideForm') === false) {
+      return false;
+    }
+    var quizId = Iron.controller().getParams().quizId;
+    var profile = Profiles.findOne({quizId: quizId, owner: Meteor.userId()});
+    if (profile && profile.city) {
+      Session.set('hideForm', true);
+      return true;
+    }
+    return false;
   }
 });
 
