@@ -1,6 +1,8 @@
 <template name="form">
+  <div class="container-fluid">
+  {{#unless quizProfile}}
   <h2 class="text-center">Vous avez {{chances.count}} chance{{chances.plural}} de gagner ! <small>Complétez ce formulaire pour participer au tirage au sort.</small></h2>
-
+  {{/unless}}
   {{#autoForm id="profileInsert" type=type doc=profile collection='Profiles' class="form-horizontal"}}
   <fieldset>
 
@@ -52,7 +54,7 @@
     <div class="form-group {{#if afFieldIsInvalid name='birthdate'}}has-error{{/if}}">
       <label class="col-md-4 control-label" for="birthdate">{{afFieldLabelText name='birthdate'}}</label>
       <div class="col-md-7">
-        {{> afFieldInput name='birthdate' id='birthdate' format="dd/mm/yyyy"}}
+        {{> afFieldInput name='birthdate' id='birthdate' format="dd/mm/yyyy" placeholder="01/01/1978"}}
         {{#if afFieldIsInvalid name='birthdate'}}
         <span class="help-block">{{{afFieldMessage name='birthdate'}}}</span>
         {{/if}}
@@ -95,7 +97,12 @@
       {{#unless quizProfile}}
       <button type="submit" class="btn btn-primary btn-block">Valider le formulaire</button>
       {{else}}
-      <button type="submit" class="btn btn-default btn-block">Sauveguarder vos informations</button>
+      <div class="col-xs-6">
+      <button type="button" class="btn btn-danger btn-block cancel">Annuler</button>
+      </div>
+      <div class="col-xs-6">
+      <button type="submit" class="btn btn-success btn-block">Sauveguarder</button>
+      </div>
       {{/unless}}
     </div>
     {{> afQuickField name="owner" type="hidden" value=userId}}
@@ -103,7 +110,7 @@
   </div>
   </fieldset>
   {{/autoForm}}
-
+</div>
 </template>
 
 <template name="city">

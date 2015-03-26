@@ -24,10 +24,12 @@ var profileHooksObject = {
   after: {
     insert: function(error, result) {
       if (!error && result) {
-        var profile = Profiles.findOne({_id: result});
-        if (profile && profile.quizId) {
-          Router.go('/result/'+profile.quizId);
-        }
+        Session.set('hideForm', true);
+      }
+    },
+    update: function(error, result) {
+      if (!error && result) {
+        Session.set('hideForm', true);
       }
     }
   }

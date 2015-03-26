@@ -79,6 +79,9 @@ Template.play.helpers({
     });
   },
   resultPhrase: function () {
+    if (Session.get('hideForm') === false) {
+      return false;
+    }
     var quizId = Iron.controller().getParams().quizId;
     var questionsCount = Questions.find({quizId: quizId}).count();
     var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();

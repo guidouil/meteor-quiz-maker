@@ -62,6 +62,10 @@ Template.form.helpers({
 
 Template.form.events({
   'submit #profileInsert': function (evt, tmpl) {
+    
+
+  },
+  'click .cancel': function (evt, tmpl) {
     evt.preventDefault();
     Session.set('hideForm', true);
   }
