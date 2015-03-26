@@ -7,14 +7,22 @@ Template.result.helpers({
     return Quizzes.findOne({_id: quizId});
   },
   chances: function () {
+    var quizId = Iron.controller().getParams().quizId;
     var result = {};
-    var correctAnswersCount = Answers.find({owner: Meteor.userId(), correct:true}).count();
-
+    var profile = Profiles.findOne({quizId: quizId, owner: Meteor.userId()});
+    var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();
     if (correctAnswersCount >= 1) {
       result.plural = 's';
     }
     result.count = correctAnswersCount + 1;
+    if (profile && profile.fbShared) {
+      result.count += 5;
+    }
     return result;
+  },
+  profile: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Profiles.findOne({quizId: quizId, owner: Meteor.userId()});
   }
 });
 
@@ -34,7 +42,11 @@ Template.result.events({
       },
       function(response) {
         if (response && response.post_id) {
-          alert('Post was published.');
+          var profile = Profiles.findOne({quizId: quizId, owner: Meteor.userId()});
+          if (profile && profile._id) {
+            Profiles.update({_id: profile._id}, {$set: {fbShared: true}});
+            alert('Post was published.');
+          }
         } else {
           alert('Post was not published.');
         }

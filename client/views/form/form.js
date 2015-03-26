@@ -1,12 +1,16 @@
 Template.form.helpers({
   chances: function () {
+    var quizId = Iron.controller().getParams().quizId;
     var result = {};
-    var correctAnswersCount = Answers.find({owner: Meteor.userId(), correct:true}).count();
-
+    var profile = Profiles.findOne({quizId: quizId, owner: Meteor.userId()});
+    var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();
     if (correctAnswersCount >= 1) {
       result.plural = 's';
     }
     result.count = correctAnswersCount + 1;
+    if (profile && profile.fbShared) {
+      result.count += 5;
+    }
     return result;
   },
   autoZip: function () {
