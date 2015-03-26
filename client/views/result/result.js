@@ -39,7 +39,7 @@ Template.result.events({
       {
         method: 'feed',
         name: quiz.title,
-        link: Meteor.absoluteUrl('play/'+quiz._id),
+        link: quiz.sharedUrl||Meteor.absoluteUrl('play/'+quiz._id),
         picture: quiz.sharedImage,
         caption: quiz.sharedCaption,
         description: quiz.sharedDescription

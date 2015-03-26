@@ -11,7 +11,7 @@
           </p>
         </div>
         <div class="col-xs-6">
-          <button type="button" class="btn btn-warning btn-block btn-lg">
+          <button type="button" class="btn btn-warning btn-block btn-lg"  data-toggle="modal" data-target="#mailShareModal">
             <i class="fa fa-envelope"></i> | Partager par mail
           </button>
           <p class="text-center">
@@ -40,4 +40,65 @@
       </div>
     </div>
   </div>
+  {{> mailShareModal}}
+</template>
+
+<template name="mailShareModal">
+  <!-- Modal -->
+  <div class="modal fade" id="mailShareModal" tabindex="-1" role="dialog" aria-labelledby="mailShareModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="mailShareModalLabel">{{profile.firstname}} partagez {{quiz.title}} par email</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-horizontal">
+            <fieldset>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email_1">Contact 1</label>
+              <div class="col-md-8">
+              <input id="email_1" name="email_1" type="text" placeholder="email" class="form-control input-md">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email_2">Contact 2</label>
+              <div class="col-md-8">
+              <input id="email_1" name="email_1" type="text" placeholder="email" class="form-control input-md">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email_3">Contact 3</label>
+              <div class="col-md-8">
+              <input id="email_1" name="email_1" type="text" placeholder="email" class="form-control input-md">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email_4">Contact 4</label>
+              <div class="col-md-8">
+              <input id="email_1" name="email_1" type="text" placeholder="email" class="form-control input-md">
+              </div>
+            </div>
+            <!-- Text input-->
+            <div class="form-group">
+              <label class="col-md-3 control-label" for="email_5">Contact 5</label>
+              <div class="col-md-8">
+              <input id="email_1" name="email_1" type="text" placeholder="email" class="form-control input-md">
+              </div>
+            </div>
+            </fieldset>
+          </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+          <button type="button" class="btn btn-primary">Envoyer</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </template>
