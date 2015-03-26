@@ -31,7 +31,7 @@ deps@1.0.7
 edgee:meteor-server-deps@0.1.2
 ejson@1.0.6
 email@1.0.6
-facebook@1.1.4
+facebook@1.2.0
 fastclick@1.0.3
 fortawesome:fontawesome@4.2.0_2
 geojson-utils@1.0.3
@@ -68,8 +68,8 @@ mobile-status-bar@1.0.3
 momentjs:moment@2.9.0
 mongo@1.1.0
 mrt:accounts-admin-ui-bootstrap-3@0.2.7
-msavin:jetsetter@1.0.0
-msavin:mongol@1.0.7
+msavin:jetsetter@1.0.1
+msavin:mongol@1.0.8
 npm-bcrypt@0.7.8_1
 oauth@1.1.4
 oauth2@1.1.3
