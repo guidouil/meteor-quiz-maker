@@ -35,10 +35,14 @@
                   <div class="col-md-6">
                     <div class="inner">
                       {{#if video}}
-                      <iframe width="460" height="259" src="{{video}}" frameborder="0" allowfullscreen></iframe>
+                        {{> video}}
                       {{/if}}
                       {{#if image}}
-                        <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                        {{#if video}}
+                          <a href="#" data-action="autoplay" data-toggle="modal" data-target="#videoModal_{{_id}}"><img src="{{image}}" alt="{{question}}" class="img-responsive" /></a>
+                        {{else}}
+                          <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                        {{/if}}
                       {{/if}}
                       {{{description}}}
                     </div>
@@ -69,6 +73,20 @@
   </div>
 </template>
 
-<template name="city">
-    <span class="label label-default">{{_id}}</span>&nbsp;{{city}}
+<template name="video">
+  <!-- Modal -->
+  <div class="modal fade" id="videoModal_{{_id}}" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel_{{_id}}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="videoModalLabel_{{_id}}">{{question}}</h4>
+        </div>
+        <div class="modal-body text-center">
+          <iframe width="560" height="315" src="{{video}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 </template>
