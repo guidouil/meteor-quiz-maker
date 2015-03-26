@@ -8,12 +8,13 @@
           <table class="table table-responsive table-hover table-condensed">
             <thead>
               <tr>
-                <th>Players</th>
+                <th>Mail</th>
                 <th>Chances</th>
                 {{#each questions}}
                  <th>Q{{order}}</th>
                 {{/each}}
-                <th>Place</th>
+                <th>Profile</th>
+                <th>FB Shared</th>
                 <th></th>
               </tr>
             </thead>
@@ -21,14 +22,15 @@
               {{#each usersAnswers}}
               <tr>
                 <td>{{userEmail user}}</td>
-                <td>{{correctAnswersCount}}</td>
+                <td>{{chances}}</td>
                 {{#each questionsAnswered user}}
                 <td>
                   <i class="fa fa-{{icon}}"></i>
                 </td>
                 {{/each}}
                 <td>{{profile user}}</td>
-                <td> <button type="button" class="btn btn-danger btn-sm reset" id="{{user}}"><i class="fa fa-trash-o"></i></button> </td>
+                <td>{{#if fbShared user}}<i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}</td>
+                <td class="text-right"> <button type="button" class="btn btn-danger btn-sm reset" id="{{user}}"><i class="fa fa-trash-o"></i></button> </td>
               </tr>
               {{/each}}
             </tbody>

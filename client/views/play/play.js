@@ -107,9 +107,6 @@ Template.play.events({
     } else {
       Session.set('activeTab', question.order + 1);
     }
-  },
-  'submit #profileInsert': function (evt, tmpl) {
-
   }
 });
 

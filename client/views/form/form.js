@@ -60,9 +60,23 @@ Template.form.helpers({
   }
 });
 
+Template.form.events({
+  'submit #profileInsert': function (evt, tmpl) {
+    evt.preventDefault();
+    $('input').iCheck({
+      checkboxClass: 'icheckbox_flat-red',
+      radioClass: 'iradio_flat-red'
+    });
+  }
+});
+
 Template.form.rendered = function(){
   if (Session.get('activeTab')) {
     var zeroOrder = Session.get('activeTab') - 1;
     $('#myTab li:eq('+zeroOrder+') a').tab('show');
   }
+  $('input').iCheck({
+    checkboxClass: 'icheckbox_flat-red',
+    radioClass: 'iradio_flat-red'
+  });
 };

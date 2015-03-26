@@ -24,4 +24,4 @@ Template.answer.rendered =Template.answered.rendered = function(){
     checkboxClass: 'icheckbox_flat-red',
     radioClass: 'iradio_flat-red'
   });
-}
+};

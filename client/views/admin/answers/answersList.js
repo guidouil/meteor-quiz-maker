@@ -19,39 +19,44 @@ Template.answersList.helpers({
     return Profiles.find({quizId: quizId}).count();
   },
   usersAnswers: function () {
-    var questionsCount = Questions.find().count();
-    var answers = Answers.find({},{sort: {owner: 1}}).fetch();
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var answers = Answers.find({quizId: quizId}, {sort: {owner: 1}}).fetch();
     var answersCount = answers.length;
     var usersAnswers = [];
-    var userCorrectAnswersCount = 0;
+    var chances = 0;
     var source = [];
     $.each(answers, function(index, answer) {
       var winner = false;
       if (index === 0) {
-        previousUser = answer.owner;
+        previousUserId = answer.owner;
       }
-      if (previousUser !== answer.owner) {
-        // lets save previous userCorrectAnswersCount
-        if (userCorrectAnswersCount === questionsCount) {
+      if (previousUserId !== answer.owner) {
+        // lets save previous chances
+        if (chances === questionsCount) {
           winner = true;
         }
-        usersAnswers.push({user: previousUser, correctAnswersCount: userCorrectAnswersCount+1, winner: winner, source: source});
-        userCorrectAnswersCount = 0;
+        var profile = Profiles.findOne({quizId: quizId, owner: previousUserId});
+        if (profile && profile.fbShared) {
+          chances += 5;
+        }
+        usersAnswers.push({user: previousUserId, chances: chances+1, winner: winner, source: source});
+        chances = 0;
         winner = false;
         source = [];
       }
       source.push(answer);
       if (answer.correct === true) {
-        userCorrectAnswersCount += 1;
+        chances += 1;
       }
-      previousUser = answer.owner;
+      previousUserId = answer.owner;
       // for last answer
       if (index+1 === answersCount) {
-        // lets save previous userCorrectAnswersCount
-        if (userCorrectAnswersCount === questionsCount) {
+        // lets save previous chances
+        if (chances === questionsCount) {
           winner = true;
         }
-        usersAnswers.push({user: previousUser, correctAnswersCount: userCorrectAnswersCount+1, winner: winner, source: source});
+        usersAnswers.push({user: previousUserId, chances: chances+1, winner: winner, source: source});
       }
     });
     return usersAnswers;
@@ -90,11 +95,20 @@ Template.answersList.helpers({
     var quizId = Iron.controller().getParams().quizId;
     var profile = Profiles.findOne({owner: userId, quizId: quizId});
     if (!profile) {
-      profile = Profiles.findOne({owner: Meteor.userId()});
+      // looking for other quizzes profiles
+      profile = Profiles.findOne({owner: userId});
     }
-    if (profile && profile.city && profile.zip) {
-      return profile.city + ' - ' + profile.zip;
+    if (profile && profile.firstname && profile.lastname && profile.birthdate && profile.city && profile.zip) {
+      return  profile.firstname + ' - ' + profile.lastname + ' - ' + profile.birthdate + ' - ' + profile.zip + ' - ' + profile.city;
     }
+  },
+  fbShared: function (userId) {
+    var quizId = Iron.controller().getParams().quizId;
+    var profile = Profiles.findOne({owner: userId, quizId: quizId});
+    if (profile && profile.fbShared) {
+      return true;
+    }
+    return false;
   }
 });
 
