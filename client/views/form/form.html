@@ -94,6 +94,17 @@
       </div>
     </div>
 
+    <div class="form-group {{#if afFieldIsInvalid name='country'}}has-error{{/if}}">
+      <label class="col-xs-3 control-label" for="country">{{afFieldLabelText name='country'}}</label>
+      <div class="col-xs-8">
+        {{> afFieldInput name='country' id='country'}}
+        {{#if afFieldIsInvalid name='country'}}
+        <span class="help-block">{{{afFieldMessage name='country'}}}</span>
+        {{/if}}
+      </div>
+    </div>
+
+
     <div class="form-group {{#if afFieldIsInvalid name='validate'}}has-error{{/if}}">
       <label class="col-xs-3 control-label" for="validate"></label>
       <div class="col-xs-8">

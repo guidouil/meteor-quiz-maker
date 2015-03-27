@@ -32,8 +32,8 @@ rajit:bootstrap3-datepicker
 mizzao:autocomplete
 aldeed:autoform-bs-datepicker
 comerc:bs-typeahead
-aldeed:autoform@4.2.2
 coffeescript
 msavin:mongol
 artwells:accounts-guest
 msavin:jetsetter
+aldeed:autoform@5.1.0

@@ -7,7 +7,7 @@
           <!-- {{> quickForm id="questionUpdate" enctype="multipart/form-data" doc=this collection="Questions" type="update"}} -->
           {{#autoForm id="questionUpdate" type="update" doc=this collection="Questions"}}
             {{#each afFieldNames}}
-              {{> afQuickField name=this options="auto"}}
+              {{> afQuickField name=this.name options=afOptionsFromSchema}}
             {{/each}}
             {{> afQuickField name="quizId" type="hidden" value=quizId}}
             <!-- <input type="hidden" name="quizId" value="{{quizId}}"> -->

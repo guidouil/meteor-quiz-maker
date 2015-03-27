@@ -7,7 +7,7 @@
           {{#autoForm id="questionsInsert" type="insert" collection="Questions" omitFields="quizId"}}
             <!-- {{> afQuickFields}} -->
             {{#each afFieldNames}}
-              {{> afQuickField name=this options="auto"}}
+              {{> afQuickField name=this.name options=afOptionsFromSchema}}
             {{/each}}
             {{> afQuickField name="quizId" type="hidden" value=quizId}}
             <div>

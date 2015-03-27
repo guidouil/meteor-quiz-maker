@@ -66,5 +66,13 @@ Meteor.methods({
   enableGuestAccounts: function () {
     AccountsGuest.enabled = true;
     return true;
+  },
+  alreadyPlayed: function (quizId, mail) {
+    var profile = Profiles.findOne({quizId: quizId, mail: mail});
+    if (profile && profile._id) {
+      // Session.set('alreadyPlayed', true);
+      return true;
+    }
+    return false;
   }
 });

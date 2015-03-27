@@ -21,6 +21,19 @@ var questionHooksObject = {
 };
 
 var profileHooksObject = {
+  before: {
+    insert: function (doc) {
+      // var quizId = doc.quizId;
+      // var mail = doc.mail;
+      // Meteor.call('alreadyPlayed', quizId, mail, function (error, result) {
+      //   if (result === true) {
+      //     return false;
+      //   }
+      //   return doc;
+      // });
+      return doc;
+    }
+  },
   after: {
     insert: function(error, result) {
       if (!error && result) {
@@ -36,6 +49,5 @@ var profileHooksObject = {
 };
 
 AutoForm.hooks({
-
   profileInsert: profileHooksObject
 });
