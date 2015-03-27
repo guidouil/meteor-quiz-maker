@@ -4,7 +4,7 @@
       <div class="well well-sm">
         <legend><a href="{{pathFor 'quizzesList'}}"><i class="fa fa-angle-left"></i> </a>Quiz : {{title}}</legend>
         {{#if isAdminUser}}
-          <h1 class="text-center">{{questionsCount}} <small>Questions | </small>{{answersCount}} <small>Answers | </small>{{profilesCount}} <small>Profiles</small></h1>
+          <h1 class="text-center">{{questionsCount}} <small>Questions | </small>{{answersCount}} <small>Answers | </small>{{profilesCount}} <small>Profiles | </small>{{sharesCount}} <small>Shares</small></h1>
           <ul>
             <li><a href="{{pathFor 'quizUpdate' quizId=quizId}}">Settings</a></li>
             <li><a href="{{pathFor 'questionsList' quizId=quizId}}">Questions</a></li>

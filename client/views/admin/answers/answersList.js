@@ -18,6 +18,10 @@ Template.answersList.helpers({
     var quizId = Iron.controller().getParams().quizId;
     return Profiles.find({quizId: quizId}).count();
   },
+  sharesCount: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Profiles.find({quizId: quizId, fbShared: true}).count();
+  },
   usersAnswers: function () {
     var quizId = Iron.controller().getParams().quizId;
     var questionsCount = Questions.find({quizId: quizId}).count();
