@@ -74,5 +74,12 @@ Meteor.methods({
       return true;
     }
     return false;
+  },
+  alreadyPlayedOnce: function (quizId, mail) {
+    var profileCount = Profiles.find({quizId: quizId, mail: mail}).count();
+    if (profileCount > 1) {
+      return true;
+    }
+    return false;
   }
 });

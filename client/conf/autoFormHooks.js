@@ -23,15 +23,28 @@ var questionHooksObject = {
 var profileHooksObject = {
   before: {
     insert: function (doc) {
-      // var quizId = doc.quizId;
-      // var mail = doc.mail;
-      // Meteor.call('alreadyPlayed', quizId, mail, function (error, result) {
-      //   if (result === true) {
-      //     return false;
-      //   }
-      //   return doc;
-      // });
-      return doc;
+      var that = this;
+      var quizId = doc.quizId;
+      var mail = doc.mail;
+      Meteor.call('alreadyPlayed', quizId, mail, function (error, result) {
+        if (result === true) {
+          alert('Vous ne pouvez pas jouer deux fois.')
+          that.result(false);
+        }
+        that.result(doc);
+      });
+    },
+    update: function (doc) {
+      var that = this;
+      var quizId = doc.quizId;
+      var mail = doc.mail;
+      Meteor.call('alreadyPlayedOnce', quizId, mail, function (error, result) {
+        if (result === true) {
+          alert('Vous ne pouvez pas jouer deux fois.')
+          that.result(false);
+        }
+        that.result(doc);
+      });
     }
   },
   after: {
