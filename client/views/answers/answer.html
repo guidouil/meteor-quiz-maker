@@ -11,7 +11,7 @@
   <div class="radio">
     <label for="{{_id}}" class="{{#if correct}}text-success{{else}}text-danger{{/if}}">
       <input type="radio" name="{{questionId _id}}" id="{{_id}}" value="{{_id}}" disabled {{isChecked _id}}>
-      {{answer}} {{#if correct}} (est la bonne réponse){{/if}}
+      {{answer}} {{#if correct}} <i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}
     </label>
   </div>
 </template>
