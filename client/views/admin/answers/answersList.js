@@ -69,7 +69,7 @@ Template.answersList.helpers({
         usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, source: source});
       }
     });
-    console.log(usersAnswers);
+    // console.log(usersAnswers);
     return usersAnswers;
   },
   userEmail: function (userId) {

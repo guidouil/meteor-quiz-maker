@@ -49,7 +49,7 @@ Template.result.events({
           var profile = Profiles.findOne({quizId: quizId, owner: Meteor.userId()});
           if (profile && profile._id) {
             Profiles.update({_id: profile._id}, {$set: {fbShared: true}});
-            console.log('Post was published.');
+            // console.log('Post was published.');
           }
         } else {
           console.log('Post was not published.');
