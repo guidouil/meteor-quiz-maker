@@ -76,4 +76,16 @@ Template.form.rendered = function(){
     checkboxClass: 'icheckbox_flat-red',
     radioClass: 'iradio_flat-red'
   });
+  $('#birthdate').datepicker({
+    format: "dd/mm/yyyy",
+    startView: 2,
+    orientation: "bottom auto",
+    autoclose: true,
+    language: 'fr',
+    defaultViewDate: {
+      year: 1990,
+      month: 1,
+      day: 1
+    }
+  });
 };
