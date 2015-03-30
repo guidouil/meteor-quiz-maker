@@ -188,9 +188,9 @@ Template.answersList.events({
     });
     // console.log(csv);
     var a         = document.createElement('a');
-    a.href        = 'data:attachment/csv,' + csv;
+    a.href        = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
     a.target      = '_blank';
-    a.download    = 'profiles.csv';
+    a.download    = 'players_profiles.csv';
 
     document.body.appendChild(a);
     a.click();
