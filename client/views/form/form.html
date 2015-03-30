@@ -109,6 +109,7 @@
       <label class="col-xs-3 control-label" for="validate"></label>
       <div class="col-xs-8">
         {{> afFieldInput name='validate' id='validate'}}
+        <p class="text-center"><a href="{{pathFor 'rules' quizId=quizId}}">Lire le règlement</a></p>
         {{#if afFieldIsInvalid name='validate'}}
         <span class="help-block">{{{afFieldMessage name='validate'}}}</span>
         {{/if}}
