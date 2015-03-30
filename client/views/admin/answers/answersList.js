@@ -109,8 +109,8 @@ Template.answersList.helpers({
       // looking for other quizzes profiles
       profile = Profiles.findOne({owner: userId});
     }
-    if (profile && profile.firstname && profile.lastname && profile.birthdate && profile.city && profile.zip) {
-      return  profile.firstname + ' - ' + profile.lastname + ' - ' + profile.birthdate + ' - ' + profile.zip + ' - ' + profile.city;
+    if (profile && profile.firstname && profile.lastname  && profile.city && profile.zip) {
+      return  profile.firstname + ' - ' + profile.lastname + ' - ' + profile.zip + ' - ' + profile.city + ' - ' + profile.country;
     }
   },
   fbShared: function (userId) {
@@ -130,18 +130,18 @@ Template.answersList.events({
     swal(
       {
         title: "Are you sure ?",
-        text: "Reseting answers is final!",
+        text: "Deleting user answers and profiles is final!",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Reset",
+        confirmButtonText: "Delete",
         cancelButtonText: "Cancel",
         closeOnConfirm: false,
         closeOnCancel: true
       },
       function(){
         Meteor.call('resetAnswers', quizId);
-        swal("Deleted", "The answers have been deleted.", "success");
+        swal("Deleted", "All the answers and profiles have been deleted.", "success");
 
       }
     );
@@ -153,20 +153,46 @@ Template.answersList.events({
     swal(
       {
         title: "Are you sure ?",
-        text: "Reseting user answer is final!",
+        text: "Deleting user answers and profile is final!",
         type: "warning",
         showCancelButton: true,
         confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Reset",
+        confirmButtonText: "Delete",
         cancelButtonText: "Cancel",
         closeOnConfirm: false,
         closeOnCancel: true
       },
       function(){
         Meteor.call('resetAnswer', quizId, userId);
-        swal("Deleted", "This user answers have been deleted.", "success");
+        swal("Deleted", "This user answers and profile have been deleted.", "success");
 
       }
     );
+  },
+  'click .export': function (evt, tmpl) {
+    evt.preventDefault();
+    var quizId = Iron.controller().getParams().quizId;
+    var profiles = Profiles.find({quizId: quizId},{fields:{_id: 0, owner: 0, quizId: 0}}).fetch();
+    $.each(profiles, function(index, profile){
+      var userChances = Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count() + 1;
+      if (profile.fbShared === true) {
+        userChances += 5;
+      }
+      profiles[index].chances = userChances;
+    });
+    // console.log(profiles);
+    var csv = Papa.unparse(profiles, {
+      quotes: true,
+      delimiter: ",",
+      newline: "\r\n"
+    });
+    // console.log(csv);
+    var a         = document.createElement('a');
+    a.href        = 'data:attachment/csv,' + csv;
+    a.target      = '_blank';
+    a.download    = 'profiles.csv';
+
+    document.body.appendChild(a);
+    a.click();
   }
 });
