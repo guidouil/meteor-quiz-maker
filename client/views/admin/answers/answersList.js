@@ -172,9 +172,10 @@ Template.answersList.events({
   'click .export': function (evt, tmpl) {
     evt.preventDefault();
     var quizId = Iron.controller().getParams().quizId;
-    var profiles = Profiles.find({quizId: quizId},{fields:{_id: 0, owner: 0, quizId: 0}}).fetch();
+    var profiles = Profiles.find({quizId: quizId},{fields:{_id: 0, quizId: 0}}).fetch();
     $.each(profiles, function(index, profile){
-      var userChances = Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count() + 1;
+      var userChances = 1;
+      userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
       if (profile.fbShared === true) {
         userChances += 5;
       }
