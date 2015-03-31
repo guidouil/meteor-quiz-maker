@@ -48,6 +48,7 @@
                     </div>
                   </div>
                 </div>
+                {{#if isOpen}}
                 {{#unless isAnswered _id}}
                 <div class="row">
                   <div class="col-xs-12">
@@ -55,6 +56,7 @@
                   </div>
                 </div>
                 {{/unless}}
+                {{/if}}
               </div>
             {{/each}}
             <!-- {{#if allAnswered}} -->

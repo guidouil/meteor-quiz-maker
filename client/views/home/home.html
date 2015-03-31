@@ -4,7 +4,13 @@
       <div class="col-xs-12">
         {{#if quiz}}
           {{{quiz.home}}}
+          {{#if isOpen quiz._id}}
           <a href="/play/{{quiz._id}}" class="btn btn-success btn-block"><i class="fa fa-play"> Jouer</i></a>
+          {{else}}
+          {{{quiz.closing}}}
+          <a href="/play/{{quiz._id}}" class="btn btn-block"><i class="fa fa-file-o"> revoir vos réponses</i></a>
+          {{{quiz.winners}}}
+          {{/if}}
         {{else}}
           {{#if isAdminUser}}
             <ul>
