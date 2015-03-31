@@ -4,7 +4,6 @@ Template.home.helpers({
   },
   isOpen: function (quizId) {
     var quiz = Quizzes.findOne({_id: quizId});
-    console.log(quiz);
     if (!quiz || !quiz.startDate) {
       return true;
     } else {

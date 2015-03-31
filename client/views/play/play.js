@@ -120,7 +120,6 @@ Template.play.helpers({
   isOpen: function () {
     var quizId = Iron.controller().getParams().quizId;
     var quiz = Quizzes.findOne({_id: quizId});
-    console.log(quiz);
     if (!quiz || !quiz.startDate) {
       return true;
     } else {
