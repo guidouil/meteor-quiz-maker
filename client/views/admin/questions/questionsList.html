@@ -4,9 +4,9 @@
       <div class="well well-sm">
         <legend><a href="{{pathFor 'quizAdmin' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Questions</legend>
         {{#if isAdminUser}}
-          <ul>
+          <ul class="list-unstyled">
             {{#each questions}}
-              <li><a href="{{pathFor 'questionUpdate'  quizId=quizId _id=_id}}">{{order}}: {{question}}</a> <button class="btn btn-danger btn-xs delete" id="{{_id}}"><i class="fa fa-trash"></i></button></li>
+              <li><a href="{{pathFor 'questionUpdate'  quizId=quizId _id=_id}}" class="btn btn-default btn-sm">{{order}}: {{question}}</a> <button class="btn btn-danger btn-xs delete" id="{{_id}}"><i class="fa fa-trash"></i></button></li>
             {{/each}}
           </ul>
           <a href="{{pathFor 'questionInsert' quizId=quizId}}" class="btn btn-primary btn-block"><i class="fa fa-plus"></i> Add</a>
