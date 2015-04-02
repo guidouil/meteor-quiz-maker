@@ -4,9 +4,9 @@
       <div class="well well-sm">
         <legend>Back Office</legend>
         {{#if isAdminUser}}
-          <ul>
-            <li><a href="{{pathFor 'quizzesList'}}">Quizzes</a></li>
-            <li><a href="{{pathFor 'adminUsers'}}">Users</a></li>
+          <ul class="list-unstyled">
+            <li><a href="{{pathFor 'quizzesList'}}" class="btn btn-default btn-lg">Quizzes</a></li>
+            <li><a href="{{pathFor 'adminUsers'}}" class="btn btn-default btn-lg">Users</a></li>
           </ul>
         {{else}}
             Must be admin to see this...
