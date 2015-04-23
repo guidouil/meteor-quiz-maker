@@ -42,11 +42,20 @@
         </div>
         {{else}}
         <div class="col-xs-12">
-          {{{quiz.closing}}}
           <button class="btn btn-block viewForm"><i class="fa fa-info"></i> modifier vos informations</button>
-          {{{quiz.winners}}}
+
         </div>
         {{/if}}
+        {{#unless isOpen}}
+        <div class="col-xs-12">
+          <div id="closing">
+            {{{quiz.closing}}}
+          </div>
+          <div id="winners">
+            {{{quiz.winners}}}
+          </div>
+        </div>
+        {{/unless}}
         {{#if quiz.promo}}
           <div id="promo">
             {{{quiz.promo}}}

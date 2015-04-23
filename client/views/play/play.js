@@ -122,19 +122,6 @@ Template.play.helpers({
     }
     return false;
   },
-  isOpen: function () {
-    var quizId = Iron.controller().getParams().quizId;
-    var quiz = Quizzes.findOne({_id: quizId});
-    if (!quiz || !quiz.startDate) {
-      return true;
-    } else {
-      var now = new Date();
-      if (quiz.startDate <= now && (!quiz.endDate || quiz.endDate >= now) ) {
-        return true;
-      }
-      return false;
-    }
-  },
   isLastQuestion: function (order) {
     var quizId = Iron.controller().getParams().quizId;
     var questionsCount = Questions.find({quizId: quizId}).count();

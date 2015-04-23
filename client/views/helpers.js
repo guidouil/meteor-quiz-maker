@@ -80,3 +80,17 @@ UI.registerHelper('getImage', function (imageId) {
     return image.url();
   }
 });
+
+UI.registerHelper('isOpen', function () {
+  var quizId = Iron.controller().getParams().quizId;
+  var quiz = Quizzes.findOne({_id: quizId});
+  if (!quiz || !quiz.startDate) {
+    return true;
+  } else {
+    var now = new Date();
+    if (quiz.startDate <= now && (!quiz.endDate || quiz.endDate >= now) ) {
+      return true;
+    }
+    return false;
+  }
+});
