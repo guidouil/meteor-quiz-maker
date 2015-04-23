@@ -1,4 +1,8 @@
 Template.play.helpers({
+  quiz: function(){
+    var quizId = Iron.controller().getParams().quizId;
+    return Quizzes.findOne({_id: quizId});
+  },
   questions: function () {
     var quizId = Iron.controller().getParams().quizId;
     return Questions.find({quizId: quizId}, {sort: {order: 1}}).fetch();
@@ -10,8 +14,9 @@ Template.play.helpers({
   },
   isActive: function (order) {
     var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
     var answersCount = Answers.find({quizId: quizId, owner: Meteor.userId()}).count();
-    if (answersCount && answersCount > 0) {
+    if (answersCount && answersCount > 0 && answersCount < questionsCount) {
       var activeTab = answersCount+1;
       Session.set('activeTab', activeTab);
     } else {
@@ -67,7 +72,7 @@ Template.play.helpers({
     var questionsCount = Questions.find({quizId: quizId}).count();
     var answersCount = Answers.find({quizId: quizId,owner: Meteor.userId()}).count();
     if (questionsCount === answersCount) {
-      $('#myTab a:last').tab('show');
+      // $('#myTab a:last').tab('show');
       return true;
     }
     return false;
@@ -129,7 +134,16 @@ Template.play.helpers({
       }
       return false;
     }
+  },
+  isLastQuestion: function (order) {
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    if (order === questionsCount) {
+      return true;
+    }
+    return false;
   }
+
 });
 
 Template.play.events({
@@ -154,8 +168,7 @@ Template.play.events({
     var answersCount = Answers.find({owner: Meteor.userId()}).count();
     if (questionsCount === answersCount) {
       // all questions are answered
-      Session.set('activeTab', questionsCount + 1);
-      window.location.reload();
+      Router.go('/form/'+quizId);
     } else {
       Session.set('activeTab', question.order + 1);
     }

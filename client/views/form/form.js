@@ -1,4 +1,8 @@
 Template.form.helpers({
+  quiz: function(){
+    var quizId = Iron.controller().getParams().quizId;
+    return Quizzes.findOne({_id: quizId});
+  },
   chances: function () {
     var quizId = Iron.controller().getParams().quizId;
     var result = {};
@@ -63,7 +67,8 @@ Template.form.helpers({
 Template.form.events({
   'click .cancel': function (evt, tmpl) {
     evt.preventDefault();
-    Session.set('hideForm', true);
+    var quizId = Iron.controller().getParams().quizId;
+    Router.go('/result/'+quizId);
   }
 });
 

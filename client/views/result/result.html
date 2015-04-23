@@ -36,6 +36,7 @@
         </div>
         <div class="col-xs-12">
           <p class="text-center">
+            <a href="{{pathFor 'play' quizId=quizId}}" class="btn btn-link">Découvrir les réponses</a>
             {{quiz.title}} se termine {{fromNow quiz.endDate}}. <button class="btn btn-block viewForm"><i class="fa fa-info"></i> modifier vos informations</button>
           </p>
         </div>
@@ -45,6 +46,11 @@
           <button class="btn btn-block viewForm"><i class="fa fa-info"></i> modifier vos informations</button>
           {{{quiz.winners}}}
         </div>
+        {{/if}}
+        {{#if quiz.promo}}
+          <div id="promo">
+            {{{quiz.promo}}}
+          </div>
         {{/if}}
       </div>
     </div>

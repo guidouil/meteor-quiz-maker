@@ -145,7 +145,7 @@
   <div class="col-xs-12">
     <div class="form-group">
       {{#unless quizProfile}}
-      <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-check"></i> Valider le formulaire</button>
+      <button type="submit" class="btn btn-primary btn-block">Voir mes résultats</button>
       {{else}}
       <div class="col-xs-6">
       <button type="button" class="btn btn-danger btn-block cancel"><i class="fa fa-times"></i> Annuler</button>
@@ -155,6 +155,11 @@
       </div>
       {{/unless}}
     </div>
+    {{#if quiz.dotation}}
+      <div id="dotation">
+        {{{quiz.dotation}}}
+      </div>
+    {{/if}}
     {{> afQuickField name="owner" type="hidden" value=userId}}
     {{> afQuickField name="quizId" type="hidden" value=quizId}}
   </div>

@@ -3,13 +3,17 @@
     <div class="row">
       <div class="col-xs-12">
         {{#if quiz}}
-          {{{quiz.home}}}
+          <div id="home">
+            {{{quiz.home}}}
+          </div>
           {{#if isOpen quiz._id}}
           <a href="/play/{{quiz._id}}" class="btn btn-success btn-block"><i class="fa fa-play"> Jouer</i></a>
           {{else}}
           {{{quiz.closing}}}
-          <a href="/play/{{quiz._id}}" class="btn btn-block"><i class="fa fa-list"> revoir vos réponses</i></a>
-          {{{quiz.winners}}}
+          <a href="/result/{{quiz._id}}" class="btn btn-block"><i class="fa fa-list"> revoir vos réponses</i></a>
+          <div id="winners">
+            {{{quiz.winners}}}  
+          </div>
           {{/if}}
         {{else}}
           {{#if isAdminUser}}

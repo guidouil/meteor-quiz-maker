@@ -9,7 +9,7 @@
               <li class="tab {{isActive order}}" id="{{order}}" role="presentation"><a href="#{{_id}}" data-toggle="tab">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
             {{/each}}
             <!-- {{#if allAnswered}} -->
-              <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}" role="presentation"><a href="#last" data-toggle="tab" >Vos résultats</a></li>
+              <!-- <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}" role="presentation"><a href="#last" data-toggle="tab" >Vos résultats</a></li> -->
             <!-- {{/if}} -->
           </ul>
 
@@ -30,6 +30,21 @@
                           {{> answered}}
                         {{/each}}
                       {{/unless}}
+                      {{#if isOpen}}
+                      {{#unless isAnswered _id}}
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <button name='next' class="btn btn-success validate" id="{{_id}}">{{#if isLastQuestion order}}Validez{{else}}Suivant{{/if}}</button>
+                        </div>
+                      </div>
+                      {{else}}
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <a href="{{pathFor 'result' quizId=quizId}}" class="btn btn-success" id="{{_id}}">Retour au résultat</a>
+                        </div>
+                      </div>
+                      {{/unless}}
+                      {{/if}}
                     </div>
                   </div>
                   <div class="col-xs-6">
@@ -44,24 +59,17 @@
                           <img src="{{image}}" alt="{{question}}" class="img-responsive" />
                         {{/if}}
                       {{/if}}
-                      {{{description}}}
+                      <div id="description">
+                        {{{description}}}
+                      </div>
                     </div>
                   </div>
                 </div>
-                {{#if isOpen}}
-                {{#unless isAnswered _id}}
-                <div class="row">
-                  <div class="col-xs-12">
-                    <button class="btn btn-success btn-lg btn-block validate" id="{{_id}}"><span class="fa fa-check"></span> Valider cette réponse</button>
-                  </div>
-                </div>
-                {{/unless}}
-                {{/if}}
               </div>
             {{/each}}
             <!-- {{#if allAnswered}} -->
               <!-- Last Tab -->
-              <div class="tab-pane {{isActive lastOrder}}" role="tabpanel" id="last">
+              <!-- <div class="tab-pane {{isActive lastOrder}}" role="tabpanel" id="last">
                 <div class="row">
                   {{#if allAnswered}}
                     <h1 class="text-center">{{{resultPhrase}}}</h1>
@@ -73,11 +81,23 @@
                   {{/if}}
 
                 </div>
-              </div>
+              </div> -->
             <!-- {{/if}} -->
           </div>
-
-        </div>
+        </div> <!--  tabpanel end -->
+        {{#unless allAnswered}}
+          {{#if quiz.dotation}}
+            <div id="dotation">
+              {{{quiz.dotation}}}
+            </div>
+          {{/if}}
+        {{else}}
+          {{#if quiz.promo}}
+            <div id="promo">
+              {{{quiz.promo}}}
+            </div>
+          {{/if}}
+        {{/unless}}
       </div>
     </div>
   </div>

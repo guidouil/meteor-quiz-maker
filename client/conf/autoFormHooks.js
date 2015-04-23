@@ -28,7 +28,7 @@ var profileHooksObject = {
       var mail = doc.mail;
       Meteor.call('alreadyPlayed', quizId, mail, function (error, result) {
         if (result === true) {
-          alert('Vous ne pouvez pas jouer deux fois.')
+          alert('Vous ne pouvez pas jouer deux fois.');
           that.result(false);
         }
         that.result(doc);
@@ -40,7 +40,7 @@ var profileHooksObject = {
       var mail = doc.mail;
       Meteor.call('alreadyPlayedOnce', quizId, mail, function (error, result) {
         if (result === true) {
-          alert('Vous ne pouvez pas jouer deux fois.')
+          alert('Vous ne pouvez pas jouer deux fois.');
           that.result(false);
         }
         that.result(doc);
@@ -51,11 +51,15 @@ var profileHooksObject = {
     insert: function(error, result) {
       if (!error && result) {
         Session.set('hideForm', true);
+        var quizId = Router.current().params.quizId;
+        Router.go('/result/'+quizId);
       }
     },
     update: function(error, result) {
       if (!error && result) {
         Session.set('hideForm', true);
+        var quizId = Router.current().params.quizId;
+        Router.go('/result/'+quizId);
       }
     }
   }

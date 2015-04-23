@@ -42,7 +42,9 @@ Template.result.helpers({
 Template.result.events({
   "click .viewForm": function (e, t) {
     e.preventDefault();
-    Session.set('hideForm', false);
+    // Session.set('hideForm', false);
+    var quizId = Iron.controller().getParams().quizId;
+    Router.go('/form/'+quizId);
   },
   "click .fbShare": function(e, t){
     e.preventDefault();
@@ -74,4 +76,5 @@ Template.result.events({
 
 Template.result.rendered = function(){
   Meteor.call('enableGuestAccounts');
+  Session.set('activeTab', 1);
 };
