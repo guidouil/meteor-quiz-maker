@@ -62,6 +62,17 @@
                       <div id="description">
                         {{{description}}}
                       </div>
+                      {{#unless isAnswered _id}}
+                      <div id="answer">
+                        <h3 id="answerTitle">{{{answerTitle}}}</h3>
+                        <p id="answerText">
+                          {{{answerText}}}
+                        </p>
+                        {{#if answerImage}}
+                          <img id="answerImage" src="{{answerImage}}" alt="{{answerTitle}}" />
+                        {{/if}}
+                      </div>
+                      {{/unless}}
                     </div>
                   </div>
                 </div>
