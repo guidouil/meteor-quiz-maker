@@ -81,5 +81,29 @@ Meteor.methods({
       return true;
     }
     return false;
+  },
+  sendSharedMail: function (quizId) {
+    var quiz = Quizzes.findOne({_id: quizId});
+    var sharedEmails = Emails.find({quizId: quizId, owner: this.userId, sent: false}).fetch();
+    if (sharedEmails && sharedEmails.length > 0) {
+      $.each(sharedEmails, function (index, sharedEmail) {
+        var sendMessage = function (toId, msg) {
+          var from = quiz.title;
+          var to = sharedEmail.mail;
+          var fromEmail = 'no-reply@tefal.fr';
+          var toEmail = sharedEmail.mai;
+          Email.send({
+            from: fromEmail,
+            to: toEmail,
+            replyTo: fromEmail || undefined,
+            subject: quiz.mailSubject,
+            text: quiz.mailText,
+            html: quiz.mailHtml
+          });
+        };
+        sendMessage();
+        Emails.update({_id: sharedEmail._id},{$set: {sent: true}});
+      });
+    }
   }
 });

@@ -71,6 +71,27 @@ Template.result.events({
         }
       }
     );
+  },
+  "click .sendMails": function (evt, tmpl) {
+    evt.preventDefault();
+    var quizId = Iron.controller().getParams().quizId;
+    $('.sharedMail').each(function (index, mail) {
+      console.log($(mail).val());
+      var sharedEmail = $(mail).val();
+      var existingEmail = Emails.findOne({owner: Meteor.userId(), mail: sharedEmail});
+      if (!existingEmail) {
+        Emails.insert({
+          owner: Merteor.userId(),
+          quizId: quizId,
+          mail: sharedMail,
+          sent: false
+        });
+      }
+      var countNotSentEmail = Emails.find({owner: Meteor.userId(), sent: false}).count();
+      if (countNotSentEmail > 0) {
+        Meteor.call('sendSharedMail', quizId);
+      }
+    });
   }
 });
 
