@@ -1,3 +1,4 @@
 .idea
 everqode_deploy.txt
 private
+server/everqode-mailgun.js

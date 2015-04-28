@@ -18,6 +18,10 @@ Template.result.helpers({
     if (profile && profile.fbShared) {
       result.count += 5;
     }
+    var sharedEmailCount = Emails.find({owner: Meteor.userId(), sent: true}).count();
+    if (sharedEmailCount > 0) {
+      result.count += sharedEmailCount;
+    }
     return result;
   },
   profile: function () {
@@ -79,7 +83,8 @@ Template.result.events({
       console.log($(mail).val());
       var sharedEmail = $(mail).val();
       var existingEmail = Emails.findOne({owner: Meteor.userId(), mail: sharedEmail});
-      if (!existingEmail) {
+      var countSharedEmail = Emails.find({owner: Meteor.userId()}).count();
+      if (!existingEmail && countSharedEmail <= 10) {
         Emails.insert({
           owner: Meteor.userId(),
           quizId: quizId,

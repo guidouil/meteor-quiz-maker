@@ -15,6 +15,10 @@ Template.form.helpers({
     if (profile && profile.fbShared) {
       result.count += 5;
     }
+    var sharedEmailCount = Emails.find({owner: Meteor.userId(), sent: true}).count();
+    if (sharedEmailCount > 0) {
+      result.count += sharedEmailCount;
+    }
     return result;
   },
   autoZip: function () {

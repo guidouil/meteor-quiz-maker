@@ -31,6 +31,7 @@ Template.answersList.helpers({
     var chances = 0;
     var source = [];
     var profile = null;
+    var sharedEmailCount = 0;
     $.each(answers, function(index, answer) {
       var winner = false;
       if (index === 0) {
@@ -45,11 +46,16 @@ Template.answersList.helpers({
         if (profile && profile.fbShared) {
           chances += 5;
         }
+        sharedEmailCount = Emails.find({owner: previousUserId, sent: true}).count();
+        if (sharedEmailCount > 0) {
+          chances += sharedEmailCount;
+        }
         usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, source: source});
         chances = 0;
         winner = false;
         source = [];
         profile = null;
+        sharedEmailCount = 0;
       }
       source.push(answer);
       if (answer.correct === true) {
@@ -65,6 +71,10 @@ Template.answersList.helpers({
         profile = Profiles.findOne({quizId: quizId, owner: previousUserId});
         if (profile && profile.fbShared) {
           chances += 5;
+        }
+        sharedEmailCount = Emails.find({owner: previousUserId, sent: true}).count();
+        if (sharedEmailCount > 0) {
+          chances += sharedEmailCount;
         }
         usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, source: source});
       }
@@ -178,6 +188,10 @@ Template.answersList.events({
       userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
       if (profile.fbShared === true) {
         userChances += 5;
+      }
+      var sharedEmailCount = Emails.find({owner: profile.owner, sent: true}).count();
+      if (sharedEmailCount > 0) {
+        userChances += sharedEmailCount;
       }
       profiles[index].chances = userChances;
     });

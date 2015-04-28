@@ -91,7 +91,7 @@ Meteor.methods({
           var from = quiz.title;
           var to = sharedEmail.mail;
           var fromEmail = 'no-reply@tefal.fr';
-          var toEmail = sharedEmail.mai;
+          var toEmail = sharedEmail.mail;
           Email.send({
             from: fromEmail,
             to: toEmail,
