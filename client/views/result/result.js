@@ -81,9 +81,9 @@ Template.result.events({
       var existingEmail = Emails.findOne({owner: Meteor.userId(), mail: sharedEmail});
       if (!existingEmail) {
         Emails.insert({
-          owner: Merteor.userId(),
+          owner: Meteor.userId(),
           quizId: quizId,
-          mail: sharedMail,
+          mail: sharedEmail,
           sent: false
         });
       }

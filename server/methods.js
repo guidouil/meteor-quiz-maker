@@ -86,7 +86,7 @@ Meteor.methods({
     var quiz = Quizzes.findOne({_id: quizId});
     var sharedEmails = Emails.find({quizId: quizId, owner: this.userId, sent: false}).fetch();
     if (sharedEmails && sharedEmails.length > 0) {
-      $.each(sharedEmails, function (index, sharedEmail) {
+      _.each(sharedEmails, function (sharedEmail) {
         var sendMessage = function (toId, msg) {
           var from = quiz.title;
           var to = sharedEmail.mail;
