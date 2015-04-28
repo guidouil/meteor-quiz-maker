@@ -5,10 +5,11 @@
         {{#if isOpen}}
           <div class="col-xs-12">
 
-          <h2 class="text-center">{{profile.firstname}}, votre participation au {{quiz.title}} est vailidée.</h2>
+          <h2 class="text-center">{{profile.firstname}}, votre participation au {{quiz.title}} est validée.</h2>
           <p class="lead text-center">
             Actuellement <strong>vous avez <span class="text-danger">{{chances.count}}</span> chance{{chances.plural}} de gagner</strong> au tirage au sort.
             <br>
+            Une chance pour votre participation, et une de plus par bonne réponse.<br>
             Partagez avec vos amis pour <strong>augmenter vos chances</strong> de gagner !
           </p>
         </div>
@@ -17,7 +18,7 @@
             <i class="fa fa-envelope"></i> | Partager par mail
           </button>
           <p class="text-center">
-            1 chance de plus par mail envoyé (limité à 10).
+            1 chance de plus par mail envoyé (limité à 10{{#if sharedEmailcountdown}}, reste {{sharedEmailcountdown}}{{/if}}).
           </p>
         </div>
         <div class="col-xs-6">
@@ -26,12 +27,12 @@
             <i class="fa fa-facebook"></i> | Partager sur Facebook
           </button>
           {{else}}
-          <button type="button" class="btn btn-primary btn-block btn-lg fbShare" disabled>
-            <i class="fa fa-facebook"></i> | Déjà partagé sur Facebook
+          <button type="button" class="btn btn-primary btn-block btn-lg fbShare" >
+            <i class="fa fa-facebook"></i> | Partagé sur Facebook
           </button>
           {{/unless}}
           <p class="text-center">
-            5 chances de plus au partage
+            5 chances de plus au partage{{#if profile.fbShared}}} (déjå partagé){{/if}}
           </p>
         </div>
         <div class="col-xs-12">

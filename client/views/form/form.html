@@ -1,8 +1,5 @@
 <template name="form">
   <div class="container-fluid">
-  {{#unless quizProfile}}
-  <h2 class="text-center">Vous avez {{chances.count}} chance{{chances.plural}} de gagner ! <small>Complétez ce formulaire pour participer au tirage au sort.</small></h2>
-  {{/unless}}
   {{#autoForm id="profileInsert" type=type doc=profile collection='Profiles' class="form-horizontal"}}
   <fieldset>
 
@@ -137,7 +134,7 @@
     </div>
 
     <p class="text-right">
-      * les champs marqués d'un astérisque sont obligatoire.
+      * les champs marqués d'un astérisque sont obligatoires.
     </p>
 
 
@@ -151,7 +148,7 @@
       <button type="button" class="btn btn-danger btn-block cancel"><i class="fa fa-times"></i> Annuler</button>
       </div>
       <div class="col-xs-6">
-      <button type="submit" class="btn btn-success btn-block"><i class="fa fa-check"></i> Sauveguarder</button>
+      <button type="submit" class="btn btn-success btn-block"><i class="fa fa-check"></i> Valider</button>
       </div>
       {{/unless}}
     </div>

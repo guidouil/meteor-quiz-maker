@@ -33,8 +33,12 @@ Meteor.reactivePublish('Answers', function (quizId) {
   }
 });
 
-Meteor.reactivePublish('Emails', function () {
-  return Emails.find({owner: this.userId}, {reactive: true});
+Meteor.reactivePublish('Emails', function (quizId) {
+  if (Roles.userIsInRole(this.userId, "admin")) {
+    return Emails.find({quizId: quizId}, {reactive: true});
+  } else {
+    return Emails.find({quizId: quizId, owner: this.userId}, {reactive: true});
+  }
 });
 
 // Meteor.publish('UsersData', function () {

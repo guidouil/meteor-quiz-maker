@@ -14,6 +14,7 @@
                  <th class="text-center">Q{{order}}</th>
                 {{/each}}
                 <th class="text-center">FB Shared</th>
+                <th class="text-center">Email Shared</th>
                 <th class="text-center">Chances</th>
                 <th></th>
               </tr>
@@ -29,6 +30,7 @@
                 </td>
                 {{/each}}
                 <td class="text-center">{{#if fbShared user}}<i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}</td>
+                <td class="text-center">{{sharedEmailCount}}</td>
                 <td class="text-center">{{winChances}}</td>
                 <td class="text-right"> <button type="button" class="btn btn-danger btn-sm reset" id="{{user}}"><i class="fa fa-trash-o"></i></button> </td>
               </tr>
