@@ -20,7 +20,9 @@ Template.answersList.helpers({
   },
   sharesCount: function () {
     var quizId = Iron.controller().getParams().quizId;
-    return Profiles.find({quizId: quizId, fbShared: true}).count();
+    var fbSharedCount = Profiles.find({quizId: quizId, fbShared: true}).count();
+    var emailSharedCount = Emails.find({quizId: quizId, sent: true}).count();
+    return fbSharedCount + emailSharedCount;
   },
   usersAnswers: function () {
     var quizId = Iron.controller().getParams().quizId;
@@ -58,9 +60,9 @@ Template.answersList.helpers({
         sharedEmailCount = 0;
       }
       source.push(answer);
-      if (answer.correct === true) {
-        chances += 1;
-      }
+      // if (answer.correct === true) {
+      //   chances += 1;
+      // }
       previousUserId = answer.owner;
       // for last answer
       if (index+1 === answersCount) {

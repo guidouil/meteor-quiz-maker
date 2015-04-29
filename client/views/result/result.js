@@ -11,16 +11,17 @@ Template.result.helpers({
     var result = {};
     var profile = Profiles.findOne({quizId: quizId, owner: Meteor.userId()});
     var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();
-    if (correctAnswersCount >= 1) {
-      result.plural = 's';
-    }
-    result.count = correctAnswersCount + 1;
+    // result.count = correctAnswersCount + 1;
+    result.count = 1;
     if (profile && profile.fbShared) {
       result.count += 5;
     }
     var sharedEmailCount = Emails.find({owner: Meteor.userId(), sent: true, quizId: quizId}).count();
     if (sharedEmailCount > 0) {
       result.count += sharedEmailCount;
+    }
+    if (result.count > 1) {
+      result.plural = 's';
     }
     return result;
   },

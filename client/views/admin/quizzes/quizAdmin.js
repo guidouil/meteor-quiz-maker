@@ -16,6 +16,8 @@ Template.quizAdmin.helpers({
   },
   sharesCount: function () {
     var quizId = Iron.controller().getParams().quizId;
-    return Profiles.find({quizId: quizId, fbShared: true}).count();
+    var fbSharedCount = Profiles.find({quizId: quizId, fbShared: true}).count();
+    var emailSharedCount = Emails.find({quizId: quizId, sent: true}).count();
+    return fbSharedCount + emailSharedCount;
   }
 });
