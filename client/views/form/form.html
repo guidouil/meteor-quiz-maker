@@ -1,178 +1,186 @@
 <template name="form">
   <div class="container-fluid">
-  {{#autoForm id="profileInsert" type=type doc=profile collection='Profiles' class="form-horizontal"}}
-  <fieldset>
-
-  <div class="col-md-6">
-
-    <div class="form-group {{#if afFieldIsInvalid name='title'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="title">{{afFieldLabelText name='title'}}</label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='title' }}
-        {{#if afFieldIsInvalid name='title' id='title'}}
-        <span class="help-block">{{{afFieldMessage name='title'}}}</span>
-        {{/if}}
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        {{> atOauth}}
+        <hr>
       </div>
     </div>
+    <div class="row">
+      {{#autoForm id="profileInsert" type=type doc=profile collection='Profiles' class="form-horizontal"}}
+      <fieldset>
 
-    <div class="form-group {{#if afFieldIsInvalid name='firstname'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="firstname">{{afFieldLabelText name='firstname'}}</label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='firstname' id='firstname'}}
-        {{#if afFieldIsInvalid name='firstname'}}
-        <span class="help-block">{{{afFieldMessage name='firstname'}}}</span>
-        {{/if}}
-      </div>
-    </div>
+      <div class="col-md-6">
 
-    <div class="form-group {{#if afFieldIsInvalid name='lastname'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="lastname">{{afFieldLabelText name='lastname'}}</label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='lastname' id='lastname'}}
-        {{#if afFieldIsInvalid name='lastname'}}
-        <span class="help-block">{{{afFieldMessage name='lastname'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="form-group {{#if afFieldIsInvalid name='mail'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="mail">{{afFieldLabelText name='mail'}}</label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='mail' id='mail' value=email}}
-        {{#if afFieldIsInvalid name='mail'}}
-        <span class="help-block">{{{afFieldMessage name='mail'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="form-group {{#if afFieldIsInvalid name='birthdate'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="birthdate">{{afFieldLabelText name='birthdate'}}</label>
-      <div class="col-xs-8">
-        <div class="row">
-          <div class="col-xs-3">
-            {{> afFieldInput name='birthdate.day' id='day'  placeholder="01" options=dayOptions firstOption="Jour"}}
-          </div>
-          <div class="col-xs-3">
-            {{> afFieldInput name='birthdate.month' id='month'  placeholder="01" options=monthOptions firstOption="Mois"}}
-          </div>
-          <div class="col-xs-3">
-            {{> afFieldInput name='birthdate.year' id='year'  placeholder="1980" options=yearOptions firstOption="Année"}}
+        <div class="form-group {{#if afFieldIsInvalid name='title'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="title">{{afFieldLabelText name='title'}}</label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='title' }}
+            {{#if afFieldIsInvalid name='title' id='title'}}
+            <span class="help-block">{{{afFieldMessage name='title'}}}</span>
+            {{/if}}
           </div>
         </div>
-        {{#if afFieldIsInvalid name='birthdate'}}
-        <span class="help-block">{{{afFieldMessage name='birthdate'}}}</span>
-        {{/if}}
+
+        <div class="form-group {{#if afFieldIsInvalid name='firstname'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="firstname">{{afFieldLabelText name='firstname'}}</label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='firstname' id='firstname'}}
+            {{#if afFieldIsInvalid name='firstname'}}
+            <span class="help-block">{{{afFieldMessage name='firstname'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='lastname'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="lastname">{{afFieldLabelText name='lastname'}}</label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='lastname' id='lastname'}}
+            {{#if afFieldIsInvalid name='lastname'}}
+            <span class="help-block">{{{afFieldMessage name='lastname'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='mail'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="mail">{{afFieldLabelText name='mail'}}</label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='mail' id='mail' value=email}}
+            {{#if afFieldIsInvalid name='mail'}}
+            <span class="help-block">{{{afFieldMessage name='mail'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='birthdate'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="birthdate">{{afFieldLabelText name='birthdate'}}</label>
+          <div class="col-xs-8">
+            <div class="row">
+              <div class="col-xs-3">
+                {{> afFieldInput name='birthdate.day' id='day'  placeholder="01" options=dayOptions firstOption="Jour"}}
+              </div>
+              <div class="col-xs-3">
+                {{> afFieldInput name='birthdate.month' id='month'  placeholder="01" options=monthOptions firstOption="Mois"}}
+              </div>
+              <div class="col-xs-3">
+                {{> afFieldInput name='birthdate.year' id='year'  placeholder="1980" options=yearOptions firstOption="Année"}}
+              </div>
+            </div>
+            {{#if afFieldIsInvalid name='birthdate'}}
+            <span class="help-block">{{{afFieldMessage name='birthdate'}}}</span>
+            {{/if}}
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <div class="col-md-6">
+      <div class="col-md-6">
 
 
-    <div class="form-group {{#if afFieldIsInvalid name='address'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="address">{{afFieldLabelText name='address'}}</label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='address' id='address'}}
-        {{#if afFieldIsInvalid name='address'}}
-        <span class="help-block">{{{afFieldMessage name='address'}}}</span>
-        {{/if}}
+        <div class="form-group {{#if afFieldIsInvalid name='address'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="address">{{afFieldLabelText name='address'}}</label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='address' id='address'}}
+            {{#if afFieldIsInvalid name='address'}}
+            <span class="help-block">{{{afFieldMessage name='address'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+
+        <div class="form-group {{#if afFieldIsInvalid name='zip'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="zip">{{afFieldLabelText name='zip'}}</label>
+          <div class="col-xs-8">
+            <!-- {{> inputAutocomplete settings=autoZip id="zip" name='zip' data-schema-key='zip' class="form-control" placeholder="Code postal" value=profile.zip}} -->
+            {{> afFieldInput name='zip' id='zip'}}
+            {{#if afFieldIsInvalid name='zip'}}
+            <span class="help-block">{{{afFieldMessage name='zip'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='city'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="city">{{afFieldLabelText name='city'}}</label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='city' id='city'}}
+            {{#if afFieldIsInvalid name='city'}}
+            <span class="help-block">{{{afFieldMessage name='city'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='country'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="country">{{afFieldLabelText name='country'}}</label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='country' id='country'}}
+            {{#if afFieldIsInvalid name='country'}}
+            <span class="help-block">{{{afFieldMessage name='country'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+
+        <div class="form-group {{#if afFieldIsInvalid name='validate'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="validate"></label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='validate' id='validate'}}
+            <p class="text-center"><a href="{{pathFor 'rules' quizId=quizId}}">Lire le règlement</a></p>
+            {{#if afFieldIsInvalid name='validate'}}
+            <span class="help-block">{{{afFieldMessage name='validate'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='nlTefal'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="nlTefal"></label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='nlTefal' id='nlTefal'}}
+            {{#if afFieldIsInvalid name='nlTefal'}}
+            <span class="help-block">{{{afFieldMessage name='nlTefal'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <div class="form-group {{#if afFieldIsInvalid name='nlSebGroup'}}has-error{{/if}}">
+          <label class="col-xs-3 control-label" for="nlSebGroup"></label>
+          <div class="col-xs-8">
+            {{> afFieldInput name='nlSebGroup' id='nlSebGroup'}}
+            {{#if afFieldIsInvalid name='nlSebGroup'}}
+            <span class="help-block">{{{afFieldMessage name='nlSebGroup'}}}</span>
+            {{/if}}
+          </div>
+        </div>
+
+        <p class="text-right">
+          * les champs marqués d'un astérisque sont obligatoires.
+        </p>
+
+
       </div>
-    </div>
-
-
-    <div class="form-group {{#if afFieldIsInvalid name='zip'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="zip">{{afFieldLabelText name='zip'}}</label>
-      <div class="col-xs-8">
-        <!-- {{> inputAutocomplete settings=autoZip id="zip" name='zip' data-schema-key='zip' class="form-control" placeholder="Code postal" value=profile.zip}} -->
-        {{> afFieldInput name='zip' id='zip'}}
-        {{#if afFieldIsInvalid name='zip'}}
-        <span class="help-block">{{{afFieldMessage name='zip'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="form-group {{#if afFieldIsInvalid name='city'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="city">{{afFieldLabelText name='city'}}</label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='city' id='city'}}
-        {{#if afFieldIsInvalid name='city'}}
-        <span class="help-block">{{{afFieldMessage name='city'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="form-group {{#if afFieldIsInvalid name='country'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="country">{{afFieldLabelText name='country'}}</label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='country' id='country'}}
-        {{#if afFieldIsInvalid name='country'}}
-        <span class="help-block">{{{afFieldMessage name='country'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-
-    <div class="form-group {{#if afFieldIsInvalid name='validate'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="validate"></label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='validate' id='validate'}}
-        <p class="text-center"><a href="{{pathFor 'rules' quizId=quizId}}">Lire le règlement</a></p>
-        {{#if afFieldIsInvalid name='validate'}}
-        <span class="help-block">{{{afFieldMessage name='validate'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="form-group {{#if afFieldIsInvalid name='nlTefal'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="nlTefal"></label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='nlTefal' id='nlTefal'}}
-        {{#if afFieldIsInvalid name='nlTefal'}}
-        <span class="help-block">{{{afFieldMessage name='nlTefal'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-    <div class="form-group {{#if afFieldIsInvalid name='nlSebGroup'}}has-error{{/if}}">
-      <label class="col-xs-3 control-label" for="nlSebGroup"></label>
-      <div class="col-xs-8">
-        {{> afFieldInput name='nlSebGroup' id='nlSebGroup'}}
-        {{#if afFieldIsInvalid name='nlSebGroup'}}
-        <span class="help-block">{{{afFieldMessage name='nlSebGroup'}}}</span>
-        {{/if}}
-      </div>
-    </div>
-
-    <p class="text-right">
-      * les champs marqués d'un astérisque sont obligatoires.
-    </p>
-
-
-  </div>
-  <div class="col-xs-12">
-    <div class="form-group">
-      {{#unless quizProfile}}
-      <button type="submit" class="btn btn-primary btn-block">Voir mes résultats</button>
-      {{else}}
-      <!-- <div class="col-xs-6">
-      <button type="button" class="btn btn-danger btn-block cancel"><i class="fa fa-times"></i> Annuler</button>
-      </div> -->
       <div class="col-xs-12">
-      <button type="submit" class="btn btn-success btn-block">Valider</button>
+        <div class="form-group">
+          {{#unless quizProfile}}
+          <button type="submit" class="btn btn-primary btn-block">Voir mes résultats</button>
+          {{else}}
+          <!-- <div class="col-xs-6">
+          <button type="button" class="btn btn-danger btn-block cancel"><i class="fa fa-times"></i> Annuler</button>
+          </div> -->
+          <div class="col-xs-12">
+          <button type="submit" class="btn btn-success btn-block">Valider</button>
+          </div>
+          {{/unless}}
+        </div>
+        {{#if quiz.dotation}}
+          <div id="dotation">
+            {{{quiz.dotation}}}
+          </div>
+        {{/if}}
+        {{> afQuickField name="owner" type="hidden" value=userId}}
+        {{> afQuickField name="quizId" type="hidden" value=quizId}}
       </div>
-      {{/unless}}
+      </fieldset>
+      {{/autoForm}}
     </div>
-    {{#if quiz.dotation}}
-      <div id="dotation">
-        {{{quiz.dotation}}}
-      </div>
-    {{/if}}
-    {{> afQuickField name="owner" type="hidden" value=userId}}
-    {{> afQuickField name="quizId" type="hidden" value=quizId}}
   </div>
-  </fieldset>
-  {{/autoForm}}
-</div>
 </template>
 
 <template name="city">
