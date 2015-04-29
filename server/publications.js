@@ -15,14 +15,15 @@ Meteor.reactivePublish('Citys', function () {
 });
 
 Meteor.reactivePublish('Questions', function (quizId) {
-  var questionsCount = Questions.find({quizId: quizId}, {reactive: true}).count();
-  var answersCount = Answers.find({quizId: quizId, owner: this.userId}, {reactive: true}).count();
-
-  if (Roles.userIsInRole(this.userId, "admin") || (questionsCount > 0 && questionsCount === answersCount)) {
-    return Questions.find({quizId: quizId}, {reactive: true});
-  } else {
-    return Questions.find({quizId: quizId}, {fields: {'answers.correct': 0}}, {reactive: true});
-  }
+  // var questionsCount = Questions.find({quizId: quizId}, {reactive: true}).count();
+  // var answersCount = Answers.find({quizId: quizId, owner: this.userId}, {reactive: true}).count();
+  //
+  // if (Roles.userIsInRole(this.userId, "admin") || (questionsCount > 0 && questionsCount === answersCount)) {
+  //   return Questions.find({quizId: quizId}, {reactive: true});
+  // } else {
+  //   return Questions.find({quizId: quizId}, {fields: {'answers.correct': 0}}, {reactive: true});
+  // }
+  return Questions.find({quizId: quizId}, {reactive: true});
 });
 
 Meteor.reactivePublish('Answers', function (quizId) {
