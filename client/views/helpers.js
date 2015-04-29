@@ -25,7 +25,12 @@ UI.registerHelper('email', function () {
     return null;
   }
 });
-
+UI.registerHelper('userRealName', function () {
+  if(Meteor.user()) {
+    var user = Meteor.user();
+    return user.profile.name;
+  }
+});
 UI.registerHelper('quiz', function(){
   var quizId = Iron.controller().getParams().quizId;
   if (quizId) {

@@ -25,7 +25,7 @@
         <div class="form-group {{#if afFieldIsInvalid name='firstname'}}has-error{{/if}}">
           <label class="col-xs-3 control-label" for="firstname">{{afFieldLabelText name='firstname'}}</label>
           <div class="col-xs-8">
-            {{> afFieldInput name='firstname' id='firstname'}}
+            {{> afFieldInput name='firstname' id='firstname' value=userRealName}}
             {{#if afFieldIsInvalid name='firstname'}}
             <span class="help-block">{{{afFieldMessage name='firstname'}}}</span>
             {{/if}}
