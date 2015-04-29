@@ -42,11 +42,15 @@ Template.result.helpers({
       return false;
     }
   },
-  sharedEmailcountdown: function () {
+  sharedEmail: function () {
     var quizId = Iron.controller().getParams().quizId;
-    var sharedEmailsCount = Emails.find({owner: Meteor.userId(), sent: true, quizId: quizId}).count();
-    if (sharedEmailsCount > 0) {
-      return 10 - sharedEmailsCount;
+    var count = Emails.find({owner: Meteor.userId(), sent: true, quizId: quizId}).count();
+    var plural = '';
+    if (count > 0) {
+      if (count > 1) {
+        plural = 's';
+      }
+      return {count: count, plural: plural};
     }
     return false;
   }
