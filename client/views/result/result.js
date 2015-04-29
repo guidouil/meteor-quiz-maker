@@ -53,6 +53,30 @@ Template.result.helpers({
       return {count: count, plural: plural};
     }
     return false;
+  },
+  resultPhrase: function () {
+    if (Session.get('hideForm') === false) {
+      return false;
+    }
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();
+    var phrase = 'Vous devez d\'abord valider toutes vos réponses.';
+    switch (correctAnswersCount) {
+      case 0:
+        phrase = "Fatigué ?  Revoyez votre leçon... Consultez la fiche produit sur <a href='http://www.tefal.fr/Cuisson-%C3%A0-table/Gril-viande/OptiGrill/p/7211001395' target='_blanck'>tefal.fr</a>";
+        break;
+      case 1:
+        phrase = "Vous auriez pu faire mieux...";
+        break;
+      case questionsCount:
+        phrase = "Bravo, vous êtes incollable sur l'OptiGrill";
+        break;
+      default:
+        phrase = "Vous avez " + correctAnswersCount + " bonnes réponses sur " + questionsCount;
+        break;
+    }
+    return phrase;
   }
 });
 
