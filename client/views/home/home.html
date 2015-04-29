@@ -7,7 +7,7 @@
             {{{quiz.home}}}
           </div>
           {{#if isOpen quiz._id}}
-          <a href="/play/{{quiz._id}}" class="btn btn-success btn-block"><i class="fa fa-play"> Jouer</i></a>
+          <!-- <a href="/play/{{quiz._id}}" class="btn btn-success btn-block"><i class="fa fa-play"> Jouer</i></a> -->
           {{else}}
           <div id="closing">
             {{{quiz.closing}}}
@@ -15,7 +15,7 @@
           <div id="winners">
             {{{quiz.winners}}}
           </div>
-          <a href="/result/{{quiz._id}}" class="btn btn-block"><i class="fa fa-list"> revoir vos réponses</i></a>
+          <a href="/result/{{quiz._id}}" class="btn btn-block">Revoir vos réponses</a>
           {{/if}}
         {{else}}
           {{#if isAdminUser}}

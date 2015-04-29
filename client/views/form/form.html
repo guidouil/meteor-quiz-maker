@@ -48,7 +48,17 @@
     <div class="form-group {{#if afFieldIsInvalid name='birthdate'}}has-error{{/if}}">
       <label class="col-xs-3 control-label" for="birthdate">{{afFieldLabelText name='birthdate'}}</label>
       <div class="col-xs-8">
-        {{> afFieldInput name='birthdate' id='birthdate' format="dd/mm/yyyy" placeholder="01/01/1978"}}
+        <div class="row">
+          <div class="col-xs-3">
+            {{> afFieldInput name='birthdate.day' id='day'  placeholder="01" options=dayOptions firstOption="Jour"}}
+          </div>
+          <div class="col-xs-3">
+            {{> afFieldInput name='birthdate.month' id='month'  placeholder="01" options=monthOptions firstOption="Mois"}}
+          </div>
+          <div class="col-xs-3">
+            {{> afFieldInput name='birthdate.year' id='year'  placeholder="1980" options=yearOptions firstOption="Année"}}
+          </div>
+        </div>
         {{#if afFieldIsInvalid name='birthdate'}}
         <span class="help-block">{{{afFieldMessage name='birthdate'}}}</span>
         {{/if}}
@@ -144,11 +154,11 @@
       {{#unless quizProfile}}
       <button type="submit" class="btn btn-primary btn-block">Voir mes résultats</button>
       {{else}}
-      <div class="col-xs-6">
+      <!-- <div class="col-xs-6">
       <button type="button" class="btn btn-danger btn-block cancel"><i class="fa fa-times"></i> Annuler</button>
-      </div>
-      <div class="col-xs-6">
-      <button type="submit" class="btn btn-success btn-block"><i class="fa fa-check"></i> Valider</button>
+      </div> -->
+      <div class="col-xs-12">
+      <button type="submit" class="btn btn-success btn-block">Valider</button>
       </div>
       {{/unless}}
     </div>

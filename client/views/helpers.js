@@ -94,3 +94,25 @@ UI.registerHelper('isOpen', function () {
     return false;
   }
 });
+UI.registerHelper("yearOptions", function() {
+  var years = [];
+  var thisYear = new Date().getFullYear();
+  for (var i = thisYear; i >= 1900; i--) {
+    years.push({label: i, value: i});
+  }
+  return years;
+});
+UI.registerHelper("monthOptions", function() {
+  var months = [];
+  for (var i = 1; i <= 12; i++) {
+    months.push({label: i, value: i});
+  }
+  return months;
+});
+UI.registerHelper("dayOptions", function() {
+  var days = [];
+  for (var i = 1; i <= 31; i++) {
+    days.push({label: i, value: i});
+  }
+  return days;
+});
