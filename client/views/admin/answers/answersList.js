@@ -22,12 +22,17 @@ Template.answersList.helpers({
     var quizId = Iron.controller().getParams().quizId;
     var fbSharedCount = Profiles.find({quizId: quizId, fbShared: true}).count();
     var emailSharedCount = Emails.find({quizId: quizId, sent: true}).count();
-    return fbSharedCount + emailSharedCount;
+    var sharesCount = {
+      total: fbSharedCount + emailSharedCount,
+      fb: fbSharedCount,
+      mail: emailSharedCount
+    };
+    return sharesCount;
   },
   usersAnswers: function () {
     var quizId = Iron.controller().getParams().quizId;
     var questionsCount = Questions.find({quizId: quizId}).count();
-    var answers = Answers.find({quizId: quizId}, {sort: {owner: 1}}).fetch();
+    var answers = Answers.find({quizId: quizId}, {sort: {owner: 1, createdAt: -1}}).fetch();
     var answersCount = answers.length;
     var usersAnswers = [];
     var chances = 0;
@@ -52,7 +57,7 @@ Template.answersList.helpers({
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
         }
-        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source});
+        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: answer.createdAt});
         chances = 0;
         winner = false;
         source = [];
@@ -78,7 +83,7 @@ Template.answersList.helpers({
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
         }
-        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source});
+        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: answer.createdAt});
       }
     });
     // console.log(usersAnswers);
@@ -181,21 +186,31 @@ Template.answersList.events({
       }
     );
   },
-  'click .export': function (evt, tmpl) {
+  'click .exportAnswers': function (evt, tmpl) {
     evt.preventDefault();
     var quizId = Iron.controller().getParams().quizId;
     var profiles = Profiles.find({quizId: quizId},{fields:{_id: 0, quizId: 0}}).fetch();
     $.each(profiles, function(index, profile){
+      if (profile.birthdate && profile.birthdate.day && profile.birthdate.month && profile.birthdate.year) {
+        profiles[index].birthdate = profile.birthdate.day +'/'+ profile.birthdate.month +'/'+ profile.birthdate.year;
+      }
       var userChances = 1;
       userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
       if (profile.fbShared === true) {
         userChances += 5;
       }
       var sharedEmailCount = Emails.find({owner: profile.owner, sent: true}).count();
+      var sharedEmail = '';
       if (sharedEmailCount > 0) {
         userChances += sharedEmailCount;
+        sharedEmails = Emails.find({owner: profile.owner, sent: true},{fields: {mail: 1}}).fetch();
+        _.each(sharedEmails,function(item){
+          sharedEmail += item.mail+' ';
+        });
+        console.log(sharedEmail);
       }
       profiles[index].chances = userChances;
+      profiles[index].sharedEmail = sharedEmail;
     });
     // console.log(profiles);
     var csv = Papa.unparse(profiles, {

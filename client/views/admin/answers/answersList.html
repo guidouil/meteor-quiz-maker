@@ -4,7 +4,7 @@
       <div class="well well-sm">
         <legend><a href="{{pathFor 'quizAdmin'  quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Answers</legend>
         {{#if isAdminUser}}
-        <h1 class="text-center">{{questionsCount}} <small>Questions | </small>{{answersCount}} <small>Answers | </small>{{profilesCount}} <small>Profiles | </small>{{sharesCount}} <small>Shares</small></h1>
+        <h1 class="text-center">{{questionsCount}} <small>Questions | </small>{{answersCount}} <small>Answers | </small>{{profilesCount}} <small>Profiles | </small>{{sharesCount.total}} <small>Shares = {{sharesCount.mail}} <i class="fa fa-envelope"></i> + {{sharesCount.fb}} <i class="fa fa-facebook"></i></small></h1>
           <table class="table table-responsive table-hover table-condensed">
             <thead>
               <tr>
@@ -16,6 +16,7 @@
                 <th class="text-center">FB Shared</th>
                 <th class="text-center">Email Shared</th>
                 <th class="text-center">Chances</th>
+                <th class="text-center">When</th>
                 <th></th>
               </tr>
             </thead>
@@ -32,12 +33,13 @@
                 <td class="text-center">{{#if fbShared user}}<i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}</td>
                 <td class="text-center">{{sharedEmailCount}}</td>
                 <td class="text-center">{{winChances}}</td>
+                <td class="text-center">{{fromNow createdAt}}</td>
                 <td class="text-right"> <button type="button" class="btn btn-danger btn-sm reset" id="{{user}}"><i class="fa fa-trash-o"></i></button> </td>
               </tr>
               {{/each}}
             </tbody>
           </table>
-          <button class="btn btn-success btn-block export"><i class="fa fa-cloud-download"></i> Export profiles</button>
+          <button class="btn btn-success btn-block exportAnswers"><i class="fa fa-cloud-download"></i> Export profiles</button>
           <button class="btn btn-danger btn-block reset-all"><i class="fa fa-trash-o"></i> Reset All</button>
         {{else}}
             Must be admin to see this...
