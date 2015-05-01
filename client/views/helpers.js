@@ -28,7 +28,9 @@ UI.registerHelper('email', function () {
 UI.registerHelper('userRealName', function () {
   if(Meteor.user()) {
     var user = Meteor.user();
-    return user.profile.name;
+    if (user && user.profile && user.profile.name) {
+      return user.profile.name;
+    }
   }
 });
 UI.registerHelper('quiz', function(){
