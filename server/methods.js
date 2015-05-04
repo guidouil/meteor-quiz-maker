@@ -30,6 +30,7 @@ Meteor.methods({
     if (Roles.userIsInRole(Meteor.userId(), "admin")) {
       Answers.remove({quizId: quizId});
       Profiles.remove({quizId: quizId});
+      Emails.remove({quizId: quizId});
       return true;
     }
   },
@@ -37,6 +38,7 @@ Meteor.methods({
     if (Roles.userIsInRole(Meteor.userId(), "admin")) {
       Answers.remove({quizId: quizId, owner: userId});
       Profiles.remove({quizId: quizId, owner: userId});
+      Emails.remove({quizId: quizId, owner: userId});
       return true;
     }
   },
