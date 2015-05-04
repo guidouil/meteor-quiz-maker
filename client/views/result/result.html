@@ -42,12 +42,12 @@
             <a href="{{pathFor 'play' quizId=quizId}}" class="btn">Découvrir les réponses</a>
             <!-- {{quiz.title}} se termine {{fromNow quiz.endDate}}.  -->
             <div id="announce">{{{quiz.announce}}}</div>
-            <button class="btn btn-block viewForm"><i class="fa fa-info"></i> Modifier vos informations</button>
+            <a href="{{pathFor 'form' quizId=quizId}}">Modifier vos informations</a>
           </p>
         </div>
         {{else}}
         <div class="col-xs-12">
-          <button class="btn btn-block viewForm"><i class="fa fa-info"></i> Modifier vos informations</button>
+          <a class="btn" href="{{pathFor 'form' quizId=quizId}}">Modifier vos informations</a>
 
         </div>
         {{/if}}
