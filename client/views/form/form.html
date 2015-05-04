@@ -1,11 +1,11 @@
 <template name="form">
   <div class="container-fluid">
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-md-offset-4 col-md-4">
         {{> atOauth}}
         <hr>
       </div>
-    </div>
+    </div> -->
     <div class="row">
       {{#autoForm id="profileInsert" type=type doc=profile collection='Profiles' class="form-horizontal"}}
       <fieldset>
@@ -122,8 +122,11 @@
         <div class="form-group {{#if afFieldIsInvalid name='validate'}}has-error{{/if}}">
           <label class="col-xs-3 control-label" for="validate"></label>
           <div class="col-xs-8">
-            {{> afFieldInput name='validate' id='validate'}}
-            <p class="text-center"><a href="{{pathFor 'rules' quizId=quizId}}">Lire le règlement</a></p>
+            <div class="validate">
+              {{> afFieldInput name='validate' id='validate' style="float:left;"}}
+              <label for="validate" class="push-left margin-top-label">&nbsp;J'ai lu et j'accepte <a href="{{pathFor 'rules' quizId=quizId}}">le règlement</a>*</label>
+
+            </div>
             {{#if afFieldIsInvalid name='validate'}}
             <span class="help-block">{{{afFieldMessage name='validate'}}}</span>
             {{/if}}

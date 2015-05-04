@@ -6,7 +6,7 @@
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             {{#each questions}}
-              <li class="tab {{isActive order}}" id="{{order}}" role="presentation"><a href="#{{_id}}" data-toggle="tab">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
+              <li class="tab {{isActive order}}" id="{{order}}" role="presentation"><a href="{{#if allAnswered}}#{{_id}}{{/if}}" data-toggle="{{#if allAnswered}}tab{{/if}}">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
             {{/each}}
             <!-- {{#if allAnswered}} -->
               <!-- <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}" role="presentation"><a href="#last" data-toggle="tab" >Vos résultats</a></li> -->
@@ -34,7 +34,7 @@
                       {{#unless isAnswered _id}}
                       <div class="row">
                         <div class="col-xs-12">
-                          <button name='next' class="btn btn-success validate" id="{{_id}}">{{#if isLastQuestion order}}Validez{{else}}Suivant{{/if}}</button>
+                          <button name='next' class="btn btn-success validate" id="{{_id}}">{{#if isLastQuestion order}}Valider{{else}}Suivant{{/if}}</button>
                         </div>
                       </div>
                       {{else}}

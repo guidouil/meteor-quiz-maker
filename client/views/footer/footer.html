@@ -8,18 +8,18 @@
               {{{quiz.footer}}}
             {{/if}}
             {{#if quiz.rules}}
-              -&nbsp;<a href="{{pathFor 'rules' quizId=quiz._id}}">Règlement</a>
+              &nbsp;<a href="{{pathFor 'rules' quizId=quiz._id}}">Règlement</a>
             {{/if}}
             {{#if quiz.conditions}}
-              -&nbsp;<a href="{{pathFor 'conditions' quizId=quiz._id}}">Mentions légales</a>
+              &nbsp;<a href="{{pathFor 'conditions' quizId=quiz._id}}">Mentions légales</a>
             {{/if}}
             {{#if isLoggedIn}}
               <!-- <a href="{{pathFor 'profile'}}">-&nbsp;Profile</a> -->
             {{else}}
-              <a href="{{pathFor 'login'}}">-&nbsp;Login</a>
+              <a href="{{pathFor 'login'}}">&nbsp;Login</a>
             {{/if}}
             {{#if isAdminUser}}
-              -&nbsp;<a href="{{pathFor 'bo'}}">&pi;</a>
+              &nbsp;<a href="{{pathFor 'bo'}}">&pi;</a>
             {{/if}}
           </div>
         </div>

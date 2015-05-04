@@ -2,3 +2,11 @@
 @font-face {font-family: 'EurostileNextLTPro-Regular';src: url('webfonts/27D57F_1_0.eot');src: url('webfonts/27D57F_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/27D57F_1_0.woff') format('woff'),url('webfonts/27D57F_1_0.ttf') format('truetype');}
 @font-face {font-family: 'EurostileNextLTPro-Bold';src: url('webfonts/27D57F_2_0.eot');src: url('webfonts/27D57F_2_0.eot?#iefix') format('embedded-opentype'),url('webfonts/27D57F_2_0.woff') format('woff'),url('webfonts/27D57F_2_0.ttf') format('truetype');}
 @font-face {font-family: 'EurostileNextLTPro-SmBd';src: url('webfonts/27D57F_3_0.eot');src: url('webfonts/27D57F_3_0.eot?#iefix') format('embedded-opentype'),url('webfonts/27D57F_3_0.woff') format('woff'),url('webfonts/27D57F_3_0.ttf') format('truetype');}
+
+
+.push-left, .validate .checkbox {
+  float: left;
+}
+.margin-top-label {
+  margin-top: 7px;
+}
