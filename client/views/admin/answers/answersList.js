@@ -195,7 +195,7 @@ Template.answersList.events({
         profiles[index].birthdate = profile.birthdate.day +'/'+ profile.birthdate.month +'/'+ profile.birthdate.year;
       }
       var userChances = 1;
-      userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
+      // userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
       if (profile.fbShared === true) {
         userChances += 5;
       }
@@ -207,18 +207,15 @@ Template.answersList.events({
         _.each(sharedEmails,function(item){
           sharedEmail += item.mail+' ';
         });
-        console.log(sharedEmail);
       }
       profiles[index].chances = userChances;
       profiles[index].sharedEmail = sharedEmail;
     });
-    // console.log(profiles);
     var csv = Papa.unparse(profiles, {
       quotes: true,
       delimiter: ",",
       newline: "\r\n"
     });
-    // console.log(csv);
     var a         = document.createElement('a');
     a.href        = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
     a.target      = '_blank';
