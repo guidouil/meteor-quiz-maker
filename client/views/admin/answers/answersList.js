@@ -57,6 +57,9 @@ Template.answersList.helpers({
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
         }
+        if (!winner) {
+          chances = 0;
+        }
         usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
         chances = 0;
         winner = false;
@@ -83,6 +86,9 @@ Template.answersList.helpers({
         sharedEmailCount = Emails.find({owner: previousUserId, sent: true, quizId: quizId}).count();
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
+        }
+        if (!winner) {
+          chances = 0;
         }
         usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
       }
@@ -190,21 +196,28 @@ Template.answersList.events({
   'click .exportAnswers': function (evt, tmpl) {
     evt.preventDefault();
     var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
     var profiles = Profiles.find({quizId: quizId},{fields:{_id: 0, quizId: 0}}).fetch();
     $.each(profiles, function(index, profile){
       if (profile.birthdate && profile.birthdate.day && profile.birthdate.month && profile.birthdate.year) {
         profiles[index].birthdate = profile.birthdate.day +'/'+ profile.birthdate.month +'/'+ profile.birthdate.year;
       }
-      var userChances = 1;
-      // userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
-      if (profile.fbShared === true) {
-        userChances += 5;
+      var correctAnswersCount = Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
+      var userChances = 0;
+      if (correctAnswersCount === questionsCount) {
+        userChances = 1;
+        // userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
+        if (profile.fbShared === true) {
+          userChances += 5;
+        }
+        var sharedEmailCount = Emails.find({owner: profile.owner, sent: true}).count();
+        if (sharedEmailCount > 0) {
+          userChances += sharedEmailCount;
+        }
       }
-      var sharedEmailCount = Emails.find({owner: profile.owner, sent: true}).count();
       var sharedEmail = '';
-      if (sharedEmailCount > 0) {
-        userChances += sharedEmailCount;
-        sharedEmails = Emails.find({owner: profile.owner, sent: true},{fields: {mail: 1}}).fetch();
+      sharedEmails = Emails.find({owner: profile.owner, sent: true},{fields: {mail: 1}}).fetch();
+      if (sharedEmails && sharedEmails.length) {
         _.each(sharedEmails,function(item){
           sharedEmail += item.mail+' ';
         });

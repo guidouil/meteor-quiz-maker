@@ -115,7 +115,10 @@ Template.play.events({
     var userId = Meteor.userId();
     var questionId = evt.currentTarget.attributes.id.value;
     var question = Questions.findOne({_id: questionId});
-    var answerId = tmpl.find('input:radio[name='+questionId+']:checked').value;
+    var answerId = false;
+    if (tmpl.find('input:radio[name='+questionId+']:checked')) {
+      answerId = tmpl.find('input:radio[name='+questionId+']:checked').value;
+    }
     if (userId && questionId && answerId) {
       var theAnswerId = Answers.insert({
         owner: userId,
@@ -126,6 +129,9 @@ Template.play.events({
       if (theAnswerId) {
         Meteor.call('checkTheAnswer', theAnswerId);
       }
+      $('.noAnswerSelected').addClass('hidden');
+    } else {
+      $('.noAnswerSelected').removeClass('hidden');
     }
     var questionsCount = Questions.find().count();
     var answersCount = Answers.find({owner: Meteor.userId()}).count();

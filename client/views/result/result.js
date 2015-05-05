@@ -77,7 +77,16 @@ Template.result.helpers({
         break;
     }
     return phrase;
-  }
+  },
+  isWinner: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var correctAnswersCount = Answers.find({quizId: quizId, owner: Meteor.userId(), correct:true}).count();
+    if (questionsCount === correctAnswersCount) {
+      return true;
+    }
+    return false;
+  },
 });
 
 Template.result.events({

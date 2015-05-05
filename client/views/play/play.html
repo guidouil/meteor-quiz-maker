@@ -34,6 +34,9 @@
                       {{#unless isAnswered _id}}
                       <div class="row">
                         <div class="col-xs-12">
+                          <p class="text-danger hidden noAnswerSelected">
+                            Sélectionnez une réponse
+                          </p>
                           <button name='next' class="btn btn-success validate" id="{{_id}}">{{#if isLastQuestion order}}Valider{{else}}Suivant{{/if}}</button>
                         </div>
                       </div>
@@ -49,16 +52,18 @@
                   </div>
                   <div class="col-xs-6">
                     <div class="inner">
-                      {{#if video}}
-                        {{> video}}
-                      {{/if}}
-                      {{#if image}}
+                      <div class="question-img">
                         {{#if video}}
-                          <a href="#" data-action="autoplay" data-toggle="modal" data-target="#videoModal_{{_id}}"><img src="{{image}}" alt="{{question}}" class="img-responsive" /></a>
-                        {{else}}
-                          <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                          {{> video}}
                         {{/if}}
-                      {{/if}}
+                        {{#if image}}
+                          {{#if video}}
+                            <a href="#" data-action="autoplay" data-toggle="modal" data-target="#videoModal_{{_id}}"><img src="{{image}}" alt="{{question}}" class="img-responsive" /></a>
+                          {{else}}
+                            <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                          {{/if}}
+                        {{/if}}
+                      </div>
                       <div id="description">
                         {{{description}}}
                       </div>
