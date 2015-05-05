@@ -57,10 +57,11 @@ Template.answersList.helpers({
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
         }
-        if (!winner) {
-          chances = 0;
-        } else {
+        correctAnswersCount = Answers.find({quizId: quizId, owner: previousUserId, correct: true}).count();
+        if (correctAnswersCount === questionsCount) {
           chances += 1;
+        } else {
+          chances = 0;
         }
         usersAnswers.push({user: previousUserId, winChances: chances, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
         chances = 0;
@@ -89,10 +90,11 @@ Template.answersList.helpers({
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
         }
-        if (!winner) {
-          chances = 0;
-        } else {
+        correctAnswersCount = Answers.find({quizId: quizId, owner: previousUserId, correct: true}).count();
+        if (correctAnswersCount === questionsCount) {
           chances += 1;
+        } else {
+          chances = 0;
         }
         usersAnswers.push({user: previousUserId, winChances: chances, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
       }
