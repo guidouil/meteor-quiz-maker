@@ -59,8 +59,10 @@ Template.answersList.helpers({
         }
         if (!winner) {
           chances = 0;
+        } else {
+          chances += 1;
         }
-        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
+        usersAnswers.push({user: previousUserId, winChances: chances, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
         chances = 0;
         winner = false;
         source = [];
@@ -89,8 +91,10 @@ Template.answersList.helpers({
         }
         if (!winner) {
           chances = 0;
+        } else {
+          chances += 1;
         }
-        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
+        usersAnswers.push({user: previousUserId, winChances: chances, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
       }
     });
     // console.log(usersAnswers);
