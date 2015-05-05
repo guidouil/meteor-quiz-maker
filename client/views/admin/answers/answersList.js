@@ -57,7 +57,7 @@ Template.answersList.helpers({
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
         }
-        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: answer.createdAt});
+        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
         chances = 0;
         winner = false;
         source = [];
@@ -65,6 +65,7 @@ Template.answersList.helpers({
         sharedEmailCount = 0;
       }
       source.push(answer);
+      // console.log(source[0].createdAt);
       // if (answer.correct === true) {
       //   chances += 1;
       // }
@@ -83,7 +84,7 @@ Template.answersList.helpers({
         if (sharedEmailCount > 0) {
           chances += sharedEmailCount;
         }
-        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: answer.createdAt});
+        usersAnswers.push({user: previousUserId, winChances: chances+1, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
       }
     });
     // console.log(usersAnswers);
