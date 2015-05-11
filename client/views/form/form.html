@@ -3,7 +3,7 @@
     {{#if quiz.formTop}}
     <div class="row">
       <div class="col-md-offset-4 col-md-4" id="formTop">
-        <p class="lead">{{{quiz.formTop}}}</p>
+        <p class="lead text-center">{{{quiz.formTop}}}</p>
       </div>
     </div>
     {{/if}}
@@ -109,7 +109,7 @@
           </div>
         </div>
 
-        <div class="form-group {{#if afFieldIsInvalid name='country'}}has-error{{/if}}">
+        <!-- <div class="form-group {{#if afFieldIsInvalid name='country'}}has-error{{/if}}">
           <label class="col-xs-3 control-label" for="country">{{afFieldLabelText name='country'}}</label>
           <div class="col-xs-8">
             {{> afFieldInput name='country' id='country'}}
@@ -117,16 +117,14 @@
             <span class="help-block">{{{afFieldMessage name='country'}}}</span>
             {{/if}}
           </div>
-        </div>
-
+        </div> -->
 
         <div class="form-group {{#if afFieldIsInvalid name='validate'}}has-error{{/if}}">
           <label class="col-xs-3 control-label" for="validate"></label>
           <div class="col-xs-8">
             <div class="validate">
               {{> afFieldInput name='validate' id='validate' style="float:left;"}}
-              <label for="validate" class="push-left margin-top-label">&nbsp;J'ai lu et j'accepte <a href="{{quiz.rules}}" target="_blanck">le règlement</a>* </label>
-
+              <label for="validate" class="push-left margin-top-label">&nbsp;J'ai lu et j'accepte <a href="{{quiz.rules}}" target="_blanck">le règlement</a>*&nbsp;</label>
             </div>
             {{#if afFieldIsInvalid name='validate'}}
             <span class="help-block">{{{afFieldMessage name='validate'}}}</span>
