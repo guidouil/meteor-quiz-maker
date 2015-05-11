@@ -1,11 +1,12 @@
 <template name="form">
   <div class="container-fluid">
-    <!-- <div class="row">
-      <div class="col-md-offset-4 col-md-4">
-        {{> atOauth}}
-        <hr>
+    {{#if quiz.formTop}}
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4" id="formTop">
+        <p class="lead">{{{quiz.formTop}}}</p>
       </div>
-    </div> -->
+    </div>
+    {{/if}}
     <div class="row">
       {{#autoForm id="profileInsert" type=type doc=profile collection='Profiles' class="form-horizontal"}}
       <fieldset>
