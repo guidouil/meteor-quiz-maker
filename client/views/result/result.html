@@ -5,7 +5,8 @@
         {{#if isOpen}}
         <div class="col-xs-12">
           {{#if isWinner}}
-          <h1 class="text-center">Bravo {{profile.firstname}}, vous avez répondu correctement à toutes les questions !</h1>
+          <h1 class="text-center">Bravo {{profile.firstname}},</h1>
+          <h2 class="text-center">vous avez répondu correctement à toutes les questions !</h2>
           <h2 class="text-center">Votre participation au tirage au sort pour gagner un OptiGrill est validée.</h2>
           <p class="lead text-center">
             Actuellement <strong>vous avez <span class="text-danger">{{chances.count}}</span> chance{{chances.plural}} de gagner</strong> au tirage au sort.
@@ -14,8 +15,9 @@
             Partagez avec vos amis pour <strong>augmenter vos chances</strong> de gagner !
           </p>
           {{else}}
-          <h1 class="text-center">Dommage, vous n’avez pas trouvé toutes les bonnes réponses pour participer au tirage au sort.<br>
-            Rendez-vous à la fin du jeu pour découvrir les bonnes réponses.</h1>
+          <h1 class="text-center">Dommage, </h1>
+          <h2 class="text-center">vous n’avez pas trouvé toutes les bonnes réponses pour participer au tirage au sort.<br>
+            Rendez-vous à la fin du jeu pour découvrir les bonnes réponses.</h2>
           <h2 class="text-center">Et n’oubliez pas de partager le jeu avec vos amis : ils auront peut être la chance de gagner un OptiGrill et vous en faire profiter !</h2>
           {{/if}}
         </div>
@@ -89,9 +91,12 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="mailShareModalLabel">{{profile.firstname}} partagez {{quiz.title}} par email</h4>
+          <h4 class="modal-title" id="mailShareModalLabel">Partagez {{quiz.title}} par email :</h4>
         </div>
         <div class="modal-body">
+          {{#if equals sharedMail.count 10}}
+            <p class="lead">Vos amis peuvent vous dire merci ! Vous avez partagé à vos 10 contacts préférés.</p>
+          {{else}}
           <form class="form-horizontal">
             <fieldset>
             <!-- Text input-->
@@ -131,11 +136,20 @@
             </div>
             </fieldset>
           </form>
-
+          {{#if sharedEmail.count}}
+          <p class="text-center">
+            Vous avez déjà partagé {{sharedEmail.count}} fois sur 10 par email
+          </p>
+          {{/if}}
+          {{/if}}
         </div>
         <div class="modal-footer">
+          {{#unless equals sharedMail.count 10}}
           <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
           <button type="button" class="btn btn-primary sendMails" data-dismiss="modal">Envoyer</button>
+          {{else}}
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          {{/unless}}
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

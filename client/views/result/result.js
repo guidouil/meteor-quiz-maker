@@ -150,3 +150,18 @@ Template.result.rendered = function(){
   Meteor.call('enableGuestAccounts');
   Session.set('activeTab', 1);
 };
+
+Template.mailShareModal.helpers({
+  sharedEmail: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    var count = Emails.find({owner: Meteor.userId(), sent: true, quizId: quizId}).count();
+    var plural = '';
+    if (count > 0) {
+      if (count > 1) {
+        plural = 's';
+      }
+      return {count: count, plural: plural};
+    }
+    return false;
+  }
+});

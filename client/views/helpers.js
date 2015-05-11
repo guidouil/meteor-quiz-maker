@@ -60,7 +60,12 @@ UI.registerHelper('isLoggedIn', function () {
   }
   return false;
 });
-
+UI.registerHelper('equals', function (one, two) {
+  if (one === two) {
+    return true;
+  }
+  return false;
+});
 UI.registerHelper('isMobile', function () {
   if (Meteor.isCordova) {
     return true;
