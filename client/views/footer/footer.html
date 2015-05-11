@@ -8,7 +8,7 @@
               {{{quiz.footer}}}
             {{/if}}
             {{#if quiz.rules}}
-              &nbsp;<a href="{{pathFor 'rules' quizId=quiz._id}}">Règlement</a>
+              &nbsp;<a href="{{quiz.rules}}" target="_blank">Règlement</a>
             {{/if}}
             {{#if quiz.conditions}}
               &nbsp;<a href="{{pathFor 'conditions' quizId=quiz._id}}">Mentions légales</a>
