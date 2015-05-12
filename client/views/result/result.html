@@ -6,18 +6,18 @@
         <div class="col-xs-12">
           {{#if isWinner}}
           <h1 class="text-center">Bravo {{profile.firstname}},</h1>
-          <h2 class="text-center">vous avez répondu correctement à toutes les questions !</h2>
-          <h2 class="text-center">Votre participation au tirage au sort pour gagner un OptiGrill est validée.</h2>
+          <h2 class="text-center">vous avez répondu correctement à toutes les questions !<br>
+          Votre participation au tirage au sort pour gagner un OptiGrill est validée.</h2>
           <p class="lead text-center">
-            Actuellement <strong>vous avez <span class="text-danger">{{chances.count}}</span> chance{{chances.plural}} de gagner</strong> au tirage au sort.
-            <!-- Une chance pour votre participation, et une de plus par bonne réponse.<br> -->
+            Actuellement <strong>vous avez <span class="text-danger">{{chances.count}}</span> chance{{chances.plural}} de gagner</strong> au tirage au sort.<br>
+            <!-- Une chance pour votre participation, et une de plus par bonne réponse. -->
             Partagez avec vos amis pour <strong>augmenter vos chances</strong> de gagner !
           </p>
           {{else}}
           <h1 class="text-center">Dommage, </h1>
-          <h2 class="text-center">vous n’avez pas trouvé toutes les bonnes réponses pour participer au tirage au sort. 
+          <h2 class="text-center">vous n’avez pas trouvé toutes les bonnes réponses pour participer au tirage au sort.
           Rendez-vous à la fin du jeu pour découvrir les bonnes réponses.</h2>
-          <h2 class="text-center">Et n’oubliez pas de partager le jeu avec vos amis : ils auront peut être la chance de gagner un OptiGrill et vous en faire profiter !</h2>
+          <p class="lead text-center">Et n’oubliez pas de partager le jeu avec vos amis : ils auront peut être la chance de gagner un OptiGrill et vous en faire profiter !</p>
           {{/if}}
         </div>
         <div class="col-xs-6 text-center">
