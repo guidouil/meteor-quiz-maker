@@ -142,6 +142,7 @@ Template.result.events({
       if (countNotSentEmail > 0) {
         Meteor.call('sendSharedMail', quizId);
       }
+      $(mail).val('');
     });
   }
 });
