@@ -21,15 +21,3 @@ Template.home.helpers({
 //     $('html, body').animate({ scrollTop: 0 }, 'slow');
 //   }
 // });
-Template.home.rendered = function(){
-  Meteor.call('enableGuestAccounts');
-  var quizId = Iron.controller().getParams().quizId;
-  if (Meteor.userId() && quizId) {
-    var questionsCount = Questions.find().count();
-    var answersCount = Answers.find({owner: Meteor.userId()}).count();
-    if (questionsCount === answersCount) {
-      // all questions are answered
-      Router.go('/result/'+quizId);
-    }
-  }
-};

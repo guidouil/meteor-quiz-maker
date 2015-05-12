@@ -146,4 +146,24 @@ Template.play.events({
 
 Template.play.rendered = function () {
   Meteor.call('enableGuestAccounts');
+
+  Meteor.call('enableGuestAccounts');
+  var quizId = Iron.controller().getParams().quizId;
+  if (Meteor.userId() && quizId) {
+    var questionsCount = Questions.find().count();
+    var answersCount = Answers.find({owner: Meteor.userId()}).count();
+    if (answersCount >= 0 && questionsCount === answersCount) {
+      // all questions are answered
+      Router.go('/result/'+quizId);
+    }
+  }
 };
+
+
+
+Template.video.events({
+  "hidden.bs.modal": function(e, t){
+    // console.log('hidden');
+    $('.myVideoClass').attr('src',$('.myVideoClass').attr('src'));
+  }
+});

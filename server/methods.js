@@ -2,7 +2,7 @@ Meteor.methods({
   update_email: function (newEmail) {
     var count = Meteor.users.find({'emails.address': newEmail}).count();
     if (count === 0) {
-      Meteor.users.update({_id: this.userId()}, {$set: {emails: [{address: newEmail}]}});
+      Meteor.users.update({_id: this.userId}, {$set: {emails: [{address: newEmail}]}});
       return true;
     }
     return false;
@@ -27,7 +27,7 @@ Meteor.methods({
     }
   },
   resetAnswers: function (quizId) {
-    if (Roles.userIsInRole(this.userId(), "admin")) {
+    if (Roles.userIsInRole(this.userId, "admin")) {
       Answers.remove({quizId: quizId});
       Profiles.remove({quizId: quizId});
       Emails.remove({quizId: quizId});
@@ -35,7 +35,7 @@ Meteor.methods({
     }
   },
   resetAnswer: function (quizId, userId) {
-    if (Roles.userIsInRole(this.userId(), "admin")) {
+    if (Roles.userIsInRole(this.userId, "admin")) {
       Answers.remove({quizId: quizId, owner: userId});
       Profiles.remove({quizId: quizId, owner: userId});
       Emails.remove({quizId: quizId, owner: userId});
