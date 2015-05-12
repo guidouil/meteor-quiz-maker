@@ -2,7 +2,7 @@ Meteor.methods({
   update_email: function (newEmail) {
     var count = Meteor.users.find({'emails.address': newEmail}).count();
     if (count === 0) {
-      Meteor.users.update({_id: Meteor.userId()}, {$set: {emails: [{address: newEmail}]}});
+      Meteor.users.update({_id: this.userId()}, {$set: {emails: [{address: newEmail}]}});
       return true;
     }
     return false;
@@ -27,7 +27,7 @@ Meteor.methods({
     }
   },
   resetAnswers: function (quizId) {
-    if (Roles.userIsInRole(Meteor.userId(), "admin")) {
+    if (Roles.userIsInRole(this.userId(), "admin")) {
       Answers.remove({quizId: quizId});
       Profiles.remove({quizId: quizId});
       Emails.remove({quizId: quizId});
@@ -35,7 +35,7 @@ Meteor.methods({
     }
   },
   resetAnswer: function (quizId, userId) {
-    if (Roles.userIsInRole(Meteor.userId(), "admin")) {
+    if (Roles.userIsInRole(this.userId(), "admin")) {
       Answers.remove({quizId: quizId, owner: userId});
       Profiles.remove({quizId: quizId, owner: userId});
       Emails.remove({quizId: quizId, owner: userId});
@@ -43,23 +43,21 @@ Meteor.methods({
     }
   },
   getUserEmail: function (userId) {
-    if (Roles.userIsInRole(Meteor.userId(), "admin")) {
-      var email = '';
-      var user = Meteor.users.findOne({_id: userId});
-      if (user.emails && user.emails.length)
-        email = user.emails[0].address;
-      if (user.services && user.services.facebook && user.services.facebook.email)
-        email = user.services.facebook.email;
-      if (user.services && user.services.google && user.services.google.email)
-        email = user.services.google.email;
-      if (user.services && user.services.twitter && user.services.twitter.email)
-        email = user.services.twitter.email;
-      var profile = Profiles.findOne({owner: userId}, {sort: {createdAt: -1} });
-      if (profile && profile.mail) {
-        email = profile.mail;
-      }
-      return email;
+    var email = '';
+    var user = Meteor.users.findOne({_id: userId});
+    if (user.emails && user.emails.length)
+      email = user.emails[0].address;
+    if (user.services && user.services.facebook && user.services.facebook.email)
+      email = user.services.facebook.email;
+    if (user.services && user.services.google && user.services.google.email)
+      email = user.services.google.email;
+    if (user.services && user.services.twitter && user.services.twitter.email)
+      email = user.services.twitter.email;
+    var profile = Profiles.findOne({owner: userId}, {sort: {createdAt: -1} });
+    if (profile && profile.mail) {
+      email = profile.mail;
     }
+    return email;
   },
   disableGuestAccounts: function () {
     AccountsGuest.enabled = false;
@@ -87,6 +85,7 @@ Meteor.methods({
   sendSharedMail: function (quizId) {
     var quiz = Quizzes.findOne({_id: quizId});
     var sharedEmails = Emails.find({quizId: quizId, owner: this.userId, sent: false}).fetch();
+    var replyToMail = Meteor.call('getUserEmail',this.userId);
     if (sharedEmails && sharedEmails.length > 0) {
       _.each(sharedEmails, function (sharedEmail) {
         var sendMessage = function (toId, msg) {
@@ -97,7 +96,7 @@ Meteor.methods({
           Email.send({
             from: fromEmail,
             to: toEmail,
-            replyTo: fromEmail || undefined,
+            replyTo: replyToMail,
             subject: quiz.mailSubject,
             text: quiz.mailText,
             html: quiz.mailHtml
