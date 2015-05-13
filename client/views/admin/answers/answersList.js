@@ -32,75 +32,7 @@ Template.answersList.helpers({
   usersAnswers: function () {
     var quizId = Iron.controller().getParams().quizId;
     var questionsCount = Questions.find({quizId: quizId}).count();
-    var answers = Answers.find({quizId: quizId}, {sort: {owner: 1, createdAt: -1}}).fetch();
-    var answersCount = answers.length;
-    var usersAnswers = [];
-    var chances = 0;
-    var source = [];
-    var profile = null;
-    var sharedEmailCount = 0;
-    $.each(answers, function(index, answer) {
-      var winner = false;
-      if (index === 0) {
-        previousUserId = answer.owner;
-      }
-      if (previousUserId !== answer.owner) {
-        // lets save previous chances
-        if (chances === questionsCount) {
-          winner = true;
-        }
-        profile = Profiles.findOne({quizId: quizId, owner: previousUserId});
-        if (profile && profile.fbShared) {
-          chances += 5;
-        }
-        sharedEmailCount = Emails.find({owner: previousUserId, sent: true, quizId: quizId}).count();
-        if (sharedEmailCount > 0) {
-          chances += sharedEmailCount;
-        }
-        correctAnswersCount = Answers.find({quizId: quizId, owner: previousUserId, correct: true}).count();
-        if (correctAnswersCount === questionsCount) {
-          chances += 1;
-        } else {
-          chances = 0;
-        }
-        usersAnswers.push({user: previousUserId, winChances: chances, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
-        chances = 0;
-        winner = false;
-        source = [];
-        profile = null;
-        sharedEmailCount = 0;
-      }
-      source.push(answer);
-      // console.log(source[0].createdAt);
-      // if (answer.correct === true) {
-      //   chances += 1;
-      // }
-      previousUserId = answer.owner;
-      // for last answer
-      if (index+1 === answersCount) {
-        // lets save previous chances
-        if (chances === questionsCount) {
-          winner = true;
-        }
-        profile = Profiles.findOne({quizId: quizId, owner: previousUserId});
-        if (profile && profile.fbShared) {
-          chances += 5;
-        }
-        sharedEmailCount = Emails.find({owner: previousUserId, sent: true, quizId: quizId}).count();
-        if (sharedEmailCount > 0) {
-          chances += sharedEmailCount;
-        }
-        correctAnswersCount = Answers.find({quizId: quizId, owner: previousUserId, correct: true}).count();
-        if (correctAnswersCount === questionsCount) {
-          chances += 1;
-        } else {
-          chances = 0;
-        }
-        usersAnswers.push({user: previousUserId, winChances: chances, winner: winner, sharedEmailCount: sharedEmailCount, source: source, createdAt: source[0].createdAt});
-      }
-    });
-    // console.log(usersAnswers);
-    return usersAnswers;
+    return Profiles.find({quizId: quizId},{sort: {createdAt: -1}});
   },
   userEmail: function (userId) {
     Meteor.call('getUserEmail', userId, function (error, data) {
@@ -150,6 +82,13 @@ Template.answersList.helpers({
       return true;
     }
     return false;
+  },
+  sharedEmailCount: function (userId) {
+    var quizId = Iron.controller().getParams().quizId;
+    return Emails.find({quizId: quizId, owner: userId, sent: true}).count();
+  },
+  winChances: function (userId) {
+    return '?';
   }
 });
 

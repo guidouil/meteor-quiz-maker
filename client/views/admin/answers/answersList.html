@@ -8,13 +8,15 @@
           <table class="table table-responsive table-hover table-condensed">
             <thead>
               <tr>
+                <th></th>
+                <th>Firstname</th>
+                <th>Lastname</th>
                 <th>Mail</th>
-                <th>Profile</th>
-                {{#each questions}}
-                 <th class="text-center">Q{{order}}</th>
-                {{/each}}
+                <th>Birthdate</th>
+                <th>Zip</th>
+                <th>City</th>
                 <th class="text-center">FB Shared</th>
-                <th class="text-center">Email Shared</th>
+                <th class="text-center">Mail Shared</th>
                 <th class="text-center">Chances</th>
                 <th class="text-center">When</th>
                 <th></th>
@@ -23,23 +25,24 @@
             <tbody>
               {{#each usersAnswers}}
               <tr>
-                <td>{{userEmail user}}</td>
-                <td>{{profile user}}</td>
-                {{#each questionsAnswered user}}
-                <td class="text-center">
-                  <i class="fa fa-{{icon}}"></i>
-                </td>
-                {{/each}}
-                <td class="text-center">{{#if fbShared user}}<i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}</td>
-                <td class="text-center">{{sharedEmailCount}}</td>
-                <td class="text-center">{{winChances}}</td>
+                <td>{{title}}</td>
+                <td>{{firstname}}</td>
+                <td>{{lastname}}</td>
+                <td>{{mail}}</td>
+                <td>{{#if birthdate}}{{birthdate.day}}/{{birthdate.month}}/{{birthdate.year}}{{/if}}</td>
+                <td>{{zip}}</td>
+                <td>{{city}}</td>
+
+                <td class="text-center">{{#if fbShared owner}}<i class="fa fa-check"></i>{{else}}<i class="fa fa-times"></i>{{/if}}</td>
+                <td class="text-center">{{sharedEmailCount owner}}</td>
+                <td class="text-center">{{winChances owner}}</td>
                 <td class="text-center">{{fromNow createdAt}}</td>
                 <td class="text-right"> <button type="button" class="btn btn-danger btn-sm reset" id="{{user}}"><i class="fa fa-trash-o"></i></button> </td>
               </tr>
               {{/each}}
             </tbody>
           </table>
-          <button class="btn btn-success btn-block exportAnswers"><i class="fa fa-cloud-download"></i> Export profiles</button>
+          <!-- <button class="btn btn-success btn-block exportAnswers"><i class="fa fa-cloud-download"></i> Export profiles</button> -->
           <button class="btn btn-danger btn-block reset-all"><i class="fa fa-trash-o"></i> Reset All</button>
         {{else}}
             Must be admin to see this...
