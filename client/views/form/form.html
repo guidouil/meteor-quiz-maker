@@ -8,6 +8,11 @@
     </div>
     {{/if}}
     <div class="row">
+      <div class="col-md-12" id="">
+        <p class="text-center">{{> atOauth}}</p>
+      </div>
+    </div>
+    <div class="row">
       {{#autoForm id="profileInsert" type=type doc=profile collection='Profiles' class="form-horizontal"}}
       <fieldset>
 

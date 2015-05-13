@@ -19,7 +19,6 @@ ongoworks:security
 raix:handlebar-helpers
 useraccounts:bootstrap
 accounts-facebook
-accounts-google
 service-configuration
 accounts-ui
 fortawesome:fontawesome
