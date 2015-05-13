@@ -27,11 +27,11 @@ Meteor.reactivePublish('Questions', function (quizId) {
 });
 
 Meteor.reactivePublish('Answers', function (quizId) {
-  if (Roles.userIsInRole(this.userId, "admin")) {
-    return Answers.find({quizId: quizId}, {sort: {owner: 1}}, {reactive: true});
-  } else {
-    return Answers.find({quizId: quizId, owner: this.userId}, {reactive: true});
-  }
+  return Answers.find({quizId: quizId, owner: this.userId}, {reactive: true});
+  // if (Roles.userIsInRole(this.userId, "admin")) {
+  //   return Answers.find({quizId: quizId}, {sort: {owner: 1}}, {reactive: true});
+  // } else {
+  // }
 });
 
 Meteor.reactivePublish('Emails', function (quizId) {
