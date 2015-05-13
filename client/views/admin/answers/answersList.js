@@ -140,7 +140,7 @@ Template.answersList.helpers({
       profile = Profiles.findOne({owner: userId});
     }
     if (profile && profile.firstname && profile.lastname  && profile.city && profile.zip) {
-      return  profile.firstname + ' - ' + profile.lastname + ' - ' + profile.zip + ' - ' + profile.city + ' - ' + profile.country;
+      return  profile.firstname + ' - ' + profile.lastname + ' - ' + profile.zip + ' - ' + profile.city;
     }
   },
   fbShared: function (userId) {
