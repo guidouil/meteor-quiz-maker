@@ -29,8 +29,10 @@ Template.answersList.helpers({
   },
   usersAnswers: function () {
     var quizId = Iron.controller().getParams().quizId;
-    var questionsCount = Questions.find({quizId: quizId}).count();
-    return Profiles.find({quizId: quizId},{sort: {createdAt: -1}});
+    var limit = Iron.controller().getParams().limit || 10;
+    Session.set('limit', limit);
+    var questionsCount = Questions.find({ quizId: quizId }).count();
+    return Profiles.find({ quizId: quizId },{ sort: { createdAt: -1 }}, { limit: limit });
   },
   userEmail: function (userId) {
     Meteor.call('getUserEmail', userId, function (error, data) {
@@ -112,6 +114,12 @@ Template.answersList.events({
 
       }
     );
+  },
+  'click .loadMore': function (evt, tmpl) {
+    evt.preventDefault();
+    var quizId = Iron.controller().getParams().quizId;
+    var newLimit = parseInt(Iron.controller().getParams().limit) + 10;
+    Router.go('/answersList/'+quizId+'/'+newLimit);
   },
   'click .reset': function(evt, tmpl) {
     evt.preventDefault();
