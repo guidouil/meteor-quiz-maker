@@ -3,10 +3,17 @@ Meteor.reactivePublish('Quizzes', function () {
 });
 
 Meteor.reactivePublish('Profiles', function () {
+  return Profiles.find({owner: this.userId}, {reactive: true});
+});
+Meteor.reactivePublish('AllProfiles', function (quizId, limit) {
   if (Roles.userIsInRole(this.userId, "admin")) {
-    return Profiles.find({}, {reactive: true});
-  } else {
-    return Profiles.find({owner: this.userId}, {reactive: true});
+    return Profiles.find({quizId: quizId}, {limit: limit});
+  }
+});
+
+Meteor.reactivePublish('Admin', function (quizId) {
+  if (Roles.userIsInRole(this.userId, "admin")) {
+    Counts.publish(this, 'profilesCount', Profiles.find({quizId: quizId}));
   }
 });
 
@@ -15,15 +22,15 @@ Meteor.reactivePublish('Citys', function () {
 });
 
 Meteor.reactivePublish('Questions', function (quizId) {
-  // var questionsCount = Questions.find({quizId: quizId}, {reactive: true}).count();
-  // var answersCount = Answers.find({quizId: quizId, owner: this.userId}, {reactive: true}).count();
-  //
-  // if (Roles.userIsInRole(this.userId, "admin") || (questionsCount > 0 && questionsCount === answersCount)) {
-  //   return Questions.find({quizId: quizId}, {reactive: true});
-  // } else {
-  //   return Questions.find({quizId: quizId}, {fields: {'answers.correct': 0}}, {reactive: true});
-  // }
-  return Questions.find({quizId: quizId}, {reactive: true});
+  var questionsCount = Questions.find({quizId: quizId}, {reactive: true}).count();
+  var answersCount = Answers.find({quizId: quizId, owner: this.userId}, {reactive: true}).count();
+
+  if (Roles.userIsInRole(this.userId, "admin") || (questionsCount > 0 && questionsCount === answersCount)) {
+    return Questions.find({quizId: quizId}, {reactive: true});
+  } else {
+    return Questions.find({quizId: quizId}, {fields: {'answers.correct': 0}}, {reactive: true});
+  }
+  // return Questions.find({quizId: quizId}, {reactive: true});
 });
 
 Meteor.reactivePublish('Answers', function (quizId) {

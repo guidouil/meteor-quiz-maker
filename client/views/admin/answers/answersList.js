@@ -15,8 +15,7 @@ Template.answersList.helpers({
   //   return Answers.find({quizId: quizId}).count();
   // },
   profilesCount: function () {
-    var quizId = Iron.controller().getParams().quizId;
-    return Profiles.find({quizId: quizId}).count();
+    return Admin.profilesCount;
   },
   sharesCount: function () {
     var quizId = Iron.controller().getParams().quizId;

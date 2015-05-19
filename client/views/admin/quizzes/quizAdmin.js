@@ -10,10 +10,6 @@ Template.quizAdmin.helpers({
   //   var quizId = Iron.controller().getParams().quizId;
   //   return Answers.find({quizId: quizId}).count();
   // },
-  profilesCount: function () {
-    var quizId = Iron.controller().getParams().quizId;
-    return Profiles.find({quizId: quizId}).count();
-  },
   sharesCount: function () {
     var quizId = Iron.controller().getParams().quizId;
     var fbSharedCount = Profiles.find({quizId: quizId, fbShared: true}).count();

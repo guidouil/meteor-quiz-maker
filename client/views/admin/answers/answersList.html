@@ -4,7 +4,7 @@
       <div class="well well-sm">
         <legend><a href="{{pathFor 'quizAdmin'  quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Answers</legend>
         {{#if isAdminUser}}
-        <h1 class="text-center">{{questionsCount}} <small>Questions | </small>{{profilesCount}} <small>Profiles | </small>{{sharesCount.total}} <small>Shares = {{sharesCount.mail}} <i class="fa fa-envelope"></i> + {{sharesCount.fb}} <i class="fa fa-facebook"></i></small></h1>
+        <h1 class="text-center">{{questionsCount}} <small>Questions | </small>{{getPublishedCount 'profilesCount'}} <small>Profiles | </small>{{sharesCount.total}} <small>Shares = {{sharesCount.mail}} <i class="fa fa-envelope"></i> + {{sharesCount.fb}} <i class="fa fa-facebook"></i></small></h1>
           <table class="table table-responsive table-hover table-condensed">
             <thead>
               <tr>
