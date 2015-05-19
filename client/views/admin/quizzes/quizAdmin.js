@@ -11,14 +11,13 @@ Template.quizAdmin.helpers({
   //   return Answers.find({quizId: quizId}).count();
   // },
   sharesCount: function () {
-    var quizId = Iron.controller().getParams().quizId;
-    var fbSharedCount = Profiles.find({quizId: quizId, fbShared: true}).count();
-    var emailSharedCount = Emails.find({quizId: quizId, sent: true}).count();
+    var fbSharedCount = Counts.get('fbSharesCount');
+    var emailSharedCount = Counts.get('emailSharesCount');
     var sharesCount = {
       total: fbSharedCount + emailSharedCount,
       fb: fbSharedCount,
       mail: emailSharedCount
     };
     return sharesCount;
-  },
+  }
 });

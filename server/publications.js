@@ -14,6 +14,8 @@ Meteor.reactivePublish('AllProfiles', function (quizId, limit) {
 Meteor.reactivePublish('Admin', function (quizId) {
   if (Roles.userIsInRole(this.userId, "admin")) {
     Counts.publish(this, 'profilesCount', Profiles.find({quizId: quizId}));
+    Counts.publish(this, 'fbSharesCount', Profiles.find({quizId: quizId, fbShared: true}));
+    Counts.publish(this, 'emailSharesCount', Emails.find({quizId: quizId, sent: true}));
   }
 });
 
