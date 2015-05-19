@@ -126,7 +126,7 @@ Template.result.events({
     evt.preventDefault();
     var quizId = Iron.controller().getParams().quizId;
     $('.sharedMail').each(function (index, mail) {
-      console.log($(mail).val());
+      // console.log($(mail).val());
       var sharedEmail = $(mail).val();
       var existingEmail = Emails.findOne({owner: Meteor.userId(), mail: sharedEmail});
       var countSharedEmail = Emails.find({owner: Meteor.userId()}).count();

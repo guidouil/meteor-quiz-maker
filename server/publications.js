@@ -7,7 +7,6 @@ Meteor.reactivePublish('Profiles', function () {
 });
 Meteor.reactivePublish('AllProfiles', function (quizId, limit) {
   if (Roles.userIsInRole(this.userId, "admin")) {
-    console.log(limit);
     return Profiles.find({quizId: quizId}, {$limit: limit});
   }
 });
