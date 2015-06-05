@@ -134,6 +134,11 @@ Meteor.methods({
           sharedEmail += item.mail+' ';
         });
       }
+      if (profile.fbShared === true) {
+        profiles[index].fbShared = true;
+      } else {
+        profiles[index].fbShared = false;
+      }
       profiles[index].chances = userChances;
       profiles[index].sharedEmail = sharedEmail;
     });
