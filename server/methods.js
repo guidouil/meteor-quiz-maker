@@ -106,5 +106,51 @@ Meteor.methods({
         Emails.update({_id: sharedEmail._id},{$set: {sent: true}});
       });
     }
+  },
+  exportAnswers: function (quizId) {
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var profiles = Profiles.find({quizId: quizId},{fields:{_id: 0, quizId: 0}}).fetch();
+    _.each(profiles, function( profile, index){
+      if (profile.birthdate && profile.birthdate.day && profile.birthdate.month && profile.birthdate.year) {
+        profiles[index].birthdate = profile.birthdate.day +'/'+ profile.birthdate.month +'/'+ profile.birthdate.year;
+      }
+      var correctAnswersCount = Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
+      var userChances = 0;
+      if (correctAnswersCount === questionsCount) {
+        userChances = 1;
+        // userChances += Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
+        if (profile.fbShared === true) {
+          userChances += 5;
+        }
+        var sharedEmailCount = Emails.find({owner: profile.owner, sent: true}).count();
+        if (sharedEmailCount > 0) {
+          userChances += sharedEmailCount;
+        }
+      }
+      var sharedEmail = '';
+      sharedEmails = Emails.find({owner: profile.owner, sent: true},{fields: {mail: 1}}).fetch();
+      if (sharedEmails && sharedEmails.length) {
+        _.each(sharedEmails,function(item){
+          sharedEmail += item.mail+' ';
+        });
+      }
+      profiles[index].chances = userChances;
+      profiles[index].sharedEmail = sharedEmail;
+    });
+    var csv = Papa.unparse(profiles, {
+      quotes: true,
+      delimiter: ",",
+      newline: "\r\n"
+    });
+    //console.log(csv);
+    fs = Npm.require( 'fs' ) ;
+    path = Npm.require( 'path' );
+    __ROOT_APP_PATH__ = fs.realpathSync('.');
+    // console.log(__ROOT_APP_PATH__);
+    var myPath = __ROOT_APP_PATH__ ;
+    var filePath = path.join(myPath, 'players_profiles.csv' ) ;
+    console.log( filePath ) ;
+    var buffer = new Buffer( csv ) ;
+    fs.writeFileSync( filePath, buffer ) ;
   }
 });
