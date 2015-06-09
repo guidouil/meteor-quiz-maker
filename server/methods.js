@@ -165,6 +165,9 @@ Meteor.methods({
     _.each(profiles, function( profile, index){
       var correctAnswersCount = Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
       if (correctAnswersCount === questionsCount) {
+        if (profile.birthdate && profile.birthdate.day && profile.birthdate.month && profile.birthdate.year) {
+          profile.birthdate = profile.birthdate.day +'/'+ profile.birthdate.month +'/'+ profile.birthdate.year;
+        }
         var userChances = 1;
         if (profile.fbShared === true) {
           userChances += 5;
