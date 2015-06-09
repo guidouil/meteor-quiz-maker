@@ -157,5 +157,43 @@ Meteor.methods({
     console.log( filePath ) ;
     var buffer = new Buffer( csv ) ;
     fs.writeFileSync( filePath, buffer ) ;
-  }
+  },
+  exportWinners: function (quizId) {
+    var winners = [];
+    var questionsCount = Questions.find({quizId: quizId}).count();
+    var profiles = Profiles.find({quizId: quizId},{fields:{_id: 0, quizId: 0}}).fetch();
+    _.each(profiles, function( profile, index){
+      var correctAnswersCount = Answers.find({quizId: quizId, owner: profile.owner, correct: true}).count();
+      if (correctAnswersCount === questionsCount) {
+        var userChances = 1;
+        if (profile.fbShared === true) {
+          userChances += 5;
+        }
+        var sharedEmailCount = Emails.find({owner: profile.owner, sent: true}).count();
+        if (sharedEmailCount > 0) {
+          userChances += sharedEmailCount;
+        }
+        for (var i = 0; i < userChances; i++) {
+          winners.push(profile);
+        }
+      }
+    });
+    if (winners.length > 0) {
+      var csv = Papa.unparse(winners, {
+        quotes: true,
+        delimiter: ",",
+        newline: "\r\n"
+      });
+      //console.log(csv);
+      fs = Npm.require( 'fs' ) ;
+      path = Npm.require( 'path' );
+      __ROOT_APP_PATH__ = fs.realpathSync('.');
+      // console.log(__ROOT_APP_PATH__);
+      var myPath = __ROOT_APP_PATH__ ;
+      var filePath = path.join(myPath, 'winners_multi.csv' ) ;
+      console.log( filePath ) ;
+      var buffer = new Buffer( csv ) ;
+      fs.writeFileSync( filePath, buffer ) ;
+    }
+  },
 });
