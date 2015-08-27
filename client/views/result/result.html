@@ -7,7 +7,7 @@
           {{#if isWinner}}
           <h1 class="text-center">Bravo {{profile.firstname}},</h1>
           <div class="result-phrase-winner">
-            {{resultPhraseWinner}}
+            {{{quiz.resultPhraseWinner}}}
           </div>
           <p class="lead text-center">
             Actuellement <strong>vous avez <span class="text-danger">{{chances.count}}</span> chance{{chances.plural}} de gagner</strong> au tirage au sort.<br>
@@ -17,7 +17,7 @@
           {{else}}
           <h1 class="text-center">Dommage,</h1>
           <div class="result-phrase-looser">
-            {{resultPhraseLooser}}
+            {{{quiz.resultPhraseLooser}}}
           </div>
           {{/if}}
         </div>
@@ -87,6 +87,7 @@
     </div>
   </div>
   {{> mailShareModal}}
+  {{{resultTrackingCode}}}
 </template>
 
 <template name="mailShareModal">
