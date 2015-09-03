@@ -87,7 +87,9 @@
     </div>
   </div>
   {{> mailShareModal}}
-  {{{resultTrackingCode}}}
+  {{#if resultTrackingCode}}
+    <img src="http://tbl.tradedoubler.com/report?organization={{organisationTrackingCode}}&event={{eventTrackingCode}}&leadNumber={{currentUser._id}}" width="1" height="1" border="0">
+  {{/if}}
 </template>
 
 <template name="mailShareModal">
