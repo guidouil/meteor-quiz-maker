@@ -87,6 +87,9 @@ Template.result.helpers({
     }
     return false;
   },
+  userId: function () {
+    return Meteor.userId();
+  }
 });
 
 Template.result.events({
