@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-meteor-platform
 iron:router
 accounts-password
 aldeed:simple-schema
@@ -26,7 +25,6 @@ softwarerero:accounts-t9n
 mrt:accounts-admin-ui-bootstrap-3
 random
 sacha:spin
-lepozepo:reactive-publish
 mizzao:autocomplete
 comerc:bs-typeahead
 coffeescript
@@ -38,3 +36,16 @@ msavin:mongol
 email
 meteorhacks:kadira
 tmeasday:publish-counts
+standard-minifiers
+meteor-base
+mobile-experience
+mongo
+blaze-html-templates
+session
+jquery
+tracker
+logging
+reload
+ejson
+spacebars
+check
