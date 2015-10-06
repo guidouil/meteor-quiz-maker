@@ -4,7 +4,76 @@
       <div class="well well-sm">
         {{#if isAdminUser}}
           <legend><a href="{{pathFor 'quizAdmin' quizId=quizId}}"><i class="fa fa-angle-left"></i></a> Update Quiz : {{this.title}}</legend>
-          {{> quickForm id="quiz" enctype="multipart/form-data" doc=this collection="Quizzes" type="update"}}
+
+          {{#autoForm id="quiz" enctype="multipart/form-data" doc=this collection="Quizzes" type="update"}}
+          <div class="tab-container">
+            <ul id="myTabs" class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#global" id="global-tab" role="tab" data-toggle="tab" aria-controls="global" aria-expanded="true">Global</a></li>
+              <li role="presentation" class=""><a href="#desktop" role="tab" id="desktop-tab" data-toggle="tab" aria-controls="desktop" aria-expanded="false">Desktop</a></li>
+              <li role="presentation" class=""><a href="#mobile" role="tab" id="mobile-tab" data-toggle="tab" aria-controls="mobile" aria-expanded="false">Mobile</a></li>
+              <li role="presentation" class=""><a href="#share" role="tab" id="share-tab" data-toggle="tab" aria-controls="share" aria-expanded="false">Sharing</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+              <div role="tabpanel" class="tab-pane fade active in" id="global" aria-labelledby="global-tab">
+                <p>
+                  {{> afQuickField name="title"}}
+                  {{> afQuickField name="startDate"}}
+                  {{> afQuickField name="endDate"}}
+                  {{> afQuickField name="header"}}
+                  {{> afQuickField name="announce"}}
+                  {{> afQuickField name="resultPhraseWinner"}}
+                  {{> afQuickField name="resultPhraseLooser"}}
+                  {{> afQuickField name="rules"}}
+                  {{> afQuickField name="conditions"}}
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="desktop" aria-labelledby="desktop-tab">
+                <p>
+                  {{> afQuickField name="header"}}
+                  {{> afQuickField name="home"}}
+                  {{> afQuickField name="footer"}}
+                  {{> afQuickField name="resultBottom"}}
+                  {{> afQuickField name="dotation"}}
+                  {{> afQuickField name="css"}}
+                  {{> afQuickField name="closing"}}
+                  {{> afQuickField name="winners"}}
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="mobile" aria-labelledby="mobile-tab">
+                <p>
+                  {{> afQuickField name="headerMobile"}}
+                  {{> afQuickField name="homeMobile"}}
+                  {{> afQuickField name="footerMobile"}}
+                  {{> afQuickField name="resultBottomMobile"}}
+                  {{> afQuickField name="dotationMobile"}}
+                  {{> afQuickField name="cssMobile"}}
+                  {{> afQuickField name="closingMobile"}}
+                  {{> afQuickField name="winnersMobile"}}
+                </p>
+              </div>
+              <div role="tabpanel" class="tab-pane fade" id="share" aria-labelledby="share-tab">
+                <p>
+                  {{> afQuickField name="sharedUrl"}}
+                  {{> afQuickField name="sharedImage"}}
+                  {{> afQuickField name="sharedCaption"}}
+                  {{> afQuickField name="sharedDescription"}}
+                  {{> afQuickField name="mailSubject"}}
+                  {{> afQuickField name="mailHtml"}}
+                  {{> afQuickField name="mailText"}}
+                  {{> afQuickField name="mailHtml"}}
+                  {{> afQuickField name="resultTrackingCode"}}
+                  {{> afQuickField name="organisationTrackingCode"}}
+                  {{> afQuickField name="eventTrackingCode"}}
+
+                </p>
+              </div>
+            </div>
+            <div>
+              <button type="submit" class="btn btn-success btn-lg">Save</button>
+            </div>
+          </div>
+          {{/autoForm}}
+
         {{else}}
             Must be admin to see this...
         {{/if}}
