@@ -105,8 +105,10 @@ Template.play.helpers({
       return true;
     }
     return false;
+  },
+  userId: function () {
+    return Meteor.userId();
   }
-
 });
 
 Template.play.events({

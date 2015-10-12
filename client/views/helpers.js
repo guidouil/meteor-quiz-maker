@@ -67,14 +67,10 @@ UI.registerHelper('equals', function (one, two) {
   return false;
 });
 UI.registerHelper('isMobile', function () {
-  if (Meteor.isCordova) {
-    return true;
-  } else {
-    return false;
-  }
+  return Session.equals("mobile", true);
 });
 
-UI.registerHelper('isAdminUser', function() {
+UI.registerHelper('isAdminUser', function () {
   return Roles.userIsInRole(Meteor.user(), ['admin']);
 });
 

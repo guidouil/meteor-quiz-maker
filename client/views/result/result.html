@@ -64,9 +64,16 @@
         </div> -->
         {{/if}}
         <div class="col-xs-12">
-          <div id="resultBottom">
-            {{{quiz.resultBottom}}}
-          </div>
+          {{#if isMobile}}
+            <div id="resultBottomMobile">
+              {{{quiz.resultBottom}}}
+            </div>
+          {{else}}
+            <div id="resultBottom">
+              {{{quiz.resultBottom}}}
+            </div>
+          {{/if}}
+
         </div>
         {{#unless isOpen}}
         <div class="col-xs-12">

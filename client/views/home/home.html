@@ -3,18 +3,35 @@
     <div class="row">
       <div class="col-xs-12">
         {{#if quiz}}
+          {{#if isMobile}}
+          <div id="homeMobile">
+            {{{quiz.homeMobile}}}
+          </div>
+          {{else}}
           <div id="home">
             {{{quiz.home}}}
           </div>
+          {{/if}}
           {{#if isOpen quiz._id}}
           <!-- <a href="/play/{{quiz._id}}" class="btn btn-success btn-block"><i class="fa fa-play"> Jouer</i></a> -->
           {{else}}
-          <div id="closing">
-            {{{quiz.closing}}}
-          </div>
-          <div id="winners">
-            {{{quiz.winners}}}
-          </div>
+          {{#if isMobile}}
+            <div id="closingMobile">
+              {{{quiz.closingMobile}}}
+            </div>
+            <div id="winnersMobile">
+              {{{quiz.winnersMobile}}}
+            </div>
+          {{else}}
+            <div id="closing">
+              {{{quiz.closing}}}
+            </div>
+            <div id="winners">
+              {{{quiz.winners}}}
+            </div>
+          {{/if}}
+
+
           <a href="/result/{{quiz._id}}" class="btn btn-block">Revoir vos réponses</a>
           {{/if}}
         {{else}}

@@ -46,6 +46,9 @@
                           <a href="{{pathFor 'result' quizId=quizId}}" class="btn btn-success" id="{{_id}}">Retour au résultat</a>
                         </div>
                       </div> -->
+                      {{#if quiz.resultTrackingCode}}
+                        <img src="http://tbl.tradedoubler.com/report?organization={{quiz.organisationTrackingCode}}&event={{eventTrackingCode}}&leadNumber={{userId}}" width="1" height="1" border="0">
+                      {{/if}}
                       {{/unless}}
                       {{/if}}
                     </div>
@@ -102,10 +105,18 @@
           </div>
         </div> <!--  tabpanel end -->
         {{#unless allAnswered}}
-          {{#if quiz.dotation}}
-            <div id="dotation">
-              {{{quiz.dotation}}}
-            </div>
+          {{#if isMobile}}
+            {{#if quiz.dotationMobile}}
+              <div id="dotationMobile">
+                {{{quiz.dotationMobile}}}
+              </div>
+            {{/if}}
+          {{else}}
+            {{#if quiz.dotation}}
+              <div id="dotation">
+                {{{quiz.dotation}}}
+              </div>
+            {{/if}}
           {{/if}}
         {{else}}
           {{#if quiz.promo}}

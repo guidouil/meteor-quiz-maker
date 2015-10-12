@@ -10,6 +10,12 @@ getUserLanguage = function () {
   return language;
 };
 
+Template.layout.onRendered(function () {
+  if (Router.current().params.query && Router.current().params.query.mobile === '1') {
+    Session.set("mobile", true);
+  }
+});
+
 Meteor.startup(function () {
 
   T9n.setLanguage(Session.get('language'));

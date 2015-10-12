@@ -176,11 +176,20 @@
           </div>
           {{/unless}}
         </div>
-        {{#if quiz.dotation}}
-          <div id="dotation">
-            {{{quiz.dotation}}}
-          </div>
+        {{#if isMobile}}
+          {{#if quiz.dotationMobile}}
+            <div id="dotationMobile">
+              {{{quiz.dotationMobile}}}
+            </div>
+          {{/if}}
+        {{else}}
+          {{#if quiz.dotation}}
+            <div id="dotation">
+              {{{quiz.dotation}}}
+            </div>
+          {{/if}}
         {{/if}}
+
         {{> afQuickField name="owner" type="hidden" value=userId}}
         {{> afQuickField name="quizId" type="hidden" value=quizId}}
       </div>

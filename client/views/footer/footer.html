@@ -4,8 +4,14 @@
       <div class="col-xs-12">
         <div class="footer text-center">
           <div id="footer">
-            {{#if quiz.footer}}
-              {{{quiz.footer}}}
+            {{#if isMobile}}
+              {{#if quiz.footerMobile}}
+                {{{quiz.footerMobile}}}
+              {{/if}}
+            {{else}}
+              {{#if quiz.footer}}
+                {{{quiz.footer}}}
+              {{/if}}
             {{/if}}
             {{#if quiz.rules}}
               &nbsp;<a href="{{quiz.rules}}" target="_blank">Règlement</a>

@@ -1,17 +1,32 @@
 <template name="header">
-  {{#if quiz.css}}
-    <style type="text/css">
-      {{{quiz.css}}}
-    </style>
+  {{#if isMobile}}
+    {{#if quiz.cssMobile}}
+      <style type="text/css">
+        {{{quiz.cssMobile}}}
+      </style>
+    {{/if}}
+  {{else}}
+    {{#if quiz.css}}
+      <style type="text/css">
+        {{{quiz.css}}}
+      </style>
+    {{/if}}
   {{/if}}
+
   {{#unless isQuizHome}}
   <div class="container-fluid">
     <div class="row">
       <div class="col-xs-12">
         {{#if quiz.header}}
+          {{#if isMobile}}
+          <div id="headerMobile">
+            {{{quiz.headerMobile}}}
+          </div>
+          {{else}}
           <div id="header">
             {{{quiz.header}}}
           </div>
+          {{/if}}
         {{else}}
           <div class="well well-sm">
             <h1 class="text-center"><a href="/"><i class="fa fa-2x fa-play"></i> Default Header</a></h1>
