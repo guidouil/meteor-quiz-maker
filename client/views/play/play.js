@@ -7,6 +7,10 @@ Template.play.helpers({
     var quizId = Iron.controller().getParams().quizId;
     return Questions.find({quizId: quizId}, {sort: {order: 1}}).fetch();
   },
+  questionsCount: function () {
+    var quizId = Iron.controller().getParams().quizId;
+    return Questions.find({quizId: quizId}, {sort: {order: 1}}).count();
+  },
   lastOrder: function () {
     var quizId = Iron.controller().getParams().quizId;
     var questionsCount = Questions.find({quizId: quizId}).count();

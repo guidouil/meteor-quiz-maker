@@ -4,6 +4,7 @@
       <div class="col-xs-12">
         <div role="tabpanel">
           <!-- Nav tabs -->
+          {{#unless isMobile}}
           <ul class="nav nav-tabs" id="myTab" role="tablist">
             {{#each questions}}
               <li class="tab {{isActive order}}" id="{{order}}" role="presentation"><a href="{{#if allAnswered}}#{{_id}}{{/if}}" data-toggle="{{#if allAnswered}}tab{{/if}}">{{#unless allAnswered}}Question{{else}}Réponse{{/unless}} {{order}}</a></li>
@@ -12,6 +13,7 @@
               <!-- <li class="tab {{isActive lastOrder}}" id="{{lastOrder}}" role="presentation"><a href="#last" data-toggle="tab" >Vos résultats</a></li> -->
             <!-- {{/if}} -->
           </ul>
+          {{/unless}}
 
           <!-- Tab panes -->
           <div class="tab-content" id="myPanes">
@@ -20,6 +22,18 @@
                 <div class="row">
                   <div class="col-xs-6">
                     <div class="inner">
+                      {{#if isMobile}}
+                      <div class="mobile-question-head">
+                        <p class="text-right question-counter">
+                          <strong>{{order}}/{{questionsCount}}</strong>
+                        </p>
+                        <div class="indice-btn">
+                          <button type="button" class="btn btn-default">
+                            <i class="fa fa-info"></i>
+                          </button>
+                        </div>
+                      </div>
+                      {{/if}}
                       <h2>{{question}}</h2>
                       {{#unless isAnswered _id}}
                         {{#each answers}}
