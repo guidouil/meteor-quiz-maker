@@ -21,8 +21,8 @@
           </div>
           {{/if}}
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
-          <button type="button" class="btn btn-warning btn-lg"  data-toggle="modal" data-target="#mailShareModal">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
+          <button type="button" class="btn btn-warning btn-lg btn-mail"  data-toggle="modal" data-target="#mailShareModal">
             <i class="fa fa-envelope"></i> | Partager par mail
           </button>
           {{#if isWinner}}
@@ -32,13 +32,13 @@
           </p>
           {{/if}}
         </div>
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 text-center">
           {{#unless profile.fbShared}}
-          <button type="button" class="btn btn-primary btn-lg fbShare" >
+          <button type="button" class="btn btn-primary btn-lg fbShare btn-facebook" >
             <i class="fa fa-facebook"></i> | Partager sur Facebook
           </button>
           {{else}}
-          <button type="button" class="btn btn-primary btn-lg fbShare" >
+          <button type="button" class="btn btn-primary btn-lg fbShare btn-facebook" >
             <i class="fa fa-facebook"></i> | Partager sur Facebook
           </button>
           {{/unless}}
