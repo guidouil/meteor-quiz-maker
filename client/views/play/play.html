@@ -1,7 +1,7 @@
 <template name="play">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-xs-12">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div role="tabpanel">
           <!-- Nav tabs -->
           {{#unless isMobile}}
@@ -18,22 +18,20 @@
           <!-- Tab panes -->
           <div class="tab-content" id="myPanes">
             {{#each questions}}
-              <div class="tab-pane {{isActive order}}" role="tabpanel" id="{{_id}}" >
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="inner">
+            <div class="tab-pane {{isActive order}}" role="tabpanel" id="{{_id}}" >
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                  <div class="inner">
+                      <!-- mobile question counter -->
                       {{#if isMobile}}
                       <div class="mobile-question-head">
                         <p class="text-right question-counter">
                           <strong>{{order}}/{{questionsCount}}</strong>
                         </p>
-                        <div class="indice-btn">
-                          <button type="button" class="btn btn-default">
-                            <i class="fa fa-info"></i>
-                          </button>
-                        </div>
                       </div>
                       {{/if}}
+
+                      <!-- questions -->
                       <h2>{{question}}</h2>
                       {{#unless isAnswered _id}}
                         {{#each answers}}
@@ -44,30 +42,38 @@
                           {{> answered}}
                         {{/each}}
                       {{/unless}}
-                      {{#if isOpen}}
-                      {{#unless isAnswered _id}}
-                      <div class="row">
-                        <div class="col-xs-12">
-                          <p class="text-danger hidden noAnswerSelected">
-                            Sélectionnez une réponse
-                          </p>
-                          <button name='next' class="btn btn-success validate" id="{{_id}}">{{#if isLastQuestion order}}Valider{{else}}Suivant{{/if}}</button>
-                        </div>
-                      </div>
-                      {{else}}
-                      <!-- <div class="row">
-                        <div class="col-xs-12">
-                          <a href="{{pathFor 'result' quizId=quizId}}" class="btn btn-success" id="{{_id}}">Retour au résultat</a>
-                        </div>
-                      </div> -->
-                      {{#if quiz.resultTrackingCode}}
-                        <img src="http://tbl.tradedoubler.com/report?organization={{quiz.organisationTrackingCode}}&event={{eventTrackingCode}}&leadNumber={{userId}}" width="1" height="1" border="0">
-                      {{/if}}
-                      {{/unless}}
-                      {{/if}}
-                    </div>
-                  </div>
-                  <div class="col-xs-6">
+
+
+                      <p class="text-danger hidden noAnswerSelected">
+                      Sélectionnez une réponse
+                      </p>
+
+  {{#unless isMobile}}
+    {{#if isOpen}}
+      {{#unless isAnswered _id}}
+        <button name='next' class="btn btn-danger btn-lg btn-block validate" id="{{_id}}">{{#if isLastQuestion order}}Valider{{else}}Suivant{{/if}}</button>
+      {{/unless}}
+    {{/if}}
+  {{/unless}}
+
+
+                  </div><!-- /inner -->
+                </div>
+
+
+
+      {{#unless isMobile}}
+
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="inner">
+
+                  <!-- <div class="indice-btn">
+                    <button type="button" class="btn btn-default"  onClick="ShowHelper('#HelperMobile_{{_id}}'); return false;">
+                      <i class="fa fa-info"></i> Voir l’indice pour être sûr de bien répondre
+                    </button>
+                  </div> -->
+
+                  <div class="HelperMobile" id="HelperMobile_{{_id}}">
                     <div class="inner">
                       <div class="question-img">
                         {{#if video}}
@@ -97,27 +103,82 @@
                       {{/unless}}
                     </div>
                   </div>
+
+                </div><!-- /inner -->
+              </div>
+      {{/unless}}
+
+
+              </div><!-- /row -->
+
+
+
+      {{#if isMobile}}
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+              <div class="indice-btn">
+                <a class="showhelpder" onClick="ShowHelper('#HelperMobile_{{_id}}'); return false;">
+                  <i class="fa fa-info"></i> Voir l’indice pour être sûr de bien répondre
+                </a>
+              </div>
+              
+              <div class="HelperMobile hidden-md hidden-lg" id="HelperMobile_{{_id}}">
+                <div class="inner">
+                  <div class="question-img">
+                    {{#if video}}
+                      {{> video}}
+                    {{/if}}
+                    {{#if image}}
+                      {{#if video}}
+                        <a href="#" data-action="autoplay" data-toggle="modal" data-target="#videoModal_{{_id}}"><img src="{{image}}" alt="{{question}}" class="img-responsive" /></a>
+                      {{else}}
+                        <img src="{{image}}" alt="{{question}}" class="img-responsive" />
+                      {{/if}}
+                    {{/if}}
+                  </div>
+                  <div id="description">
+                    {{{description}}}
+                  </div>
+                  {{#unless isAnswered _id}}
+                  <div id="answer">
+                    <h3 id="answerTitle">{{{answerTitle}}}</h3>
+                    <p id="answerText">
+                      {{{answerText}}}
+                    </p>
+                    {{#if answerImage}}
+                      <img id="answerImage" src="{{answerImage}}" alt="{{answerTitle}}" />
+                    {{/if}}
+                  </div>
+                  {{/unless}}
                 </div>
               </div>
-            {{/each}}
-            <!-- {{#if allAnswered}} -->
-              <!-- Last Tab -->
-              <!-- <div class="tab-pane {{isActive lastOrder}}" role="tabpanel" id="last">
-                <div class="row">
-                  {{#if allAnswered}}
-                    <h1 class="text-center">{{{resultPhrase}}}</h1>
-                    {{#if profile}}
-                      {{> result}}
-                    {{else}}
-                      {{> form}}
-                    {{/if}}
-                  {{/if}}
 
-                </div>
-              </div> -->
-            <!-- {{/if}} -->
+
+  {{#if isMobile}}
+    {{#if isOpen}}
+      {{#unless isAnswered _id}}
+        <button name='next' class="btn btn-danger btn-lg btn-block validate" id="{{_id}}">{{#if isLastQuestion order}}Valider{{else}}Suivant{{/if}}</button>
+      {{/unless}}
+    {{/if}}
+  {{/if}}
+
+            </div>
           </div>
-        </div> <!--  tabpanel end -->
+      {{/if}}
+
+        {{#if quiz.resultTrackingCode}}
+          <img src="http://tbl.tradedoubler.com/report?organization={{quiz.organisationTrackingCode}}&event={{eventTrackingCode}}&leadNumber={{userId}}" width="1" height="1" border="0">
+        {{/if}}
+
+
+
+            </div><!-- /tab-pane-->
+            {{/each}}
+          </div><!-- /Tab panes -->
+        </div><!-- /tabpanel -->
+
+
         {{#unless allAnswered}}
           {{#if isMobile}}
             {{#if quiz.dotationMobile}}
@@ -139,6 +200,8 @@
             </div>
           {{/if}}
         {{/unless}}
+
+
       </div>
     </div>
   </div>
@@ -161,3 +224,4 @@
   </div><!-- /.modal -->
 
 </template>
+

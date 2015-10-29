@@ -3,7 +3,7 @@
     <div class="well well-sm">
       <div class="row">
         {{#if isOpen}}
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           {{#if isWinner}}
           <h1 class="text-center">Bravo {{profile.firstname}},</h1>
           <div class="result-phrase-winner">
@@ -21,7 +21,7 @@
           </div>
           {{/if}}
         </div>
-        <div class="col-xs-6 text-center">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
           <button type="button" class="btn btn-warning btn-lg"  data-toggle="modal" data-target="#mailShareModal">
             <i class="fa fa-envelope"></i> | Partager par mail
           </button>
@@ -32,7 +32,7 @@
           </p>
           {{/if}}
         </div>
-        <div class="col-xs-6 text-center">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">
           {{#unless profile.fbShared}}
           <button type="button" class="btn btn-primary btn-lg fbShare" >
             <i class="fa fa-facebook"></i> | Partager sur Facebook
@@ -49,7 +49,7 @@
           </p>
           {{/if}}
         </div>
-        <!-- <div class="col-xs-12">
+        <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <p class="text-center quiz-info">
             <a href="{{pathFor 'play' quizId=quizId}}" class="btn">Découvrir les réponses</a>
             {{quiz.title}} se termine {{fromNow quiz.endDate}}.
@@ -58,12 +58,12 @@
           </p>
         </div> -->
         {{else}}
-        <!-- <div class="col-xs-12">
+        <!-- <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <a class="btn" href="{{pathFor 'form' quizId=quizId}}">Modifier vos informations</a>
 
         </div> -->
         {{/if}}
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           {{#if isMobile}}
             <div id="resultBottomMobile">
               {{{quiz.resultBottom}}}
@@ -76,7 +76,7 @@
 
         </div>
         {{#unless isOpen}}
-        <div class="col-xs-12">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div id="closing">
             {{{quiz.closing}}}
           </div>
