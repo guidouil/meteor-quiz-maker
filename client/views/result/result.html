@@ -75,13 +75,22 @@
           {{/if}}
 
         </div>
+
         {{#unless isOpen}}
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <div id="closing">
-            {{{quiz.closing}}}
+            {{#if isMobile}}
+              {{{quiz.closingMobile}}}
+            {{else}}
+              {{{quiz.closing}}}
+            {{/if}}
           </div>
           <div id="winners">
-            {{{quiz.winners}}}
+            {{#if isMobile}}
+              {{{quiz.winnersMobile}}}
+            {{else}}
+              {{{quiz.winners}}}
+            {{/if}}
           </div>
         </div>
         {{/unless}}
