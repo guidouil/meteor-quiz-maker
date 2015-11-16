@@ -20,7 +20,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='title'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="title">{{afFieldLabelText name='title'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='title' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='title' id='title'}}
             <span class="help-block">{{{afFieldMessage name='title'}}}</span>
@@ -30,7 +30,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='firstname'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="firstname">{{afFieldLabelText name='firstname'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='firstname' id='firstname' value=userRealName placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='firstname'}}
             <span class="help-block">{{{afFieldMessage name='firstname'}}}</span>
@@ -40,7 +40,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='lastname'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="lastname">{{afFieldLabelText name='lastname'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='lastname' id='lastname' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='lastname'}}
             <span class="help-block">{{{afFieldMessage name='lastname'}}}</span>
@@ -50,7 +50,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='mail'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="mail">{{afFieldLabelText name='mail'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='mail' id='mail' value=email placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='mail'}}
             <span class="help-block">{{{afFieldMessage name='mail'}}}</span>
@@ -59,7 +59,7 @@
         </div>
 
         <div class="form-group {{#if afFieldIsInvalid name='birthdate'}}has-error{{/if}}">
-          <label class="col-md-3 col-xs-3 control-label" for="birthdate">{{afFieldLabelText name='birthdate'}}</label>
+          <label class="col-md-3 hidden-xs control-label" for="birthdate">{{afFieldLabelText name='birthdate'}}</label>
           <div class="col-xs-9 col-md-9">
             <div class="row">
               <div class="col-xs-4">
@@ -84,7 +84,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='address'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="address">{{afFieldLabelText name='address'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='address' id='address' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='address'}}
             <span class="help-block">{{{afFieldMessage name='address'}}}</span>
@@ -95,7 +95,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='zip'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="zip">{{afFieldLabelText name='zip'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             <!-- {{> inputAutocomplete settings=autoZip id="zip" name='zip' data-schema-key='zip' class="form-control" placeholder="Code postal" value=profile.zip}} -->
             {{> afFieldInput name='zip' id='zip' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='zip'}}
@@ -106,7 +106,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='city'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="city">{{afFieldLabelText name='city'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='city' id='city' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='city'}}
             <span class="help-block">{{{afFieldMessage name='city'}}}</span>
@@ -116,7 +116,7 @@
 
         <!-- <div class="form-group {{#if afFieldIsInvalid name='country'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="country">{{afFieldLabelText name='country'}}</label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='country' id='country'}}
             {{#if afFieldIsInvalid name='country'}}
             <span class="help-block">{{{afFieldMessage name='country'}}}</span>
@@ -126,7 +126,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='validate'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="validate"></label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             <div class="validate">
               {{> afFieldInput name='validate' id='validate' style="float:left;" placeholder="schemaLabel"}}
               <label for="validate" class="push-left margin-top-label">&nbsp;J'ai lu et j'accepte <a href="{{quiz.rules}}" target="_blanck">le règlement</a>*&nbsp;</label>
@@ -139,7 +139,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='nlTefal'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="nlTefal"></label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='nlTefal' id='nlTefal' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='nlTefal'}}
             <span class="help-block">{{{afFieldMessage name='nlTefal'}}}</span>
@@ -149,7 +149,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='nlSebGroup'}}has-error{{/if}}">
           <label class="col-md-3 hidden-xs control-label" for="nlSebGroup"></label>
-          <div class="col-xs-12 col-md-9">
+          <div class="col-xs-9 col-md-9">
             {{> afFieldInput name='nlSebGroup' id='nlSebGroup' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='nlSebGroup'}}
             <span class="help-block">{{{afFieldMessage name='nlSebGroup'}}}</span>
