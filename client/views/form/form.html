@@ -126,7 +126,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='validate'}}has-error{{/if}}">
           <label class="col-xs-3  col-md-3 col-sm-3 col-lg-3 hidden-xs control-label" for="validate"></label>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             <div class="validate">
               {{> afFieldInput name='validate' id='validate' style="float:left;" placeholder="schemaLabel"}}
               <label for="validate" class="push-left margin-top-label">&nbsp;J'ai lu et j'accepte <a href="{{quiz.rules}}" target="_blanck">le règlement</a>*&nbsp;</label>
@@ -139,7 +139,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='nlTefal'}}has-error{{/if}}">
           <label class="col-xs-3  col-md-3 col-sm-3 col-lg-3 hidden-xs control-label" for="nlTefal"></label>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             {{> afFieldInput name='nlTefal' id='nlTefal' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='nlTefal'}}
             <span class="help-block">{{{afFieldMessage name='nlTefal'}}}</span>
@@ -149,7 +149,7 @@
 
         <div class="form-group {{#if afFieldIsInvalid name='nlSebGroup'}}has-error{{/if}}">
           <label class="col-xs-3  col-md-3 col-sm-3 col-lg-3 hidden-xs control-label" for="nlSebGroup"></label>
-          <div class="col-xs-9 col-sm-9 col-md-9 col-lg-9">
+          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
             {{> afFieldInput name='nlSebGroup' id='nlSebGroup' placeholder="schemaLabel"}}
             {{#if afFieldIsInvalid name='nlSebGroup'}}
             <span class="help-block">{{{afFieldMessage name='nlSebGroup'}}}</span>
